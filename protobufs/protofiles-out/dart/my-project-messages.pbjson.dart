@@ -54,6 +54,7 @@ const NoArgCommands$json = {
     {'1': 'Nac_GetBoardDetailsRequest', '2': 1},
     {'1': 'Nac_LoadBoardConfiguration', '2': 2},
     {'1': 'Nac_RestartDevice', '2': 3},
+    {'1': 'Nac_RequestQromaLightsConfig', '2': 4},
   ],
 };
 
@@ -61,7 +62,7 @@ const NoArgCommands$json = {
 final $typed_data.Uint8List noArgCommandsDescriptor = $convert.base64Decode(
     'Cg1Ob0FyZ0NvbW1hbmRzEg4KCk5hY19Ob3RTZXQQABIeChpOYWNfR2V0Qm9hcmREZXRhaWxzUm'
     'VxdWVzdBABEh4KGk5hY19Mb2FkQm9hcmRDb25maWd1cmF0aW9uEAISFQoRTmFjX1Jlc3RhcnRE'
-    'ZXZpY2UQAw==');
+    'ZXZpY2UQAxIgChxOYWNfUmVxdWVzdFFyb21hTGlnaHRzQ29uZmlnEAQ=');
 
 @$core.Deprecated('Use helloQromaRequestDescriptor instead')
 const HelloQromaRequest$json = {
@@ -395,11 +396,11 @@ const MyProjectCommand$json = {
   '2': [
     {'1': 'noArgCommand', '3': 1, '4': 1, '5': 14, '6': '.NoArgCommands', '9': 0, '10': 'noArgCommand'},
     {'1': 'helloQromaRequest', '3': 2, '4': 1, '5': 11, '6': '.HelloQromaRequest', '9': 0, '10': 'helloQromaRequest'},
-    {'1': 'mathRequest', '3': 3, '4': 1, '5': 11, '6': '.MathRequest', '9': 0, '10': 'mathRequest'},
     {'1': 'setUpdateConfiguration', '3': 4, '4': 1, '5': 11, '6': '.SetUpdateConfiguration', '9': 0, '10': 'setUpdateConfiguration'},
     {'1': 'pingRequest', '3': 5, '4': 1, '5': 11, '6': '.PingRequest', '9': 0, '10': 'pingRequest'},
     {'1': 'getBoardDetailsRequest', '3': 6, '4': 1, '5': 11, '6': '.GetBoardDetailsRequest', '9': 0, '10': 'getBoardDetailsRequest'},
     {'1': 'setBoardLightColorRequest', '3': 7, '4': 1, '5': 11, '6': '.SetBoardLightColorRequest', '9': 0, '10': 'setBoardLightColorRequest'},
+    {'1': 'qromaLightsCommand', '3': 8, '4': 1, '5': 11, '6': '.QromaLightsCommand', '9': 0, '10': 'qromaLightsCommand'},
   ],
   '8': [
     {'1': 'command'},
@@ -410,14 +411,14 @@ const MyProjectCommand$json = {
 final $typed_data.Uint8List myProjectCommandDescriptor = $convert.base64Decode(
     'ChBNeVByb2plY3RDb21tYW5kEjQKDG5vQXJnQ29tbWFuZBgBIAEoDjIOLk5vQXJnQ29tbWFuZH'
     'NIAFIMbm9BcmdDb21tYW5kEkIKEWhlbGxvUXJvbWFSZXF1ZXN0GAIgASgLMhIuSGVsbG9Rcm9t'
-    'YVJlcXVlc3RIAFIRaGVsbG9Rcm9tYVJlcXVlc3QSMAoLbWF0aFJlcXVlc3QYAyABKAsyDC5NYX'
-    'RoUmVxdWVzdEgAUgttYXRoUmVxdWVzdBJRChZzZXRVcGRhdGVDb25maWd1cmF0aW9uGAQgASgL'
-    'MhcuU2V0VXBkYXRlQ29uZmlndXJhdGlvbkgAUhZzZXRVcGRhdGVDb25maWd1cmF0aW9uEjAKC3'
-    'BpbmdSZXF1ZXN0GAUgASgLMgwuUGluZ1JlcXVlc3RIAFILcGluZ1JlcXVlc3QSUQoWZ2V0Qm9h'
-    'cmREZXRhaWxzUmVxdWVzdBgGIAEoCzIXLkdldEJvYXJkRGV0YWlsc1JlcXVlc3RIAFIWZ2V0Qm'
-    '9hcmREZXRhaWxzUmVxdWVzdBJaChlzZXRCb2FyZExpZ2h0Q29sb3JSZXF1ZXN0GAcgASgLMhou'
-    'U2V0Qm9hcmRMaWdodENvbG9yUmVxdWVzdEgAUhlzZXRCb2FyZExpZ2h0Q29sb3JSZXF1ZXN0Qg'
-    'kKB2NvbW1hbmQ=');
+    'YVJlcXVlc3RIAFIRaGVsbG9Rcm9tYVJlcXVlc3QSUQoWc2V0VXBkYXRlQ29uZmlndXJhdGlvbh'
+    'gEIAEoCzIXLlNldFVwZGF0ZUNvbmZpZ3VyYXRpb25IAFIWc2V0VXBkYXRlQ29uZmlndXJhdGlv'
+    'bhIwCgtwaW5nUmVxdWVzdBgFIAEoCzIMLlBpbmdSZXF1ZXN0SABSC3BpbmdSZXF1ZXN0ElEKFm'
+    'dldEJvYXJkRGV0YWlsc1JlcXVlc3QYBiABKAsyFy5HZXRCb2FyZERldGFpbHNSZXF1ZXN0SABS'
+    'FmdldEJvYXJkRGV0YWlsc1JlcXVlc3QSWgoZc2V0Qm9hcmRMaWdodENvbG9yUmVxdWVzdBgHIA'
+    'EoCzIaLlNldEJvYXJkTGlnaHRDb2xvclJlcXVlc3RIAFIZc2V0Qm9hcmRMaWdodENvbG9yUmVx'
+    'dWVzdBJFChJxcm9tYUxpZ2h0c0NvbW1hbmQYCCABKAsyEy5Rcm9tYUxpZ2h0c0NvbW1hbmRIAF'
+    'IScXJvbWFMaWdodHNDb21tYW5kQgkKB2NvbW1hbmQ=');
 
 @$core.Deprecated('Use myProjectResponseDescriptor instead')
 const MyProjectResponse$json = {
@@ -425,13 +426,13 @@ const MyProjectResponse$json = {
   '2': [
     {'1': 'invalidCommandResponse', '3': 1, '4': 1, '5': 11, '6': '.InvalidCommandResponse', '9': 0, '10': 'invalidCommandResponse'},
     {'1': 'helloQromaResponse', '3': 2, '4': 1, '5': 11, '6': '.HelloQromaResponse', '9': 0, '10': 'helloQromaResponse'},
-    {'1': 'mathResponse', '3': 3, '4': 1, '5': 11, '6': '.MathResponse', '9': 0, '10': 'mathResponse'},
     {'1': 'setUpdateConfigurationResponse', '3': 4, '4': 1, '5': 11, '6': '.SetUpdateConfigurationResponse', '9': 0, '10': 'setUpdateConfigurationResponse'},
     {'1': 'pingResponse', '3': 5, '4': 1, '5': 11, '6': '.PingResponse', '9': 0, '10': 'pingResponse'},
     {'1': 'updateResponse', '3': 6, '4': 1, '5': 11, '6': '.UpdateResponse', '9': 0, '10': 'updateResponse'},
     {'1': 'setBoardLightColorResponse', '3': 7, '4': 1, '5': 11, '6': '.SetBoardLightColorResponse', '9': 0, '10': 'setBoardLightColorResponse'},
     {'1': 'getBoardDetailsResponse', '3': 8, '4': 1, '5': 11, '6': '.GetBoardDetailsResponse', '9': 0, '10': 'getBoardDetailsResponse'},
     {'1': 'loadBoardConfigurationResponse', '3': 9, '4': 1, '5': 11, '6': '.LoadBoardConfigurationResponse', '9': 0, '10': 'loadBoardConfigurationResponse'},
+    {'1': 'qromaLightsResponse', '3': 10, '4': 1, '5': 11, '6': '.QromaLightsResponse', '9': 0, '10': 'qromaLightsResponse'},
   ],
   '8': [
     {'1': 'response'},
@@ -443,15 +444,15 @@ final $typed_data.Uint8List myProjectResponseDescriptor = $convert.base64Decode(
     'ChFNeVByb2plY3RSZXNwb25zZRJRChZpbnZhbGlkQ29tbWFuZFJlc3BvbnNlGAEgASgLMhcuSW'
     '52YWxpZENvbW1hbmRSZXNwb25zZUgAUhZpbnZhbGlkQ29tbWFuZFJlc3BvbnNlEkUKEmhlbGxv'
     'UXJvbWFSZXNwb25zZRgCIAEoCzITLkhlbGxvUXJvbWFSZXNwb25zZUgAUhJoZWxsb1Fyb21hUm'
-    'VzcG9uc2USMwoMbWF0aFJlc3BvbnNlGAMgASgLMg0uTWF0aFJlc3BvbnNlSABSDG1hdGhSZXNw'
-    'b25zZRJpCh5zZXRVcGRhdGVDb25maWd1cmF0aW9uUmVzcG9uc2UYBCABKAsyHy5TZXRVcGRhdG'
-    'VDb25maWd1cmF0aW9uUmVzcG9uc2VIAFIec2V0VXBkYXRlQ29uZmlndXJhdGlvblJlc3BvbnNl'
-    'EjMKDHBpbmdSZXNwb25zZRgFIAEoCzINLlBpbmdSZXNwb25zZUgAUgxwaW5nUmVzcG9uc2USOQ'
-    'oOdXBkYXRlUmVzcG9uc2UYBiABKAsyDy5VcGRhdGVSZXNwb25zZUgAUg51cGRhdGVSZXNwb25z'
-    'ZRJdChpzZXRCb2FyZExpZ2h0Q29sb3JSZXNwb25zZRgHIAEoCzIbLlNldEJvYXJkTGlnaHRDb2'
-    'xvclJlc3BvbnNlSABSGnNldEJvYXJkTGlnaHRDb2xvclJlc3BvbnNlElQKF2dldEJvYXJkRGV0'
-    'YWlsc1Jlc3BvbnNlGAggASgLMhguR2V0Qm9hcmREZXRhaWxzUmVzcG9uc2VIAFIXZ2V0Qm9hcm'
-    'REZXRhaWxzUmVzcG9uc2USaQoebG9hZEJvYXJkQ29uZmlndXJhdGlvblJlc3BvbnNlGAkgASgL'
-    'Mh8uTG9hZEJvYXJkQ29uZmlndXJhdGlvblJlc3BvbnNlSABSHmxvYWRCb2FyZENvbmZpZ3VyYX'
-    'Rpb25SZXNwb25zZUIKCghyZXNwb25zZQ==');
+    'VzcG9uc2USaQoec2V0VXBkYXRlQ29uZmlndXJhdGlvblJlc3BvbnNlGAQgASgLMh8uU2V0VXBk'
+    'YXRlQ29uZmlndXJhdGlvblJlc3BvbnNlSABSHnNldFVwZGF0ZUNvbmZpZ3VyYXRpb25SZXNwb2'
+    '5zZRIzCgxwaW5nUmVzcG9uc2UYBSABKAsyDS5QaW5nUmVzcG9uc2VIAFIMcGluZ1Jlc3BvbnNl'
+    'EjkKDnVwZGF0ZVJlc3BvbnNlGAYgASgLMg8uVXBkYXRlUmVzcG9uc2VIAFIOdXBkYXRlUmVzcG'
+    '9uc2USXQoac2V0Qm9hcmRMaWdodENvbG9yUmVzcG9uc2UYByABKAsyGy5TZXRCb2FyZExpZ2h0'
+    'Q29sb3JSZXNwb25zZUgAUhpzZXRCb2FyZExpZ2h0Q29sb3JSZXNwb25zZRJUChdnZXRCb2FyZE'
+    'RldGFpbHNSZXNwb25zZRgIIAEoCzIYLkdldEJvYXJkRGV0YWlsc1Jlc3BvbnNlSABSF2dldEJv'
+    'YXJkRGV0YWlsc1Jlc3BvbnNlEmkKHmxvYWRCb2FyZENvbmZpZ3VyYXRpb25SZXNwb25zZRgJIA'
+    'EoCzIfLkxvYWRCb2FyZENvbmZpZ3VyYXRpb25SZXNwb25zZUgAUh5sb2FkQm9hcmRDb25maWd1'
+    'cmF0aW9uUmVzcG9uc2USSAoTcXJvbWFMaWdodHNSZXNwb25zZRgKIAEoCzIULlFyb21hTGlnaH'
+    'RzUmVzcG9uc2VIAFITcXJvbWFMaWdodHNSZXNwb25zZUIKCghyZXNwb25zZQ==');
 

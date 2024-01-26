@@ -10,6 +10,8 @@ import { UnknownFieldHandler } from "@protobuf-ts/runtime";
 import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
+import { QromaLightsResponse } from "./qroma-lights-commands";
+import { QromaLightsCommand } from "./qroma-lights-commands";
 /**
  * @generated from protobuf message HelloQromaRequest
  */
@@ -335,14 +337,10 @@ export interface MyProjectCommand {
          */
         helloQromaRequest: HelloQromaRequest;
     } | {
-        oneofKind: "mathRequest";
-        /**
-         * @generated from protobuf field: MathRequest mathRequest = 3;
-         */
-        mathRequest: MathRequest;
-    } | {
         oneofKind: "setUpdateConfiguration";
         /**
+         * MathRequest mathRequest = 3;
+         *
          * @generated from protobuf field: SetUpdateConfiguration setUpdateConfiguration = 4;
          */
         setUpdateConfiguration: SetUpdateConfiguration;
@@ -364,6 +362,12 @@ export interface MyProjectCommand {
          * @generated from protobuf field: SetBoardLightColorRequest setBoardLightColorRequest = 7;
          */
         setBoardLightColorRequest: SetBoardLightColorRequest;
+    } | {
+        oneofKind: "qromaLightsCommand";
+        /**
+         * @generated from protobuf field: QromaLightsCommand qromaLightsCommand = 8;
+         */
+        qromaLightsCommand: QromaLightsCommand;
     } | {
         oneofKind: undefined;
     };
@@ -388,14 +392,10 @@ export interface MyProjectResponse {
          */
         helloQromaResponse: HelloQromaResponse;
     } | {
-        oneofKind: "mathResponse";
-        /**
-         * @generated from protobuf field: MathResponse mathResponse = 3;
-         */
-        mathResponse: MathResponse;
-    } | {
         oneofKind: "setUpdateConfigurationResponse";
         /**
+         * MathResponse mathResponse = 3;
+         *
          * @generated from protobuf field: SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
          */
         setUpdateConfigurationResponse: SetUpdateConfigurationResponse;
@@ -429,6 +429,12 @@ export interface MyProjectResponse {
          * @generated from protobuf field: LoadBoardConfigurationResponse loadBoardConfigurationResponse = 9;
          */
         loadBoardConfigurationResponse: LoadBoardConfigurationResponse;
+    } | {
+        oneofKind: "qromaLightsResponse";
+        /**
+         * @generated from protobuf field: QromaLightsResponse qromaLightsResponse = 10;
+         */
+        qromaLightsResponse: QromaLightsResponse;
     } | {
         oneofKind: undefined;
     };
@@ -494,7 +500,11 @@ export enum NoArgCommands {
     /**
      * @generated from protobuf enum value: Nac_RestartDevice = 3;
      */
-    Nac_RestartDevice = 3
+    Nac_RestartDevice = 3,
+    /**
+     * @generated from protobuf enum value: Nac_RequestQromaLightsConfig = 4;
+     */
+    Nac_RequestQromaLightsConfig = 4
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class HelloQromaRequest$Type extends MessageType<HelloQromaRequest> {
@@ -1742,11 +1752,11 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
         super("MyProjectCommand", [
             { no: 1, name: "noArgCommand", kind: "enum", oneof: "command", T: () => ["NoArgCommands", NoArgCommands] },
             { no: 2, name: "helloQromaRequest", kind: "message", oneof: "command", T: () => HelloQromaRequest },
-            { no: 3, name: "mathRequest", kind: "message", oneof: "command", T: () => MathRequest },
             { no: 4, name: "setUpdateConfiguration", kind: "message", oneof: "command", T: () => SetUpdateConfiguration },
             { no: 5, name: "pingRequest", kind: "message", oneof: "command", T: () => PingRequest },
             { no: 6, name: "getBoardDetailsRequest", kind: "message", oneof: "command", T: () => GetBoardDetailsRequest },
-            { no: 7, name: "setBoardLightColorRequest", kind: "message", oneof: "command", T: () => SetBoardLightColorRequest }
+            { no: 7, name: "setBoardLightColorRequest", kind: "message", oneof: "command", T: () => SetBoardLightColorRequest },
+            { no: 8, name: "qromaLightsCommand", kind: "message", oneof: "command", T: () => QromaLightsCommand }
         ]);
     }
     create(value?: PartialMessage<MyProjectCommand>): MyProjectCommand {
@@ -1773,12 +1783,6 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
                         helloQromaRequest: HelloQromaRequest.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).helloQromaRequest)
                     };
                     break;
-                case /* MathRequest mathRequest */ 3:
-                    message.command = {
-                        oneofKind: "mathRequest",
-                        mathRequest: MathRequest.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).mathRequest)
-                    };
-                    break;
                 case /* SetUpdateConfiguration setUpdateConfiguration */ 4:
                     message.command = {
                         oneofKind: "setUpdateConfiguration",
@@ -1803,6 +1807,12 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
                         setBoardLightColorRequest: SetBoardLightColorRequest.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).setBoardLightColorRequest)
                     };
                     break;
+                case /* QromaLightsCommand qromaLightsCommand */ 8:
+                    message.command = {
+                        oneofKind: "qromaLightsCommand",
+                        qromaLightsCommand: QromaLightsCommand.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).qromaLightsCommand)
+                    };
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1821,9 +1831,6 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
         /* HelloQromaRequest helloQromaRequest = 2; */
         if (message.command.oneofKind === "helloQromaRequest")
             HelloQromaRequest.internalBinaryWrite(message.command.helloQromaRequest, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* MathRequest mathRequest = 3; */
-        if (message.command.oneofKind === "mathRequest")
-            MathRequest.internalBinaryWrite(message.command.mathRequest, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         /* SetUpdateConfiguration setUpdateConfiguration = 4; */
         if (message.command.oneofKind === "setUpdateConfiguration")
             SetUpdateConfiguration.internalBinaryWrite(message.command.setUpdateConfiguration, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
@@ -1836,6 +1843,9 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
         /* SetBoardLightColorRequest setBoardLightColorRequest = 7; */
         if (message.command.oneofKind === "setBoardLightColorRequest")
             SetBoardLightColorRequest.internalBinaryWrite(message.command.setBoardLightColorRequest, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
+        /* QromaLightsCommand qromaLightsCommand = 8; */
+        if (message.command.oneofKind === "qromaLightsCommand")
+            QromaLightsCommand.internalBinaryWrite(message.command.qromaLightsCommand, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -1852,13 +1862,13 @@ class MyProjectResponse$Type extends MessageType<MyProjectResponse> {
         super("MyProjectResponse", [
             { no: 1, name: "invalidCommandResponse", kind: "message", oneof: "response", T: () => InvalidCommandResponse },
             { no: 2, name: "helloQromaResponse", kind: "message", oneof: "response", T: () => HelloQromaResponse },
-            { no: 3, name: "mathResponse", kind: "message", oneof: "response", T: () => MathResponse },
             { no: 4, name: "setUpdateConfigurationResponse", kind: "message", oneof: "response", T: () => SetUpdateConfigurationResponse },
             { no: 5, name: "pingResponse", kind: "message", oneof: "response", T: () => PingResponse },
             { no: 6, name: "updateResponse", kind: "message", oneof: "response", T: () => UpdateResponse },
             { no: 7, name: "setBoardLightColorResponse", kind: "message", oneof: "response", T: () => SetBoardLightColorResponse },
             { no: 8, name: "getBoardDetailsResponse", kind: "message", oneof: "response", T: () => GetBoardDetailsResponse },
-            { no: 9, name: "loadBoardConfigurationResponse", kind: "message", oneof: "response", T: () => LoadBoardConfigurationResponse }
+            { no: 9, name: "loadBoardConfigurationResponse", kind: "message", oneof: "response", T: () => LoadBoardConfigurationResponse },
+            { no: 10, name: "qromaLightsResponse", kind: "message", oneof: "response", T: () => QromaLightsResponse }
         ]);
     }
     create(value?: PartialMessage<MyProjectResponse>): MyProjectResponse {
@@ -1883,12 +1893,6 @@ class MyProjectResponse$Type extends MessageType<MyProjectResponse> {
                     message.response = {
                         oneofKind: "helloQromaResponse",
                         helloQromaResponse: HelloQromaResponse.internalBinaryRead(reader, reader.uint32(), options, (message.response as any).helloQromaResponse)
-                    };
-                    break;
-                case /* MathResponse mathResponse */ 3:
-                    message.response = {
-                        oneofKind: "mathResponse",
-                        mathResponse: MathResponse.internalBinaryRead(reader, reader.uint32(), options, (message.response as any).mathResponse)
                     };
                     break;
                 case /* SetUpdateConfigurationResponse setUpdateConfigurationResponse */ 4:
@@ -1927,6 +1931,12 @@ class MyProjectResponse$Type extends MessageType<MyProjectResponse> {
                         loadBoardConfigurationResponse: LoadBoardConfigurationResponse.internalBinaryRead(reader, reader.uint32(), options, (message.response as any).loadBoardConfigurationResponse)
                     };
                     break;
+                case /* QromaLightsResponse qromaLightsResponse */ 10:
+                    message.response = {
+                        oneofKind: "qromaLightsResponse",
+                        qromaLightsResponse: QromaLightsResponse.internalBinaryRead(reader, reader.uint32(), options, (message.response as any).qromaLightsResponse)
+                    };
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -1945,9 +1955,6 @@ class MyProjectResponse$Type extends MessageType<MyProjectResponse> {
         /* HelloQromaResponse helloQromaResponse = 2; */
         if (message.response.oneofKind === "helloQromaResponse")
             HelloQromaResponse.internalBinaryWrite(message.response.helloQromaResponse, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        /* MathResponse mathResponse = 3; */
-        if (message.response.oneofKind === "mathResponse")
-            MathResponse.internalBinaryWrite(message.response.mathResponse, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         /* SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4; */
         if (message.response.oneofKind === "setUpdateConfigurationResponse")
             SetUpdateConfigurationResponse.internalBinaryWrite(message.response.setUpdateConfigurationResponse, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
@@ -1966,6 +1973,9 @@ class MyProjectResponse$Type extends MessageType<MyProjectResponse> {
         /* LoadBoardConfigurationResponse loadBoardConfigurationResponse = 9; */
         if (message.response.oneofKind === "loadBoardConfigurationResponse")
             LoadBoardConfigurationResponse.internalBinaryWrite(message.response.loadBoardConfigurationResponse, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
+        /* QromaLightsResponse qromaLightsResponse = 10; */
+        if (message.response.oneofKind === "qromaLightsResponse")
+            QromaLightsResponse.internalBinaryWrite(message.response.qromaLightsResponse, writer.tag(10, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

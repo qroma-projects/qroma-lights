@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "qroma-lights-commands.proto";
+
 
 message HelloQromaRequest {
   string name = 1;
@@ -126,10 +128,11 @@ message SetBoardLightColorResponse {
 }
 
 enum NoArgCommands {
-  Nac_NotSet = 0;
-  Nac_GetBoardDetailsRequest = 1;
-  Nac_LoadBoardConfiguration = 2;
-  Nac_RestartDevice          = 3;
+  Nac_NotSet                   = 0;
+  Nac_GetBoardDetailsRequest   = 1;
+  Nac_LoadBoardConfiguration   = 2;
+  Nac_RestartDevice            = 3;
+  Nac_RequestQromaLightsConfig = 4;
 }
 
 message LoadBoardConfigurationResponse {
@@ -146,11 +149,12 @@ message MyProjectCommand {
   oneof command {
     NoArgCommands noArgCommand = 1;
     HelloQromaRequest helloQromaRequest = 2;
-    MathRequest mathRequest = 3;
+    // MathRequest mathRequest = 3;
     SetUpdateConfiguration setUpdateConfiguration = 4;
     PingRequest pingRequest = 5;
     GetBoardDetailsRequest getBoardDetailsRequest = 6;
     SetBoardLightColorRequest setBoardLightColorRequest = 7;
+    QromaLightsCommand qromaLightsCommand = 8;
   }
 }
 
@@ -158,12 +162,13 @@ message MyProjectResponse {
   oneof response {
     InvalidCommandResponse invalidCommandResponse = 1;
     HelloQromaResponse helloQromaResponse = 2;
-    MathResponse mathResponse = 3;
+    // MathResponse mathResponse = 3;
     SetUpdateConfigurationResponse setUpdateConfigurationResponse = 4;
     PingResponse pingResponse = 5;
     UpdateResponse updateResponse = 6;
     SetBoardLightColorResponse setBoardLightColorResponse = 7;
     GetBoardDetailsResponse getBoardDetailsResponse = 8;
     LoadBoardConfigurationResponse loadBoardConfigurationResponse = 9;
+    QromaLightsResponse qromaLightsResponse = 10;
   }
 }

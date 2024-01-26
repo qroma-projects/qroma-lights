@@ -1,0 +1,5 @@
+
+QromaStrip_WS2812FX_SegmentsDefinition.segments  max_count: 5  fixed_count:true
+QromaStrip_WS2812FX_StartupAnimations.segmentAnimations  max_count: 5  fixed_count:true
+
+QromaStripConfig.name  max_size:30  fixed_length:true

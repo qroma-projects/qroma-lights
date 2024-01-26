@@ -14,6 +14,7 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'my-project-messages.pbenum.dart';
+import 'qroma-lights-commands.pb.dart' as $1;
 
 export 'my-project-messages.pbenum.dart';
 
@@ -1488,11 +1489,11 @@ class InvalidCommandResponse extends $pb.GeneratedMessage {
 enum MyProjectCommand_Command {
   noArgCommand, 
   helloQromaRequest, 
-  mathRequest, 
   setUpdateConfiguration, 
   pingRequest, 
   getBoardDetailsRequest, 
   setBoardLightColorRequest, 
+  qromaLightsCommand, 
   notSet
 }
 
@@ -1500,11 +1501,11 @@ class MyProjectCommand extends $pb.GeneratedMessage {
   factory MyProjectCommand({
     NoArgCommands? noArgCommand,
     HelloQromaRequest? helloQromaRequest,
-    MathRequest? mathRequest,
     SetUpdateConfiguration? setUpdateConfiguration,
     PingRequest? pingRequest,
     GetBoardDetailsRequest? getBoardDetailsRequest,
     SetBoardLightColorRequest? setBoardLightColorRequest,
+    $1.QromaLightsCommand? qromaLightsCommand,
   }) {
     final $result = create();
     if (noArgCommand != null) {
@@ -1512,9 +1513,6 @@ class MyProjectCommand extends $pb.GeneratedMessage {
     }
     if (helloQromaRequest != null) {
       $result.helloQromaRequest = helloQromaRequest;
-    }
-    if (mathRequest != null) {
-      $result.mathRequest = mathRequest;
     }
     if (setUpdateConfiguration != null) {
       $result.setUpdateConfiguration = setUpdateConfiguration;
@@ -1528,6 +1526,9 @@ class MyProjectCommand extends $pb.GeneratedMessage {
     if (setBoardLightColorRequest != null) {
       $result.setBoardLightColorRequest = setBoardLightColorRequest;
     }
+    if (qromaLightsCommand != null) {
+      $result.qromaLightsCommand = qromaLightsCommand;
+    }
     return $result;
   }
   MyProjectCommand._() : super();
@@ -1537,22 +1538,22 @@ class MyProjectCommand extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, MyProjectCommand_Command> _MyProjectCommand_CommandByTag = {
     1 : MyProjectCommand_Command.noArgCommand,
     2 : MyProjectCommand_Command.helloQromaRequest,
-    3 : MyProjectCommand_Command.mathRequest,
     4 : MyProjectCommand_Command.setUpdateConfiguration,
     5 : MyProjectCommand_Command.pingRequest,
     6 : MyProjectCommand_Command.getBoardDetailsRequest,
     7 : MyProjectCommand_Command.setBoardLightColorRequest,
+    8 : MyProjectCommand_Command.qromaLightsCommand,
     0 : MyProjectCommand_Command.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MyProjectCommand', createEmptyInstance: create)
-    ..oo(0, [1, 2, 3, 4, 5, 6, 7])
+    ..oo(0, [1, 2, 4, 5, 6, 7, 8])
     ..e<NoArgCommands>(1, _omitFieldNames ? '' : 'noArgCommand', $pb.PbFieldType.OE, protoName: 'noArgCommand', defaultOrMaker: NoArgCommands.Nac_NotSet, valueOf: NoArgCommands.valueOf, enumValues: NoArgCommands.values)
     ..aOM<HelloQromaRequest>(2, _omitFieldNames ? '' : 'helloQromaRequest', protoName: 'helloQromaRequest', subBuilder: HelloQromaRequest.create)
-    ..aOM<MathRequest>(3, _omitFieldNames ? '' : 'mathRequest', protoName: 'mathRequest', subBuilder: MathRequest.create)
     ..aOM<SetUpdateConfiguration>(4, _omitFieldNames ? '' : 'setUpdateConfiguration', protoName: 'setUpdateConfiguration', subBuilder: SetUpdateConfiguration.create)
     ..aOM<PingRequest>(5, _omitFieldNames ? '' : 'pingRequest', protoName: 'pingRequest', subBuilder: PingRequest.create)
     ..aOM<GetBoardDetailsRequest>(6, _omitFieldNames ? '' : 'getBoardDetailsRequest', protoName: 'getBoardDetailsRequest', subBuilder: GetBoardDetailsRequest.create)
     ..aOM<SetBoardLightColorRequest>(7, _omitFieldNames ? '' : 'setBoardLightColorRequest', protoName: 'setBoardLightColorRequest', subBuilder: SetBoardLightColorRequest.create)
+    ..aOM<$1.QromaLightsCommand>(8, _omitFieldNames ? '' : 'qromaLightsCommand', protoName: 'qromaLightsCommand', subBuilder: $1.QromaLightsCommand.create)
     ..hasRequiredFields = false
   ;
 
@@ -1600,72 +1601,73 @@ class MyProjectCommand extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   HelloQromaRequest ensureHelloQromaRequest() => $_ensure(1);
 
-  @$pb.TagNumber(3)
-  MathRequest get mathRequest => $_getN(2);
-  @$pb.TagNumber(3)
-  set mathRequest(MathRequest v) { setField(3, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasMathRequest() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearMathRequest() => clearField(3);
-  @$pb.TagNumber(3)
-  MathRequest ensureMathRequest() => $_ensure(2);
-
+  /// MathRequest mathRequest = 3;
   @$pb.TagNumber(4)
-  SetUpdateConfiguration get setUpdateConfiguration => $_getN(3);
+  SetUpdateConfiguration get setUpdateConfiguration => $_getN(2);
   @$pb.TagNumber(4)
   set setUpdateConfiguration(SetUpdateConfiguration v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasSetUpdateConfiguration() => $_has(3);
+  $core.bool hasSetUpdateConfiguration() => $_has(2);
   @$pb.TagNumber(4)
   void clearSetUpdateConfiguration() => clearField(4);
   @$pb.TagNumber(4)
-  SetUpdateConfiguration ensureSetUpdateConfiguration() => $_ensure(3);
+  SetUpdateConfiguration ensureSetUpdateConfiguration() => $_ensure(2);
 
   @$pb.TagNumber(5)
-  PingRequest get pingRequest => $_getN(4);
+  PingRequest get pingRequest => $_getN(3);
   @$pb.TagNumber(5)
   set pingRequest(PingRequest v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPingRequest() => $_has(4);
+  $core.bool hasPingRequest() => $_has(3);
   @$pb.TagNumber(5)
   void clearPingRequest() => clearField(5);
   @$pb.TagNumber(5)
-  PingRequest ensurePingRequest() => $_ensure(4);
+  PingRequest ensurePingRequest() => $_ensure(3);
 
   @$pb.TagNumber(6)
-  GetBoardDetailsRequest get getBoardDetailsRequest => $_getN(5);
+  GetBoardDetailsRequest get getBoardDetailsRequest => $_getN(4);
   @$pb.TagNumber(6)
   set getBoardDetailsRequest(GetBoardDetailsRequest v) { setField(6, v); }
   @$pb.TagNumber(6)
-  $core.bool hasGetBoardDetailsRequest() => $_has(5);
+  $core.bool hasGetBoardDetailsRequest() => $_has(4);
   @$pb.TagNumber(6)
   void clearGetBoardDetailsRequest() => clearField(6);
   @$pb.TagNumber(6)
-  GetBoardDetailsRequest ensureGetBoardDetailsRequest() => $_ensure(5);
+  GetBoardDetailsRequest ensureGetBoardDetailsRequest() => $_ensure(4);
 
   @$pb.TagNumber(7)
-  SetBoardLightColorRequest get setBoardLightColorRequest => $_getN(6);
+  SetBoardLightColorRequest get setBoardLightColorRequest => $_getN(5);
   @$pb.TagNumber(7)
   set setBoardLightColorRequest(SetBoardLightColorRequest v) { setField(7, v); }
   @$pb.TagNumber(7)
-  $core.bool hasSetBoardLightColorRequest() => $_has(6);
+  $core.bool hasSetBoardLightColorRequest() => $_has(5);
   @$pb.TagNumber(7)
   void clearSetBoardLightColorRequest() => clearField(7);
   @$pb.TagNumber(7)
-  SetBoardLightColorRequest ensureSetBoardLightColorRequest() => $_ensure(6);
+  SetBoardLightColorRequest ensureSetBoardLightColorRequest() => $_ensure(5);
+
+  @$pb.TagNumber(8)
+  $1.QromaLightsCommand get qromaLightsCommand => $_getN(6);
+  @$pb.TagNumber(8)
+  set qromaLightsCommand($1.QromaLightsCommand v) { setField(8, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasQromaLightsCommand() => $_has(6);
+  @$pb.TagNumber(8)
+  void clearQromaLightsCommand() => clearField(8);
+  @$pb.TagNumber(8)
+  $1.QromaLightsCommand ensureQromaLightsCommand() => $_ensure(6);
 }
 
 enum MyProjectResponse_Response {
   invalidCommandResponse, 
   helloQromaResponse, 
-  mathResponse, 
   setUpdateConfigurationResponse, 
   pingResponse, 
   updateResponse, 
   setBoardLightColorResponse, 
   getBoardDetailsResponse, 
   loadBoardConfigurationResponse, 
+  qromaLightsResponse, 
   notSet
 }
 
@@ -1673,13 +1675,13 @@ class MyProjectResponse extends $pb.GeneratedMessage {
   factory MyProjectResponse({
     InvalidCommandResponse? invalidCommandResponse,
     HelloQromaResponse? helloQromaResponse,
-    MathResponse? mathResponse,
     SetUpdateConfigurationResponse? setUpdateConfigurationResponse,
     PingResponse? pingResponse,
     UpdateResponse? updateResponse,
     SetBoardLightColorResponse? setBoardLightColorResponse,
     GetBoardDetailsResponse? getBoardDetailsResponse,
     LoadBoardConfigurationResponse? loadBoardConfigurationResponse,
+    $1.QromaLightsResponse? qromaLightsResponse,
   }) {
     final $result = create();
     if (invalidCommandResponse != null) {
@@ -1687,9 +1689,6 @@ class MyProjectResponse extends $pb.GeneratedMessage {
     }
     if (helloQromaResponse != null) {
       $result.helloQromaResponse = helloQromaResponse;
-    }
-    if (mathResponse != null) {
-      $result.mathResponse = mathResponse;
     }
     if (setUpdateConfigurationResponse != null) {
       $result.setUpdateConfigurationResponse = setUpdateConfigurationResponse;
@@ -1709,6 +1708,9 @@ class MyProjectResponse extends $pb.GeneratedMessage {
     if (loadBoardConfigurationResponse != null) {
       $result.loadBoardConfigurationResponse = loadBoardConfigurationResponse;
     }
+    if (qromaLightsResponse != null) {
+      $result.qromaLightsResponse = qromaLightsResponse;
+    }
     return $result;
   }
   MyProjectResponse._() : super();
@@ -1718,26 +1720,26 @@ class MyProjectResponse extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, MyProjectResponse_Response> _MyProjectResponse_ResponseByTag = {
     1 : MyProjectResponse_Response.invalidCommandResponse,
     2 : MyProjectResponse_Response.helloQromaResponse,
-    3 : MyProjectResponse_Response.mathResponse,
     4 : MyProjectResponse_Response.setUpdateConfigurationResponse,
     5 : MyProjectResponse_Response.pingResponse,
     6 : MyProjectResponse_Response.updateResponse,
     7 : MyProjectResponse_Response.setBoardLightColorResponse,
     8 : MyProjectResponse_Response.getBoardDetailsResponse,
     9 : MyProjectResponse_Response.loadBoardConfigurationResponse,
+    10 : MyProjectResponse_Response.qromaLightsResponse,
     0 : MyProjectResponse_Response.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MyProjectResponse', createEmptyInstance: create)
-    ..oo(0, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    ..oo(0, [1, 2, 4, 5, 6, 7, 8, 9, 10])
     ..aOM<InvalidCommandResponse>(1, _omitFieldNames ? '' : 'invalidCommandResponse', protoName: 'invalidCommandResponse', subBuilder: InvalidCommandResponse.create)
     ..aOM<HelloQromaResponse>(2, _omitFieldNames ? '' : 'helloQromaResponse', protoName: 'helloQromaResponse', subBuilder: HelloQromaResponse.create)
-    ..aOM<MathResponse>(3, _omitFieldNames ? '' : 'mathResponse', protoName: 'mathResponse', subBuilder: MathResponse.create)
     ..aOM<SetUpdateConfigurationResponse>(4, _omitFieldNames ? '' : 'setUpdateConfigurationResponse', protoName: 'setUpdateConfigurationResponse', subBuilder: SetUpdateConfigurationResponse.create)
     ..aOM<PingResponse>(5, _omitFieldNames ? '' : 'pingResponse', protoName: 'pingResponse', subBuilder: PingResponse.create)
     ..aOM<UpdateResponse>(6, _omitFieldNames ? '' : 'updateResponse', protoName: 'updateResponse', subBuilder: UpdateResponse.create)
     ..aOM<SetBoardLightColorResponse>(7, _omitFieldNames ? '' : 'setBoardLightColorResponse', protoName: 'setBoardLightColorResponse', subBuilder: SetBoardLightColorResponse.create)
     ..aOM<GetBoardDetailsResponse>(8, _omitFieldNames ? '' : 'getBoardDetailsResponse', protoName: 'getBoardDetailsResponse', subBuilder: GetBoardDetailsResponse.create)
     ..aOM<LoadBoardConfigurationResponse>(9, _omitFieldNames ? '' : 'loadBoardConfigurationResponse', protoName: 'loadBoardConfigurationResponse', subBuilder: LoadBoardConfigurationResponse.create)
+    ..aOM<$1.QromaLightsResponse>(10, _omitFieldNames ? '' : 'qromaLightsResponse', protoName: 'qromaLightsResponse', subBuilder: $1.QromaLightsResponse.create)
     ..hasRequiredFields = false
   ;
 
@@ -1787,82 +1789,83 @@ class MyProjectResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   HelloQromaResponse ensureHelloQromaResponse() => $_ensure(1);
 
-  @$pb.TagNumber(3)
-  MathResponse get mathResponse => $_getN(2);
-  @$pb.TagNumber(3)
-  set mathResponse(MathResponse v) { setField(3, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasMathResponse() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearMathResponse() => clearField(3);
-  @$pb.TagNumber(3)
-  MathResponse ensureMathResponse() => $_ensure(2);
-
+  /// MathResponse mathResponse = 3;
   @$pb.TagNumber(4)
-  SetUpdateConfigurationResponse get setUpdateConfigurationResponse => $_getN(3);
+  SetUpdateConfigurationResponse get setUpdateConfigurationResponse => $_getN(2);
   @$pb.TagNumber(4)
   set setUpdateConfigurationResponse(SetUpdateConfigurationResponse v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasSetUpdateConfigurationResponse() => $_has(3);
+  $core.bool hasSetUpdateConfigurationResponse() => $_has(2);
   @$pb.TagNumber(4)
   void clearSetUpdateConfigurationResponse() => clearField(4);
   @$pb.TagNumber(4)
-  SetUpdateConfigurationResponse ensureSetUpdateConfigurationResponse() => $_ensure(3);
+  SetUpdateConfigurationResponse ensureSetUpdateConfigurationResponse() => $_ensure(2);
 
   @$pb.TagNumber(5)
-  PingResponse get pingResponse => $_getN(4);
+  PingResponse get pingResponse => $_getN(3);
   @$pb.TagNumber(5)
   set pingResponse(PingResponse v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPingResponse() => $_has(4);
+  $core.bool hasPingResponse() => $_has(3);
   @$pb.TagNumber(5)
   void clearPingResponse() => clearField(5);
   @$pb.TagNumber(5)
-  PingResponse ensurePingResponse() => $_ensure(4);
+  PingResponse ensurePingResponse() => $_ensure(3);
 
   @$pb.TagNumber(6)
-  UpdateResponse get updateResponse => $_getN(5);
+  UpdateResponse get updateResponse => $_getN(4);
   @$pb.TagNumber(6)
   set updateResponse(UpdateResponse v) { setField(6, v); }
   @$pb.TagNumber(6)
-  $core.bool hasUpdateResponse() => $_has(5);
+  $core.bool hasUpdateResponse() => $_has(4);
   @$pb.TagNumber(6)
   void clearUpdateResponse() => clearField(6);
   @$pb.TagNumber(6)
-  UpdateResponse ensureUpdateResponse() => $_ensure(5);
+  UpdateResponse ensureUpdateResponse() => $_ensure(4);
 
   @$pb.TagNumber(7)
-  SetBoardLightColorResponse get setBoardLightColorResponse => $_getN(6);
+  SetBoardLightColorResponse get setBoardLightColorResponse => $_getN(5);
   @$pb.TagNumber(7)
   set setBoardLightColorResponse(SetBoardLightColorResponse v) { setField(7, v); }
   @$pb.TagNumber(7)
-  $core.bool hasSetBoardLightColorResponse() => $_has(6);
+  $core.bool hasSetBoardLightColorResponse() => $_has(5);
   @$pb.TagNumber(7)
   void clearSetBoardLightColorResponse() => clearField(7);
   @$pb.TagNumber(7)
-  SetBoardLightColorResponse ensureSetBoardLightColorResponse() => $_ensure(6);
+  SetBoardLightColorResponse ensureSetBoardLightColorResponse() => $_ensure(5);
 
   @$pb.TagNumber(8)
-  GetBoardDetailsResponse get getBoardDetailsResponse => $_getN(7);
+  GetBoardDetailsResponse get getBoardDetailsResponse => $_getN(6);
   @$pb.TagNumber(8)
   set getBoardDetailsResponse(GetBoardDetailsResponse v) { setField(8, v); }
   @$pb.TagNumber(8)
-  $core.bool hasGetBoardDetailsResponse() => $_has(7);
+  $core.bool hasGetBoardDetailsResponse() => $_has(6);
   @$pb.TagNumber(8)
   void clearGetBoardDetailsResponse() => clearField(8);
   @$pb.TagNumber(8)
-  GetBoardDetailsResponse ensureGetBoardDetailsResponse() => $_ensure(7);
+  GetBoardDetailsResponse ensureGetBoardDetailsResponse() => $_ensure(6);
 
   @$pb.TagNumber(9)
-  LoadBoardConfigurationResponse get loadBoardConfigurationResponse => $_getN(8);
+  LoadBoardConfigurationResponse get loadBoardConfigurationResponse => $_getN(7);
   @$pb.TagNumber(9)
   set loadBoardConfigurationResponse(LoadBoardConfigurationResponse v) { setField(9, v); }
   @$pb.TagNumber(9)
-  $core.bool hasLoadBoardConfigurationResponse() => $_has(8);
+  $core.bool hasLoadBoardConfigurationResponse() => $_has(7);
   @$pb.TagNumber(9)
   void clearLoadBoardConfigurationResponse() => clearField(9);
   @$pb.TagNumber(9)
-  LoadBoardConfigurationResponse ensureLoadBoardConfigurationResponse() => $_ensure(8);
+  LoadBoardConfigurationResponse ensureLoadBoardConfigurationResponse() => $_ensure(7);
+
+  @$pb.TagNumber(10)
+  $1.QromaLightsResponse get qromaLightsResponse => $_getN(8);
+  @$pb.TagNumber(10)
+  set qromaLightsResponse($1.QromaLightsResponse v) { setField(10, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasQromaLightsResponse() => $_has(8);
+  @$pb.TagNumber(10)
+  void clearQromaLightsResponse() => clearField(10);
+  @$pb.TagNumber(10)
+  $1.QromaLightsResponse ensureQromaLightsResponse() => $_ensure(8);
 }
 
 

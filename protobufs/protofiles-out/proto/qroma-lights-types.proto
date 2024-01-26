@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+
+enum QromaStrip_WS2812FX_Pattern {
+  QSP_STATIC                 =  0;
+  QSP_BLINK                  =  1;
+  QSP_BREATH                 =  2;
+  QSP_COLOR_WIPE             =  3;
+  QSP_COLOR_WIPE_INV         =  4;
+  QSP_COLOR_WIPE_REV         =  5;
+  QSP_COLOR_WIPE_REV_INV     =  6;
+  QSP_COLOR_WIPE_RANDOM      =  7;
+  QSP_RANDOM_COLOR           =  8;
+  QSP_SINGLE_DYNAMIC         =  9;
+  QSP_MULTI_DYNAMIC          = 10;
+  QSP_RAINBOW                = 11;
+  QSP_RAINBOW_CYCLE          = 12;
+  QSP_SCAN                   = 13;
+  QSP_DUAL_SCAN              = 14;
+  QSP_FADE                   = 15;
+  QSP_THEATER_CHASE          = 16;
+  QSP_THEATER_CHASE_RAINBOW  = 17;
+  QSP_RUNNING_LIGHTS         = 18;
+  QSP_TWINKLE                = 19;
+  QSP_TWINKLE_RANDOM         = 20;
+  QSP_TWINKLE_FADE           = 21;
+  QSP_TWINKLE_FADE_RANDOM    = 22;
+  QSP_SPARKLE                = 23;
+  QSP_FLASH_SPARKLE          = 24;
+  QSP_HYPER_SPARKLE          = 25;
+  QSP_STROBE                 = 26;
+  QSP_STROBE_RAINBOW         = 27;
+  QSP_MULTI_STROBE           = 28;
+  QSP_BLINK_RAINBOW          = 29;
+  QSP_CHASE_WHITE            = 30;
+  QSP_CHASE_COLOR            = 31;
+  QSP_CHASE_RANDOM           = 32;
+  QSP_CHASE_RAINBOW          = 33;
+  QSP_CHASE_FLASH            = 34;
+  QSP_CHASE_FLASH_RANDOM     = 35;
+  QSP_CHASE_RAINBOW_WHITE    = 36;
+  QSP_CHASE_BLACKOUT         = 37;
+  QSP_CHASE_BLACKOUT_RAINBOW = 38;
+  QSP_COLOR_SWEEP_RANDOM     = 39;
+  QSP_RUNNING_COLOR          = 40;
+  QSP_RUNNING_RED_BLUE       = 41;
+  QSP_RUNNING_RANDOM         = 42;
+  QSP_LARSON_SCANNER         = 43;
+  QSP_COMET                  = 44;
+  QSP_FIREWORKS              = 45;
+  QSP_FIREWORKS_RANDOM       = 46;
+  QSP_MERRY_CHRISTMAS        = 47;
+  QSP_FIRE_FLICKER           = 48;
+  QSP_FIRE_FLICKER_SOFT      = 49;
+  QSP_FIRE_FLICKER_INTENSE   = 50;
+  QSP_CIRCUS_COMBUSTUS       = 51;
+  QSP_HALLOWEEN              = 52;
+  QSP_BICOLOR_CHASE          = 53;
+  QSP_TRICOLOR_CHASE         = 54;
+  QSP_TWINKLEFOX             = 55;
+  QSP_RAIN                   = 56;  
+}
+
+enum QromaStrip_WS2812FX_FadeSpeed {
+  QSFS_NOT_SET = 0;
+  QSFS_XFAST   = 1;
+  QSFS_FAST    = 2;
+  QSFS_MEDIUM  = 3;
+  QSFS_SLOW    = 4;
+  QSFS_XSLOW   = 5;
+  QSFS_XXSLOW  = 6;
+  QSFS_GLACIAL = 7;
+}
+
+enum QromaStrip_WS2812FX_PixelsSize {
+  QSPS_NOT_SET = 0;
+  QSPS_SMALL   = 1;
+  QSPS_MEDIUM  = 2;
+  QSPS_LARGE   = 3;
+  QSPS_XLARGE  = 4;
+}
+
+enum QromaStrip_WS2812FX_NeoPixelRgbOrder {
+  QSNPO_NOT_SET =   0;
+
+  QSNPO_NEO_RGB =   1;
+  QSNPO_NEO_RBG =   2;
+  QSNPO_NEO_GRB =   3;
+  QSNPO_NEO_GBR =   4;
+  QSNPO_NEO_BRG =   5;
+  QSNPO_NEO_BGR =   6;
+
+  QSNPO_NEO_WRGB =  7;
+  QSNPO_NEO_WRBG =  8;
+  QSNPO_NEO_WGRB =  9;
+  QSNPO_NEO_WGBR = 10;
+  QSNPO_NEO_WBRG = 11;
+  QSNPO_NEO_WBGR = 12;
+
+  QSNPO_NEO_RWGB = 13;
+  QSNPO_NEO_RWBG = 14;
+  QSNPO_NEO_RGWB = 15;
+  QSNPO_NEO_RGBW = 16;
+  QSNPO_NEO_RBWG = 17;
+  QSNPO_NEO_RBGW = 18;
+
+  QSNPO_NEO_GWRB = 19;
+  QSNPO_NEO_GWBR = 20;
+  QSNPO_NEO_GRWB = 21;
+  QSNPO_NEO_GRBW = 22;
+  QSNPO_NEO_GBWR = 23;
+  QSNPO_NEO_GBRW = 24;
+
+  QSNPO_NEO_BWRG = 25;
+  QSNPO_NEO_BWGR = 26;
+  QSNPO_NEO_BRWG = 27;
+  QSNPO_NEO_BRGW = 28;
+  QSNPO_NEO_BGWR = 29;
+  QSNPO_NEO_BGRW = 30;
+}
+
+enum QromaStrip_WS2812FX_NeoPixelTxRate {
+  QSNPTR_NOT_SET =   0;
+  QSNPTR_400_KHZ =   1;
+  QSNPTR_800_KHZ =   2;
+}
+
+enum QromaStrip_WS2812FX_StripIndex {
+  QSSI_NOT_SET  =  0;
+  QSSI_STRIP_01 =  1;
+  QSSI_STRIP_02 =  2;
+}
+
+message QromaStripColor {
+  uint32 red = 1;
+  uint32 green = 2;
+  uint32 blue = 3;
+}
+
+
+message QromaStrip_WS2812FX_Animation {
+  QromaStrip_WS2812FX_Pattern pattern = 1;
+  uint32 speed = 2;       // 2-65535
+  QromaStripColor color1 = 3;
+  QromaStripColor color2 = 4;
+  QromaStripColor color3 = 5;
+  bool reversed = 6;
+  QromaStrip_WS2812FX_FadeSpeed fadeSpeed = 7;
+  QromaStrip_WS2812FX_PixelsSize size = 8;
+  bool useGammaCorrection = 9;
+}
+
+
+message QromaStrip_WS2812FX_IoSettings {
+  uint32 pin = 1;
+  uint32 ledCount = 2;
+  QromaStrip_WS2812FX_NeoPixelRgbOrder neoPixelRgbOrder = 3;
+  QromaStrip_WS2812FX_NeoPixelTxRate neoPixelTxRate = 4;
+}
+
+message QromaStrip_WS2812FX_Segment {
+  uint32 startIndex = 1;
+  uint32 endIndex = 2;
+}
+
+
+message QromaStrip_WS2812FX_SegmentsDefinition {
+  uint32 brightness = 1;
+  uint32 numSegments = 2;
+  uint32 maxNumSegments = 3;
+  repeated QromaStrip_WS2812FX_Segment segments = 4;
+}
+
+
+message QromaStrip_WS2812FX_StartupAnimations {
+  uint32 startupDelayInMs = 1;
+  repeated QromaStrip_WS2812FX_Animation segmentAnimations = 2;
+}
+
+
+message QromaStripConfig {
+  string name = 1;
+  QromaStrip_WS2812FX_IoSettings ioSettings = 2;
+  QromaStrip_WS2812FX_SegmentsDefinition segmentsDefinition = 3;
+  QromaStrip_WS2812FX_StartupAnimations startupAnimations = 4;
+}
+
+
+message QromaLightsConfig {
+  QromaStripConfig qromaStrip1Config = 1;
+  QromaStripConfig qromaStrip2Config = 2;
+}

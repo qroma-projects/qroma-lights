@@ -56,12 +56,14 @@ class NoArgCommands extends $pb.ProtobufEnum {
   static const NoArgCommands Nac_GetBoardDetailsRequest = NoArgCommands._(1, _omitEnumNames ? '' : 'Nac_GetBoardDetailsRequest');
   static const NoArgCommands Nac_LoadBoardConfiguration = NoArgCommands._(2, _omitEnumNames ? '' : 'Nac_LoadBoardConfiguration');
   static const NoArgCommands Nac_RestartDevice = NoArgCommands._(3, _omitEnumNames ? '' : 'Nac_RestartDevice');
+  static const NoArgCommands Nac_RequestQromaLightsConfig = NoArgCommands._(4, _omitEnumNames ? '' : 'Nac_RequestQromaLightsConfig');
 
   static const $core.List<NoArgCommands> values = <NoArgCommands> [
     Nac_NotSet,
     Nac_GetBoardDetailsRequest,
     Nac_LoadBoardConfiguration,
     Nac_RestartDevice,
+    Nac_RequestQromaLightsConfig,
   ];
 
   static final $core.Map<$core.int, NoArgCommands> _byValue = $pb.ProtobufEnum.initByValue(values);
