@@ -1,0 +1,1 @@
+{"name": "qroma-lights", "version": "esp32", "builds": [{"chipFamily": "ESP32", "parts": [{"path": "qroma-lights-firmware-esp32.bin", "offset": 0}]}]}
