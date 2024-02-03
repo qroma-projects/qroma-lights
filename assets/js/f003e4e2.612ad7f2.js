@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite_www_qroma_project=self.webpackChunksite_www_qroma_project||[]).push([[535],{4640:s=>{s.exports=JSON.parse('{"label":"docusaurus","permalink":"/qroma-lights/blog/tags/docusaurus","allTagsPath":"/qroma-lights/blog/tags","count":4,"unlisted":false}')}}]);

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite_www_qroma_project=self.webpackChunksite_www_qroma_project||[]).push([[7173],{4048:a=>{a.exports=JSON.parse('{"label":"facebook","permalink":"/qroma-lights/blog/tags/facebook","allTagsPath":"/qroma-lights/blog/tags","count":1,"unlisted":false}')}}]);
