@@ -166,7 +166,7 @@ typedef struct _MyProjectCommand {
         PingRequest pingRequest;
         GetBoardDetailsRequest getBoardDetailsRequest;
         SetBoardLightColorRequest setBoardLightColorRequest;
-        QromaLightsCommand qromaLightsCommand;
+        QromaLightsDeviceCommand qromaLightsCommand;
     } command;
 } MyProjectCommand;
 
@@ -505,7 +505,7 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (command,qromaLightsCommand,command.qromaLigh
 #define MyProjectCommand_command_pingRequest_MSGTYPE PingRequest
 #define MyProjectCommand_command_getBoardDetailsRequest_MSGTYPE GetBoardDetailsRequest
 #define MyProjectCommand_command_setBoardLightColorRequest_MSGTYPE SetBoardLightColorRequest
-#define MyProjectCommand_command_qromaLightsCommand_MSGTYPE QromaLightsCommand
+#define MyProjectCommand_command_qromaLightsCommand_MSGTYPE QromaLightsDeviceCommand
 
 #define MyProjectResponse_FIELDLIST(X, a) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,invalidCommandResponse,response.invalidCommandResponse),   1) \
@@ -597,9 +597,9 @@ extern const pb_msgdesc_t MyProjectResponse_msg;
 #define MathResult_AddAndSubtract_size           12
 #define MathResult_Add_size                      6
 #define MathResult_Subtract_size                 6
-#define MyProjectCommand_size                    92
+#define MyProjectCommand_size                    84
 #define MyProjectDetails_size                    51
-#define MyProjectResponse_size                   1088
+#define MyProjectResponse_size                   319
 #define PingRequest_size                         6
 #define PingResponse_size                        12
 #define ProgressIndicatorUpdateResponse_size     51

@@ -1505,7 +1505,7 @@ class MyProjectCommand extends $pb.GeneratedMessage {
     PingRequest? pingRequest,
     GetBoardDetailsRequest? getBoardDetailsRequest,
     SetBoardLightColorRequest? setBoardLightColorRequest,
-    $1.QromaLightsCommand? qromaLightsCommand,
+    $1.QromaLightsDeviceCommand? qromaLightsCommand,
   }) {
     final $result = create();
     if (noArgCommand != null) {
@@ -1553,7 +1553,7 @@ class MyProjectCommand extends $pb.GeneratedMessage {
     ..aOM<PingRequest>(5, _omitFieldNames ? '' : 'pingRequest', protoName: 'pingRequest', subBuilder: PingRequest.create)
     ..aOM<GetBoardDetailsRequest>(6, _omitFieldNames ? '' : 'getBoardDetailsRequest', protoName: 'getBoardDetailsRequest', subBuilder: GetBoardDetailsRequest.create)
     ..aOM<SetBoardLightColorRequest>(7, _omitFieldNames ? '' : 'setBoardLightColorRequest', protoName: 'setBoardLightColorRequest', subBuilder: SetBoardLightColorRequest.create)
-    ..aOM<$1.QromaLightsCommand>(8, _omitFieldNames ? '' : 'qromaLightsCommand', protoName: 'qromaLightsCommand', subBuilder: $1.QromaLightsCommand.create)
+    ..aOM<$1.QromaLightsDeviceCommand>(8, _omitFieldNames ? '' : 'qromaLightsCommand', protoName: 'qromaLightsCommand', subBuilder: $1.QromaLightsDeviceCommand.create)
     ..hasRequiredFields = false
   ;
 
@@ -1647,15 +1647,15 @@ class MyProjectCommand extends $pb.GeneratedMessage {
   SetBoardLightColorRequest ensureSetBoardLightColorRequest() => $_ensure(5);
 
   @$pb.TagNumber(8)
-  $1.QromaLightsCommand get qromaLightsCommand => $_getN(6);
+  $1.QromaLightsDeviceCommand get qromaLightsCommand => $_getN(6);
   @$pb.TagNumber(8)
-  set qromaLightsCommand($1.QromaLightsCommand v) { setField(8, v); }
+  set qromaLightsCommand($1.QromaLightsDeviceCommand v) { setField(8, v); }
   @$pb.TagNumber(8)
   $core.bool hasQromaLightsCommand() => $_has(6);
   @$pb.TagNumber(8)
   void clearQromaLightsCommand() => clearField(8);
   @$pb.TagNumber(8)
-  $1.QromaLightsCommand ensureQromaLightsCommand() => $_ensure(6);
+  $1.QromaLightsDeviceCommand ensureQromaLightsCommand() => $_ensure(6);
 }
 
 enum MyProjectResponse_Response {

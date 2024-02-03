@@ -3,30 +3,30 @@ syntax = "proto3";
 import "qroma-lights-types.proto";
 
 
-message SetQromaStrip_WS2812FX_Segments {
-  QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-  uint32 numSegments = 2;
-  repeated QromaStrip_WS2812FX_Segment segments = 3;
-}
+// message SetQromaStrip_WS2812FX_Segments {
+//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
+//   uint32 numSegments = 2;
+//   repeated QromaStrip_WS2812FX_Segment segments = 3;
+// }
 
 
-message SetQromaStrip_WS2812FX_SegmentAnimation {
-  QromaStrip_WS2812FX_Animation animation = 1;
-  QromaStrip_WS2812FX_StripIndex stripIndex = 2;
-  uint32 segmentIndex = 3;
-}
+// message SetQromaStrip_WS2812FX_Animation {
+//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
+//   QromaStrip_WS2812FX_Animation animation = 2;
+//   // uint32 segmentIndex = 3;
+// }
 
 
-message SetQromaStrip_WS2812FX_Brightness {
-  QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-  uint32 brightness = 2;  // 0-255
-}
+// message SetQromaStrip_WS2812FX_Brightness {
+//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
+//   uint32 brightness = 2;  // 0-255
+// }
 
 
-message SetQromaStrip_WS2812FX_IoSettings {
-  QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-  QromaStrip_WS2812FX_IoSettings settings = 2;
-}
+// message SetQromaStrip_WS2812FX_IoSettings {
+//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
+//   QromaStrip_WS2812FX_IoSettings settings = 2;
+// }
 
 
 message SaveQromaStrip_CurrentState {
@@ -35,30 +35,32 @@ message SaveQromaStrip_CurrentState {
 
 
 message QromaStripCommand {
+  QromaStrip_WS2812FX_StripIndex stripIndex = 1;
   oneof command {
-    SetQromaStrip_WS2812FX_Brightness setQromaStripBrightness = 1;
-    SetQromaStrip_WS2812FX_SegmentAnimation setQromaStripSegmentAnimation = 2;
-    SetQromaStrip_WS2812FX_Segments setQromaStripSegments = 3;
-    SetQromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 4;
-    SaveQromaStrip_CurrentState saveQromaStripCurrentState = 5;
+    uint32 setQromaStripBrightness = 10; // 0-255
+    QromaStrip_WS2812FX_Animation setQromaStripAnimation = 11;
+    QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 12;
+    // SetQromaStrip_WS2812FX_Segments setQromaStripSegments = 3;
+    // SaveQromaStrip_CurrentState saveQromaStripCurrentState = 4;
   }
 }
 
 
-message QromaStripResponse {
+// message QromaStripResponse {
 
-}
-
-
-message QromaStrip_Status {
-  uint32 lastConfigChangeTimeInMs = 1;
-}
+// }
 
 
+// message QromaStrip_Status {
+//   uint32 lastConfigChangeTimeInMs = 1;
+// }
 
-message QpmCommand_SetQromaStripName {
-  string name = 1;
-}
+
+
+// message QpmCommand_SetQromaStripName {
+//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
+//   string name = 2;
+// }
 
 
 message SetQromaDeviceName {
@@ -67,31 +69,37 @@ message SetQromaDeviceName {
 
 
 message UseCurrentSetupOnStartup {
-  uint32 delayInMs = 1;
+  uint32 startupDelayInMs = 1;
 }
 
 
-// // not sure how I feel about this, but let's try it out, at least
-// enum NoArgCommands_QromaLightsCommand {
-//   NacQlc_NotSet = 0;
-//   NacQlc_UseCurrentSetupOnStartup = 1;
-//   NacQlc_RestartQromaDevice = 2;
-//   NacQlc_FactoryResetQromaDevice = 3;
-//   NacQlc_RequestQromaLightsConfig = 4;
-// }
+// not sure how I feel about this, but let's try it out, at least
+enum NoArgCommands_QromaLightsDeviceCommand {
+  NacQlc_NotSet = 0;
+  NacQlc_UseCurrentSetupOnStartup = 1;
+  NacQlc_RestartQromaDevice = 2;
+  NacQlc_FactoryResetQromaDevice = 3;
+  NacQlc_RequestQromaLightsConfig = 4;
+}
 
 
-message QromaLightsCommand {
+message QromaLightsDeviceCommand {
   oneof command {
-    // NoArgCommands_QromaLightsCommand noArgCommand = 1;
-    SetQromaDeviceName setQromaDeviceName = 1;
-    QromaStripCommand qromaStripCommand = 2;
+    NoArgCommands_QromaLightsDeviceCommand noArgCommand = 1;
+    SetQromaDeviceName setQromaDeviceName = 2;
+    QromaStripCommand qromaStripCommand = 3;
   }
+}
+
+
+message QromaLightsDeviceError {
+  string message = 1;
 }
 
 
 message QromaLightsResponse {
   oneof response {
-    QromaLightsConfig qromaLightsConfigResponse = 1;
+    QromaLightsDeviceConfig qromaLightsConfigResponse = 1;
+    QromaLightsDeviceError error = 2;
   }
 }

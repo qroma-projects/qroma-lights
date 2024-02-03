@@ -1,6 +1,11 @@
 #include "qroma-project.h"
 #include "qroma-commands.h"
 #include "qroma/qroma.h"
+#include "boards/qroma-boards.h"
+#include "qroma-lights-config.h"
+#include "qroma-strip-handler.h"
+
+#include <WS2812FX.h>
 
 
 AppCommandProcessor<
@@ -40,6 +45,13 @@ void qromaProjectSetup()
       logError("ERROR SAVING INITIAL UPDATE CONFIG");
     }
   }
+
+   // load qroma config or use defaults if not initialized
+  QromaLightsDeviceConfig qromaLightsConfig;
+
+  populateQromaLightsConfig(&qromaLightsConfig);
+
+  initQromaLightsFromConfig(&qromaLightsConfig);
 }
 
 
@@ -79,6 +91,8 @@ void qromaProjectLoop()
 {
   delay(updateConfiguration.updateIntervalInMs);
   updateCounter++;
+
+  myQromaApp.processHeartbeat();
 
   switch (updateConfiguration.updateType) {
     case UpdateType_UpdateType_Interval:

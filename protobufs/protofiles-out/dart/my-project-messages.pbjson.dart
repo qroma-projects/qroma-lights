@@ -400,7 +400,7 @@ const MyProjectCommand$json = {
     {'1': 'pingRequest', '3': 5, '4': 1, '5': 11, '6': '.PingRequest', '9': 0, '10': 'pingRequest'},
     {'1': 'getBoardDetailsRequest', '3': 6, '4': 1, '5': 11, '6': '.GetBoardDetailsRequest', '9': 0, '10': 'getBoardDetailsRequest'},
     {'1': 'setBoardLightColorRequest', '3': 7, '4': 1, '5': 11, '6': '.SetBoardLightColorRequest', '9': 0, '10': 'setBoardLightColorRequest'},
-    {'1': 'qromaLightsCommand', '3': 8, '4': 1, '5': 11, '6': '.QromaLightsCommand', '9': 0, '10': 'qromaLightsCommand'},
+    {'1': 'qromaLightsCommand', '3': 8, '4': 1, '5': 11, '6': '.QromaLightsDeviceCommand', '9': 0, '10': 'qromaLightsCommand'},
   ],
   '8': [
     {'1': 'command'},
@@ -417,8 +417,8 @@ final $typed_data.Uint8List myProjectCommandDescriptor = $convert.base64Decode(
     'dldEJvYXJkRGV0YWlsc1JlcXVlc3QYBiABKAsyFy5HZXRCb2FyZERldGFpbHNSZXF1ZXN0SABS'
     'FmdldEJvYXJkRGV0YWlsc1JlcXVlc3QSWgoZc2V0Qm9hcmRMaWdodENvbG9yUmVxdWVzdBgHIA'
     'EoCzIaLlNldEJvYXJkTGlnaHRDb2xvclJlcXVlc3RIAFIZc2V0Qm9hcmRMaWdodENvbG9yUmVx'
-    'dWVzdBJFChJxcm9tYUxpZ2h0c0NvbW1hbmQYCCABKAsyEy5Rcm9tYUxpZ2h0c0NvbW1hbmRIAF'
-    'IScXJvbWFMaWdodHNDb21tYW5kQgkKB2NvbW1hbmQ=');
+    'dWVzdBJLChJxcm9tYUxpZ2h0c0NvbW1hbmQYCCABKAsyGS5Rcm9tYUxpZ2h0c0RldmljZUNvbW'
+    '1hbmRIAFIScXJvbWFMaWdodHNDb21tYW5kQgkKB2NvbW1hbmQ=');
 
 @$core.Deprecated('Use myProjectResponseDescriptor instead')
 const MyProjectResponse$json = {

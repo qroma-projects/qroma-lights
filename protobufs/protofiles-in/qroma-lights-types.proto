@@ -158,35 +158,38 @@ message QromaStrip_WS2812FX_IoSettings {
   QromaStrip_WS2812FX_NeoPixelTxRate neoPixelTxRate = 4;
 }
 
-message QromaStrip_WS2812FX_Segment {
-  uint32 startIndex = 1;
-  uint32 endIndex = 2;
-}
+// message QromaStrip_WS2812FX_Segment {
+//   uint32 startIndex = 1;
+//   uint32 endIndex = 2;
+// }
 
 
-message QromaStrip_WS2812FX_SegmentsDefinition {
-  uint32 brightness = 1;
-  uint32 numSegments = 2;
-  uint32 maxNumSegments = 3;
-  repeated QromaStrip_WS2812FX_Segment segments = 4;
-}
+// message QromaStrip_WS2812FX_SegmentsDefinition {
+//   uint32 brightness = 1;
+//   uint32 numSegments = 2;
+//   uint32 maxNumSegments = 3;
+//   repeated QromaStrip_WS2812FX_Segment segments = 4;
+// }
 
 
-message QromaStrip_WS2812FX_StartupAnimations {
-  uint32 startupDelayInMs = 1;
-  repeated QromaStrip_WS2812FX_Animation segmentAnimations = 2;
-}
+// message QromaStrip_WS2812FX_StartupAnimations {
+//   uint32 startupDelayInMs = 1;
+//   repeated QromaStrip_WS2812FX_Animation segmentAnimations = 2;
+// }
 
 
 message QromaStripConfig {
   string name = 1;
-  QromaStrip_WS2812FX_IoSettings ioSettings = 2;
-  QromaStrip_WS2812FX_SegmentsDefinition segmentsDefinition = 3;
-  QromaStrip_WS2812FX_StartupAnimations startupAnimations = 4;
+  uint32 brightness = 2;
+  QromaStrip_WS2812FX_IoSettings ioSettings = 3;
+  QromaStrip_WS2812FX_Animation animation = 4;
+  // QromaStrip_WS2812FX_SegmentsDefinition segmentsDefinition = 3;
+  // QromaStrip_WS2812FX_StartupAnimations startupAnimations = 4;
 }
 
 
-message QromaLightsConfig {
-  QromaStripConfig qromaStrip1Config = 1;
-  QromaStripConfig qromaStrip2Config = 2;
+message QromaLightsDeviceConfig {
+  string deviceName = 1;
+  QromaStripConfig qromaStrip1Config = 2;
+  QromaStripConfig qromaStrip2Config = 3;
 }

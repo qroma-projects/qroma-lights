@@ -4,6 +4,7 @@
 #ifndef PB_MY_PROJECT_MESSAGES_PB_H_INCLUDED
 #define PB_MY_PROJECT_MESSAGES_PB_H_INCLUDED
 #include <pb.h>
+#include "qroma-lights-commands.pb.h"
 
 #if PB_PROTO_HEADER_VERSION != 40
 #error Regenerate this file with the current version of nanopb generator.
@@ -28,7 +29,8 @@ typedef enum _NoArgCommands {
     NoArgCommands_Nac_NotSet = 0,
     NoArgCommands_Nac_GetBoardDetailsRequest = 1,
     NoArgCommands_Nac_LoadBoardConfiguration = 2,
-    NoArgCommands_Nac_RestartDevice = 3
+    NoArgCommands_Nac_RestartDevice = 3,
+    NoArgCommands_Nac_RequestQromaLightsConfig = 4
 } NoArgCommands;
 
 /* Struct definitions */
@@ -159,11 +161,12 @@ typedef struct _MyProjectCommand {
     union {
         NoArgCommands noArgCommand;
         HelloQromaRequest helloQromaRequest;
-        MathRequest mathRequest;
+        /* MathRequest mathRequest = 3; */
         SetUpdateConfiguration setUpdateConfiguration;
         PingRequest pingRequest;
         GetBoardDetailsRequest getBoardDetailsRequest;
         SetBoardLightColorRequest setBoardLightColorRequest;
+        QromaLightsDeviceCommand qromaLightsCommand;
     } command;
 } MyProjectCommand;
 
@@ -172,13 +175,14 @@ typedef struct _MyProjectResponse {
     union {
         InvalidCommandResponse invalidCommandResponse;
         HelloQromaResponse helloQromaResponse;
-        MathResponse mathResponse;
+        /* MathResponse mathResponse = 3; */
         SetUpdateConfigurationResponse setUpdateConfigurationResponse;
         PingResponse pingResponse;
         UpdateResponse updateResponse;
         SetBoardLightColorResponse setBoardLightColorResponse;
         GetBoardDetailsResponse getBoardDetailsResponse;
         LoadBoardConfigurationResponse loadBoardConfigurationResponse;
+        QromaLightsResponse qromaLightsResponse;
     } response;
 } MyProjectResponse;
 
@@ -197,8 +201,8 @@ extern "C" {
 #define _UpdateType_ARRAYSIZE ((UpdateType)(UpdateType_UpdateType_ProgressIndicator+1))
 
 #define _NoArgCommands_MIN NoArgCommands_Nac_NotSet
-#define _NoArgCommands_MAX NoArgCommands_Nac_RestartDevice
-#define _NoArgCommands_ARRAYSIZE ((NoArgCommands)(NoArgCommands_Nac_RestartDevice+1))
+#define _NoArgCommands_MAX NoArgCommands_Nac_RequestQromaLightsConfig
+#define _NoArgCommands_ARRAYSIZE ((NoArgCommands)(NoArgCommands_Nac_RequestQromaLightsConfig+1))
 
 
 
@@ -326,20 +330,20 @@ extern "C" {
 #define InvalidCommandResponse_message_tag       1
 #define MyProjectCommand_noArgCommand_tag        1
 #define MyProjectCommand_helloQromaRequest_tag   2
-#define MyProjectCommand_mathRequest_tag         3
 #define MyProjectCommand_setUpdateConfiguration_tag 4
 #define MyProjectCommand_pingRequest_tag         5
 #define MyProjectCommand_getBoardDetailsRequest_tag 6
 #define MyProjectCommand_setBoardLightColorRequest_tag 7
+#define MyProjectCommand_qromaLightsCommand_tag  8
 #define MyProjectResponse_invalidCommandResponse_tag 1
 #define MyProjectResponse_helloQromaResponse_tag 2
-#define MyProjectResponse_mathResponse_tag       3
 #define MyProjectResponse_setUpdateConfigurationResponse_tag 4
 #define MyProjectResponse_pingResponse_tag       5
 #define MyProjectResponse_updateResponse_tag     6
 #define MyProjectResponse_setBoardLightColorResponse_tag 7
 #define MyProjectResponse_getBoardDetailsResponse_tag 8
 #define MyProjectResponse_loadBoardConfigurationResponse_tag 9
+#define MyProjectResponse_qromaLightsResponse_tag 10
 
 /* Struct field encoding specification for nanopb */
 #define HelloQromaRequest_FIELDLIST(X, a) \
@@ -489,41 +493,41 @@ X(a, STATIC,   SINGULAR, STRING,   message,           1)
 #define MyProjectCommand_FIELDLIST(X, a) \
 X(a, STATIC,   ONEOF,    UENUM,    (command,noArgCommand,command.noArgCommand),   1) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,helloQromaRequest,command.helloQromaRequest),   2) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (command,mathRequest,command.mathRequest),   3) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,setUpdateConfiguration,command.setUpdateConfiguration),   4) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,pingRequest,command.pingRequest),   5) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,getBoardDetailsRequest,command.getBoardDetailsRequest),   6) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (command,setBoardLightColorRequest,command.setBoardLightColorRequest),   7)
+X(a, STATIC,   ONEOF,    MESSAGE,  (command,setBoardLightColorRequest,command.setBoardLightColorRequest),   7) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (command,qromaLightsCommand,command.qromaLightsCommand),   8)
 #define MyProjectCommand_CALLBACK NULL
 #define MyProjectCommand_DEFAULT NULL
 #define MyProjectCommand_command_helloQromaRequest_MSGTYPE HelloQromaRequest
-#define MyProjectCommand_command_mathRequest_MSGTYPE MathRequest
 #define MyProjectCommand_command_setUpdateConfiguration_MSGTYPE SetUpdateConfiguration
 #define MyProjectCommand_command_pingRequest_MSGTYPE PingRequest
 #define MyProjectCommand_command_getBoardDetailsRequest_MSGTYPE GetBoardDetailsRequest
 #define MyProjectCommand_command_setBoardLightColorRequest_MSGTYPE SetBoardLightColorRequest
+#define MyProjectCommand_command_qromaLightsCommand_MSGTYPE QromaLightsDeviceCommand
 
 #define MyProjectResponse_FIELDLIST(X, a) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,invalidCommandResponse,response.invalidCommandResponse),   1) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,helloQromaResponse,response.helloQromaResponse),   2) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response,mathResponse,response.mathResponse),   3) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,setUpdateConfigurationResponse,response.setUpdateConfigurationResponse),   4) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,pingResponse,response.pingResponse),   5) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,updateResponse,response.updateResponse),   6) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,setBoardLightColorResponse,response.setBoardLightColorResponse),   7) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (response,getBoardDetailsResponse,response.getBoardDetailsResponse),   8) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response,loadBoardConfigurationResponse,response.loadBoardConfigurationResponse),   9)
+X(a, STATIC,   ONEOF,    MESSAGE,  (response,loadBoardConfigurationResponse,response.loadBoardConfigurationResponse),   9) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (response,qromaLightsResponse,response.qromaLightsResponse),  10)
 #define MyProjectResponse_CALLBACK NULL
 #define MyProjectResponse_DEFAULT NULL
 #define MyProjectResponse_response_invalidCommandResponse_MSGTYPE InvalidCommandResponse
 #define MyProjectResponse_response_helloQromaResponse_MSGTYPE HelloQromaResponse
-#define MyProjectResponse_response_mathResponse_MSGTYPE MathResponse
 #define MyProjectResponse_response_setUpdateConfigurationResponse_MSGTYPE SetUpdateConfigurationResponse
 #define MyProjectResponse_response_pingResponse_MSGTYPE PingResponse
 #define MyProjectResponse_response_updateResponse_MSGTYPE UpdateResponse
 #define MyProjectResponse_response_setBoardLightColorResponse_MSGTYPE SetBoardLightColorResponse
 #define MyProjectResponse_response_getBoardDetailsResponse_MSGTYPE GetBoardDetailsResponse
 #define MyProjectResponse_response_loadBoardConfigurationResponse_MSGTYPE LoadBoardConfigurationResponse
+#define MyProjectResponse_response_qromaLightsResponse_MSGTYPE QromaLightsResponse
 
 extern const pb_msgdesc_t HelloQromaRequest_msg;
 extern const pb_msgdesc_t HelloQromaResponse_msg;
@@ -593,9 +597,9 @@ extern const pb_msgdesc_t MyProjectResponse_msg;
 #define MathResult_AddAndSubtract_size           12
 #define MathResult_Add_size                      6
 #define MathResult_Subtract_size                 6
-#define MyProjectCommand_size                    23
+#define MyProjectCommand_size                    84
 #define MyProjectDetails_size                    51
-#define MyProjectResponse_size                   151
+#define MyProjectResponse_size                   319
 #define PingRequest_size                         6
 #define PingResponse_size                        12
 #define ProgressIndicatorUpdateResponse_size     51

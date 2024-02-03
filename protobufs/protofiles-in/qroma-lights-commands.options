@@ -1,6 +1,8 @@
 
-SetQromaStrip_WS2812FX_Segments.segments  max_count:5  fixed_count:true
+# SetQromaStrip_WS2812FX_Segments.segments  max_count:5  fixed_count:true
 
-QpmCommand_SetQromaStripName.name  max_size:30  fixed_length:true
+# QpmCommand_SetQromaStripName.name  max_size:30  fixed_length:true
 
 SetQromaDeviceName.name  max_size:30  fixed_length:true
+
+QromaLightsDeviceError.message  max_size:100  fixed_length:true

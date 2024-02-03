@@ -154,8 +154,14 @@ message MyProjectCommand {
     PingRequest pingRequest = 5;
     GetBoardDetailsRequest getBoardDetailsRequest = 6;
     SetBoardLightColorRequest setBoardLightColorRequest = 7;
-    QromaLightsCommand qromaLightsCommand = 8;
+    QromaLightsDeviceCommand qromaLightsCommand = 8;
   }
+  // string blah = 55;
+  // NoArgCommands nac = 56;
+  // SetBoardLightColorResponse sblcr = 57;
+  // uint32 num = 58;
+  // bool mb = 59;
+  // SetUpdateConfiguration suc = 60;
 }
 
 message MyProjectResponse {

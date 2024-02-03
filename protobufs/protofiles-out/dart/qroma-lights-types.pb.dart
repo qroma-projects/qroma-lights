@@ -355,233 +355,25 @@ class QromaStrip_WS2812FX_IoSettings extends $pb.GeneratedMessage {
   void clearNeoPixelTxRate() => clearField(4);
 }
 
-class QromaStrip_WS2812FX_Segment extends $pb.GeneratedMessage {
-  factory QromaStrip_WS2812FX_Segment({
-    $core.int? startIndex,
-    $core.int? endIndex,
-  }) {
-    final $result = create();
-    if (startIndex != null) {
-      $result.startIndex = startIndex;
-    }
-    if (endIndex != null) {
-      $result.endIndex = endIndex;
-    }
-    return $result;
-  }
-  QromaStrip_WS2812FX_Segment._() : super();
-  factory QromaStrip_WS2812FX_Segment.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory QromaStrip_WS2812FX_Segment.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaStrip_WS2812FX_Segment', createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'startIndex', $pb.PbFieldType.OU3, protoName: 'startIndex')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'endIndex', $pb.PbFieldType.OU3, protoName: 'endIndex')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  QromaStrip_WS2812FX_Segment clone() => QromaStrip_WS2812FX_Segment()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  QromaStrip_WS2812FX_Segment copyWith(void Function(QromaStrip_WS2812FX_Segment) updates) => super.copyWith((message) => updates(message as QromaStrip_WS2812FX_Segment)) as QromaStrip_WS2812FX_Segment;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static QromaStrip_WS2812FX_Segment create() => QromaStrip_WS2812FX_Segment._();
-  QromaStrip_WS2812FX_Segment createEmptyInstance() => create();
-  static $pb.PbList<QromaStrip_WS2812FX_Segment> createRepeated() => $pb.PbList<QromaStrip_WS2812FX_Segment>();
-  @$core.pragma('dart2js:noInline')
-  static QromaStrip_WS2812FX_Segment getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<QromaStrip_WS2812FX_Segment>(create);
-  static QromaStrip_WS2812FX_Segment? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.int get startIndex => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set startIndex($core.int v) { $_setUnsignedInt32(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasStartIndex() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearStartIndex() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.int get endIndex => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set endIndex($core.int v) { $_setUnsignedInt32(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasEndIndex() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearEndIndex() => clearField(2);
-}
-
-class QromaStrip_WS2812FX_SegmentsDefinition extends $pb.GeneratedMessage {
-  factory QromaStrip_WS2812FX_SegmentsDefinition({
-    $core.int? brightness,
-    $core.int? numSegments,
-    $core.int? maxNumSegments,
-    $core.Iterable<QromaStrip_WS2812FX_Segment>? segments,
-  }) {
-    final $result = create();
-    if (brightness != null) {
-      $result.brightness = brightness;
-    }
-    if (numSegments != null) {
-      $result.numSegments = numSegments;
-    }
-    if (maxNumSegments != null) {
-      $result.maxNumSegments = maxNumSegments;
-    }
-    if (segments != null) {
-      $result.segments.addAll(segments);
-    }
-    return $result;
-  }
-  QromaStrip_WS2812FX_SegmentsDefinition._() : super();
-  factory QromaStrip_WS2812FX_SegmentsDefinition.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory QromaStrip_WS2812FX_SegmentsDefinition.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaStrip_WS2812FX_SegmentsDefinition', createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OU3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'numSegments', $pb.PbFieldType.OU3, protoName: 'numSegments')
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'maxNumSegments', $pb.PbFieldType.OU3, protoName: 'maxNumSegments')
-    ..pc<QromaStrip_WS2812FX_Segment>(4, _omitFieldNames ? '' : 'segments', $pb.PbFieldType.PM, subBuilder: QromaStrip_WS2812FX_Segment.create)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  QromaStrip_WS2812FX_SegmentsDefinition clone() => QromaStrip_WS2812FX_SegmentsDefinition()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  QromaStrip_WS2812FX_SegmentsDefinition copyWith(void Function(QromaStrip_WS2812FX_SegmentsDefinition) updates) => super.copyWith((message) => updates(message as QromaStrip_WS2812FX_SegmentsDefinition)) as QromaStrip_WS2812FX_SegmentsDefinition;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static QromaStrip_WS2812FX_SegmentsDefinition create() => QromaStrip_WS2812FX_SegmentsDefinition._();
-  QromaStrip_WS2812FX_SegmentsDefinition createEmptyInstance() => create();
-  static $pb.PbList<QromaStrip_WS2812FX_SegmentsDefinition> createRepeated() => $pb.PbList<QromaStrip_WS2812FX_SegmentsDefinition>();
-  @$core.pragma('dart2js:noInline')
-  static QromaStrip_WS2812FX_SegmentsDefinition getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<QromaStrip_WS2812FX_SegmentsDefinition>(create);
-  static QromaStrip_WS2812FX_SegmentsDefinition? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.int get brightness => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set brightness($core.int v) { $_setUnsignedInt32(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasBrightness() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearBrightness() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.int get numSegments => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set numSegments($core.int v) { $_setUnsignedInt32(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasNumSegments() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearNumSegments() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.int get maxNumSegments => $_getIZ(2);
-  @$pb.TagNumber(3)
-  set maxNumSegments($core.int v) { $_setUnsignedInt32(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasMaxNumSegments() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearMaxNumSegments() => clearField(3);
-
-  @$pb.TagNumber(4)
-  $core.List<QromaStrip_WS2812FX_Segment> get segments => $_getList(3);
-}
-
-class QromaStrip_WS2812FX_StartupAnimations extends $pb.GeneratedMessage {
-  factory QromaStrip_WS2812FX_StartupAnimations({
-    $core.int? startupDelayInMs,
-    $core.Iterable<QromaStrip_WS2812FX_Animation>? segmentAnimations,
-  }) {
-    final $result = create();
-    if (startupDelayInMs != null) {
-      $result.startupDelayInMs = startupDelayInMs;
-    }
-    if (segmentAnimations != null) {
-      $result.segmentAnimations.addAll(segmentAnimations);
-    }
-    return $result;
-  }
-  QromaStrip_WS2812FX_StartupAnimations._() : super();
-  factory QromaStrip_WS2812FX_StartupAnimations.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory QromaStrip_WS2812FX_StartupAnimations.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaStrip_WS2812FX_StartupAnimations', createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'startupDelayInMs', $pb.PbFieldType.OU3, protoName: 'startupDelayInMs')
-    ..pc<QromaStrip_WS2812FX_Animation>(2, _omitFieldNames ? '' : 'segmentAnimations', $pb.PbFieldType.PM, protoName: 'segmentAnimations', subBuilder: QromaStrip_WS2812FX_Animation.create)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  QromaStrip_WS2812FX_StartupAnimations clone() => QromaStrip_WS2812FX_StartupAnimations()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  QromaStrip_WS2812FX_StartupAnimations copyWith(void Function(QromaStrip_WS2812FX_StartupAnimations) updates) => super.copyWith((message) => updates(message as QromaStrip_WS2812FX_StartupAnimations)) as QromaStrip_WS2812FX_StartupAnimations;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static QromaStrip_WS2812FX_StartupAnimations create() => QromaStrip_WS2812FX_StartupAnimations._();
-  QromaStrip_WS2812FX_StartupAnimations createEmptyInstance() => create();
-  static $pb.PbList<QromaStrip_WS2812FX_StartupAnimations> createRepeated() => $pb.PbList<QromaStrip_WS2812FX_StartupAnimations>();
-  @$core.pragma('dart2js:noInline')
-  static QromaStrip_WS2812FX_StartupAnimations getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<QromaStrip_WS2812FX_StartupAnimations>(create);
-  static QromaStrip_WS2812FX_StartupAnimations? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.int get startupDelayInMs => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set startupDelayInMs($core.int v) { $_setUnsignedInt32(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasStartupDelayInMs() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearStartupDelayInMs() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.List<QromaStrip_WS2812FX_Animation> get segmentAnimations => $_getList(1);
-}
-
 class QromaStripConfig extends $pb.GeneratedMessage {
   factory QromaStripConfig({
     $core.String? name,
+    $core.int? brightness,
     QromaStrip_WS2812FX_IoSettings? ioSettings,
-    QromaStrip_WS2812FX_SegmentsDefinition? segmentsDefinition,
-    QromaStrip_WS2812FX_StartupAnimations? startupAnimations,
+    QromaStrip_WS2812FX_Animation? animation,
   }) {
     final $result = create();
     if (name != null) {
       $result.name = name;
     }
+    if (brightness != null) {
+      $result.brightness = brightness;
+    }
     if (ioSettings != null) {
       $result.ioSettings = ioSettings;
     }
-    if (segmentsDefinition != null) {
-      $result.segmentsDefinition = segmentsDefinition;
-    }
-    if (startupAnimations != null) {
-      $result.startupAnimations = startupAnimations;
+    if (animation != null) {
+      $result.animation = animation;
     }
     return $result;
   }
@@ -591,9 +383,9 @@ class QromaStripConfig extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaStripConfig', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
-    ..aOM<QromaStrip_WS2812FX_IoSettings>(2, _omitFieldNames ? '' : 'ioSettings', protoName: 'ioSettings', subBuilder: QromaStrip_WS2812FX_IoSettings.create)
-    ..aOM<QromaStrip_WS2812FX_SegmentsDefinition>(3, _omitFieldNames ? '' : 'segmentsDefinition', protoName: 'segmentsDefinition', subBuilder: QromaStrip_WS2812FX_SegmentsDefinition.create)
-    ..aOM<QromaStrip_WS2812FX_StartupAnimations>(4, _omitFieldNames ? '' : 'startupAnimations', protoName: 'startupAnimations', subBuilder: QromaStrip_WS2812FX_StartupAnimations.create)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'brightness', $pb.PbFieldType.OU3)
+    ..aOM<QromaStrip_WS2812FX_IoSettings>(3, _omitFieldNames ? '' : 'ioSettings', protoName: 'ioSettings', subBuilder: QromaStrip_WS2812FX_IoSettings.create)
+    ..aOM<QromaStrip_WS2812FX_Animation>(4, _omitFieldNames ? '' : 'animation', subBuilder: QromaStrip_WS2812FX_Animation.create)
     ..hasRequiredFields = false
   ;
 
@@ -628,45 +420,47 @@ class QromaStripConfig extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  QromaStrip_WS2812FX_IoSettings get ioSettings => $_getN(1);
+  $core.int get brightness => $_getIZ(1);
   @$pb.TagNumber(2)
-  set ioSettings(QromaStrip_WS2812FX_IoSettings v) { setField(2, v); }
+  set brightness($core.int v) { $_setUnsignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasIoSettings() => $_has(1);
+  $core.bool hasBrightness() => $_has(1);
   @$pb.TagNumber(2)
-  void clearIoSettings() => clearField(2);
-  @$pb.TagNumber(2)
-  QromaStrip_WS2812FX_IoSettings ensureIoSettings() => $_ensure(1);
+  void clearBrightness() => clearField(2);
 
   @$pb.TagNumber(3)
-  QromaStrip_WS2812FX_SegmentsDefinition get segmentsDefinition => $_getN(2);
+  QromaStrip_WS2812FX_IoSettings get ioSettings => $_getN(2);
   @$pb.TagNumber(3)
-  set segmentsDefinition(QromaStrip_WS2812FX_SegmentsDefinition v) { setField(3, v); }
+  set ioSettings(QromaStrip_WS2812FX_IoSettings v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasSegmentsDefinition() => $_has(2);
+  $core.bool hasIoSettings() => $_has(2);
   @$pb.TagNumber(3)
-  void clearSegmentsDefinition() => clearField(3);
+  void clearIoSettings() => clearField(3);
   @$pb.TagNumber(3)
-  QromaStrip_WS2812FX_SegmentsDefinition ensureSegmentsDefinition() => $_ensure(2);
+  QromaStrip_WS2812FX_IoSettings ensureIoSettings() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  QromaStrip_WS2812FX_StartupAnimations get startupAnimations => $_getN(3);
+  QromaStrip_WS2812FX_Animation get animation => $_getN(3);
   @$pb.TagNumber(4)
-  set startupAnimations(QromaStrip_WS2812FX_StartupAnimations v) { setField(4, v); }
+  set animation(QromaStrip_WS2812FX_Animation v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasStartupAnimations() => $_has(3);
+  $core.bool hasAnimation() => $_has(3);
   @$pb.TagNumber(4)
-  void clearStartupAnimations() => clearField(4);
+  void clearAnimation() => clearField(4);
   @$pb.TagNumber(4)
-  QromaStrip_WS2812FX_StartupAnimations ensureStartupAnimations() => $_ensure(3);
+  QromaStrip_WS2812FX_Animation ensureAnimation() => $_ensure(3);
 }
 
-class QromaLightsConfig extends $pb.GeneratedMessage {
-  factory QromaLightsConfig({
+class QromaLightsDeviceConfig extends $pb.GeneratedMessage {
+  factory QromaLightsDeviceConfig({
+    $core.String? deviceName,
     QromaStripConfig? qromaStrip1Config,
     QromaStripConfig? qromaStrip2Config,
   }) {
     final $result = create();
+    if (deviceName != null) {
+      $result.deviceName = deviceName;
+    }
     if (qromaStrip1Config != null) {
       $result.qromaStrip1Config = qromaStrip1Config;
     }
@@ -675,13 +469,14 @@ class QromaLightsConfig extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  QromaLightsConfig._() : super();
-  factory QromaLightsConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory QromaLightsConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  QromaLightsDeviceConfig._() : super();
+  factory QromaLightsDeviceConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory QromaLightsDeviceConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaLightsConfig', createEmptyInstance: create)
-    ..aOM<QromaStripConfig>(1, _omitFieldNames ? '' : 'qromaStrip1Config', protoName: 'qromaStrip1Config', subBuilder: QromaStripConfig.create)
-    ..aOM<QromaStripConfig>(2, _omitFieldNames ? '' : 'qromaStrip2Config', protoName: 'qromaStrip2Config', subBuilder: QromaStripConfig.create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaLightsDeviceConfig', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'deviceName', protoName: 'deviceName')
+    ..aOM<QromaStripConfig>(2, _omitFieldNames ? '' : 'qromaStrip1Config', protoName: 'qromaStrip1Config', subBuilder: QromaStripConfig.create)
+    ..aOM<QromaStripConfig>(3, _omitFieldNames ? '' : 'qromaStrip2Config', protoName: 'qromaStrip2Config', subBuilder: QromaStripConfig.create)
     ..hasRequiredFields = false
   ;
 
@@ -689,44 +484,53 @@ class QromaLightsConfig extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  QromaLightsConfig clone() => QromaLightsConfig()..mergeFromMessage(this);
+  QromaLightsDeviceConfig clone() => QromaLightsDeviceConfig()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  QromaLightsConfig copyWith(void Function(QromaLightsConfig) updates) => super.copyWith((message) => updates(message as QromaLightsConfig)) as QromaLightsConfig;
+  QromaLightsDeviceConfig copyWith(void Function(QromaLightsDeviceConfig) updates) => super.copyWith((message) => updates(message as QromaLightsDeviceConfig)) as QromaLightsDeviceConfig;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static QromaLightsConfig create() => QromaLightsConfig._();
-  QromaLightsConfig createEmptyInstance() => create();
-  static $pb.PbList<QromaLightsConfig> createRepeated() => $pb.PbList<QromaLightsConfig>();
+  static QromaLightsDeviceConfig create() => QromaLightsDeviceConfig._();
+  QromaLightsDeviceConfig createEmptyInstance() => create();
+  static $pb.PbList<QromaLightsDeviceConfig> createRepeated() => $pb.PbList<QromaLightsDeviceConfig>();
   @$core.pragma('dart2js:noInline')
-  static QromaLightsConfig getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<QromaLightsConfig>(create);
-  static QromaLightsConfig? _defaultInstance;
+  static QromaLightsDeviceConfig getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<QromaLightsDeviceConfig>(create);
+  static QromaLightsDeviceConfig? _defaultInstance;
 
   @$pb.TagNumber(1)
-  QromaStripConfig get qromaStrip1Config => $_getN(0);
+  $core.String get deviceName => $_getSZ(0);
   @$pb.TagNumber(1)
-  set qromaStrip1Config(QromaStripConfig v) { setField(1, v); }
+  set deviceName($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasQromaStrip1Config() => $_has(0);
+  $core.bool hasDeviceName() => $_has(0);
   @$pb.TagNumber(1)
-  void clearQromaStrip1Config() => clearField(1);
-  @$pb.TagNumber(1)
-  QromaStripConfig ensureQromaStrip1Config() => $_ensure(0);
+  void clearDeviceName() => clearField(1);
 
   @$pb.TagNumber(2)
-  QromaStripConfig get qromaStrip2Config => $_getN(1);
+  QromaStripConfig get qromaStrip1Config => $_getN(1);
   @$pb.TagNumber(2)
-  set qromaStrip2Config(QromaStripConfig v) { setField(2, v); }
+  set qromaStrip1Config(QromaStripConfig v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasQromaStrip2Config() => $_has(1);
+  $core.bool hasQromaStrip1Config() => $_has(1);
   @$pb.TagNumber(2)
-  void clearQromaStrip2Config() => clearField(2);
+  void clearQromaStrip1Config() => clearField(2);
   @$pb.TagNumber(2)
-  QromaStripConfig ensureQromaStrip2Config() => $_ensure(1);
+  QromaStripConfig ensureQromaStrip1Config() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  QromaStripConfig get qromaStrip2Config => $_getN(2);
+  @$pb.TagNumber(3)
+  set qromaStrip2Config(QromaStripConfig v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasQromaStrip2Config() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearQromaStrip2Config() => clearField(3);
+  @$pb.TagNumber(3)
+  QromaStripConfig ensureQromaStrip2Config() => $_ensure(2);
 }
 
 

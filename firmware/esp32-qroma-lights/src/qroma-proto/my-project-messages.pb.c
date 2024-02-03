@@ -78,7 +78,7 @@ PB_BIND(InvalidCommandResponse, InvalidCommandResponse, AUTO)
 PB_BIND(MyProjectCommand, MyProjectCommand, AUTO)
 
 
-PB_BIND(MyProjectResponse, MyProjectResponse, AUTO)
+PB_BIND(MyProjectResponse, MyProjectResponse, 2)
 
 
 

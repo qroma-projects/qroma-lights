@@ -11,7 +11,7 @@ import type { PartialMessage } from "@protobuf-ts/runtime";
 import { reflectionMergePartial } from "@protobuf-ts/runtime";
 import { MessageType } from "@protobuf-ts/runtime";
 import { QromaLightsResponse } from "./qroma-lights-commands";
-import { QromaLightsCommand } from "./qroma-lights-commands";
+import { QromaLightsDeviceCommand } from "./qroma-lights-commands";
 /**
  * @generated from protobuf message HelloQromaRequest
  */
@@ -365,9 +365,9 @@ export interface MyProjectCommand {
     } | {
         oneofKind: "qromaLightsCommand";
         /**
-         * @generated from protobuf field: QromaLightsCommand qromaLightsCommand = 8;
+         * @generated from protobuf field: QromaLightsDeviceCommand qromaLightsCommand = 8;
          */
-        qromaLightsCommand: QromaLightsCommand;
+        qromaLightsCommand: QromaLightsDeviceCommand;
     } | {
         oneofKind: undefined;
     };
@@ -1756,7 +1756,7 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
             { no: 5, name: "pingRequest", kind: "message", oneof: "command", T: () => PingRequest },
             { no: 6, name: "getBoardDetailsRequest", kind: "message", oneof: "command", T: () => GetBoardDetailsRequest },
             { no: 7, name: "setBoardLightColorRequest", kind: "message", oneof: "command", T: () => SetBoardLightColorRequest },
-            { no: 8, name: "qromaLightsCommand", kind: "message", oneof: "command", T: () => QromaLightsCommand }
+            { no: 8, name: "qromaLightsCommand", kind: "message", oneof: "command", T: () => QromaLightsDeviceCommand }
         ]);
     }
     create(value?: PartialMessage<MyProjectCommand>): MyProjectCommand {
@@ -1807,10 +1807,10 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
                         setBoardLightColorRequest: SetBoardLightColorRequest.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).setBoardLightColorRequest)
                     };
                     break;
-                case /* QromaLightsCommand qromaLightsCommand */ 8:
+                case /* QromaLightsDeviceCommand qromaLightsCommand */ 8:
                     message.command = {
                         oneofKind: "qromaLightsCommand",
-                        qromaLightsCommand: QromaLightsCommand.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).qromaLightsCommand)
+                        qromaLightsCommand: QromaLightsDeviceCommand.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).qromaLightsCommand)
                     };
                     break;
                 default:
@@ -1843,9 +1843,9 @@ class MyProjectCommand$Type extends MessageType<MyProjectCommand> {
         /* SetBoardLightColorRequest setBoardLightColorRequest = 7; */
         if (message.command.oneofKind === "setBoardLightColorRequest")
             SetBoardLightColorRequest.internalBinaryWrite(message.command.setBoardLightColorRequest, writer.tag(7, WireType.LengthDelimited).fork(), options).join();
-        /* QromaLightsCommand qromaLightsCommand = 8; */
+        /* QromaLightsDeviceCommand qromaLightsCommand = 8; */
         if (message.command.oneofKind === "qromaLightsCommand")
-            QromaLightsCommand.internalBinaryWrite(message.command.qromaLightsCommand, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+            QromaLightsDeviceCommand.internalBinaryWrite(message.command.qromaLightsCommand, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

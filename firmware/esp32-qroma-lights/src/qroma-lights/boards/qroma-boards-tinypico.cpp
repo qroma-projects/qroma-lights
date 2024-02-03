@@ -30,6 +30,18 @@ void handleSetBoardLightColorRequest(SetBoardLightColorRequest * request, SetBoa
   setOnboardLightColor(request->red, request->green, request->blue);
 }
 
+void populateWithBoardSpecificDefaultQromaLightsDeviceConfig(QromaLightsDeviceConfig * config)
+{
+  config->qromaStrip1Config.ioSettings.ledCount = QS_1_LED_COUNT;
+  config->qromaStrip1Config.ioSettings.pin = 14;
+  config->qromaStrip1Config.ioSettings.neoPixelRgbOrder = QromaStrip_WS2812FX_NeoPixelRgbOrder_QSNPO_NEO_GRB;
+  config->qromaStrip1Config.ioSettings.neoPixelTxRate = QromaStrip_WS2812FX_NeoPixelTxRate_QSNPTR_800_KHZ;
+
+  config->qromaStrip2Config.ioSettings.ledCount = QS_1_LED_COUNT;
+  config->qromaStrip2Config.ioSettings.pin = 15;
+  config->qromaStrip2Config.ioSettings.neoPixelRgbOrder = QromaStrip_WS2812FX_NeoPixelRgbOrder_QSNPO_NEO_GRB;
+  config->qromaStrip2Config.ioSettings.neoPixelTxRate = QromaStrip_WS2812FX_NeoPixelTxRate_QSNPTR_800_KHZ;
+}
 
 #endif
 

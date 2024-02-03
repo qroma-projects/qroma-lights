@@ -287,85 +287,38 @@ final $typed_data.Uint8List qromaStrip_WS2812FX_IoSettingsDescriptor = $convert.
     'VvUGl4ZWxUeFJhdGUYBCABKA4yIy5Rcm9tYVN0cmlwX1dTMjgxMkZYX05lb1BpeGVsVHhSYXRl'
     'Ug5uZW9QaXhlbFR4UmF0ZQ==');
 
-@$core.Deprecated('Use qromaStrip_WS2812FX_SegmentDescriptor instead')
-const QromaStrip_WS2812FX_Segment$json = {
-  '1': 'QromaStrip_WS2812FX_Segment',
-  '2': [
-    {'1': 'startIndex', '3': 1, '4': 1, '5': 13, '10': 'startIndex'},
-    {'1': 'endIndex', '3': 2, '4': 1, '5': 13, '10': 'endIndex'},
-  ],
-};
-
-/// Descriptor for `QromaStrip_WS2812FX_Segment`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List qromaStrip_WS2812FX_SegmentDescriptor = $convert.base64Decode(
-    'ChtRcm9tYVN0cmlwX1dTMjgxMkZYX1NlZ21lbnQSHgoKc3RhcnRJbmRleBgBIAEoDVIKc3Rhcn'
-    'RJbmRleBIaCghlbmRJbmRleBgCIAEoDVIIZW5kSW5kZXg=');
-
-@$core.Deprecated('Use qromaStrip_WS2812FX_SegmentsDefinitionDescriptor instead')
-const QromaStrip_WS2812FX_SegmentsDefinition$json = {
-  '1': 'QromaStrip_WS2812FX_SegmentsDefinition',
-  '2': [
-    {'1': 'brightness', '3': 1, '4': 1, '5': 13, '10': 'brightness'},
-    {'1': 'numSegments', '3': 2, '4': 1, '5': 13, '10': 'numSegments'},
-    {'1': 'maxNumSegments', '3': 3, '4': 1, '5': 13, '10': 'maxNumSegments'},
-    {'1': 'segments', '3': 4, '4': 3, '5': 11, '6': '.QromaStrip_WS2812FX_Segment', '10': 'segments'},
-  ],
-};
-
-/// Descriptor for `QromaStrip_WS2812FX_SegmentsDefinition`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List qromaStrip_WS2812FX_SegmentsDefinitionDescriptor = $convert.base64Decode(
-    'CiZRcm9tYVN0cmlwX1dTMjgxMkZYX1NlZ21lbnRzRGVmaW5pdGlvbhIeCgpicmlnaHRuZXNzGA'
-    'EgASgNUgpicmlnaHRuZXNzEiAKC251bVNlZ21lbnRzGAIgASgNUgtudW1TZWdtZW50cxImCg5t'
-    'YXhOdW1TZWdtZW50cxgDIAEoDVIObWF4TnVtU2VnbWVudHMSOAoIc2VnbWVudHMYBCADKAsyHC'
-    '5Rcm9tYVN0cmlwX1dTMjgxMkZYX1NlZ21lbnRSCHNlZ21lbnRz');
-
-@$core.Deprecated('Use qromaStrip_WS2812FX_StartupAnimationsDescriptor instead')
-const QromaStrip_WS2812FX_StartupAnimations$json = {
-  '1': 'QromaStrip_WS2812FX_StartupAnimations',
-  '2': [
-    {'1': 'startupDelayInMs', '3': 1, '4': 1, '5': 13, '10': 'startupDelayInMs'},
-    {'1': 'segmentAnimations', '3': 2, '4': 3, '5': 11, '6': '.QromaStrip_WS2812FX_Animation', '10': 'segmentAnimations'},
-  ],
-};
-
-/// Descriptor for `QromaStrip_WS2812FX_StartupAnimations`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List qromaStrip_WS2812FX_StartupAnimationsDescriptor = $convert.base64Decode(
-    'CiVRcm9tYVN0cmlwX1dTMjgxMkZYX1N0YXJ0dXBBbmltYXRpb25zEioKEHN0YXJ0dXBEZWxheU'
-    'luTXMYASABKA1SEHN0YXJ0dXBEZWxheUluTXMSTAoRc2VnbWVudEFuaW1hdGlvbnMYAiADKAsy'
-    'Hi5Rcm9tYVN0cmlwX1dTMjgxMkZYX0FuaW1hdGlvblIRc2VnbWVudEFuaW1hdGlvbnM=');
-
 @$core.Deprecated('Use qromaStripConfigDescriptor instead')
 const QromaStripConfig$json = {
   '1': 'QromaStripConfig',
   '2': [
     {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'ioSettings', '3': 2, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_IoSettings', '10': 'ioSettings'},
-    {'1': 'segmentsDefinition', '3': 3, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_SegmentsDefinition', '10': 'segmentsDefinition'},
-    {'1': 'startupAnimations', '3': 4, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_StartupAnimations', '10': 'startupAnimations'},
+    {'1': 'brightness', '3': 2, '4': 1, '5': 13, '10': 'brightness'},
+    {'1': 'ioSettings', '3': 3, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_IoSettings', '10': 'ioSettings'},
+    {'1': 'animation', '3': 4, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_Animation', '10': 'animation'},
   ],
 };
 
 /// Descriptor for `QromaStripConfig`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List qromaStripConfigDescriptor = $convert.base64Decode(
-    'ChBRcm9tYVN0cmlwQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSPwoKaW9TZXR0aW5ncxgCIA'
-    'EoCzIfLlFyb21hU3RyaXBfV1MyODEyRlhfSW9TZXR0aW5nc1IKaW9TZXR0aW5ncxJXChJzZWdt'
-    'ZW50c0RlZmluaXRpb24YAyABKAsyJy5Rcm9tYVN0cmlwX1dTMjgxMkZYX1NlZ21lbnRzRGVmaW'
-    '5pdGlvblISc2VnbWVudHNEZWZpbml0aW9uElQKEXN0YXJ0dXBBbmltYXRpb25zGAQgASgLMiYu'
-    'UXJvbWFTdHJpcF9XUzI4MTJGWF9TdGFydHVwQW5pbWF0aW9uc1IRc3RhcnR1cEFuaW1hdGlvbn'
-    'M=');
+    'ChBRcm9tYVN0cmlwQ29uZmlnEhIKBG5hbWUYASABKAlSBG5hbWUSHgoKYnJpZ2h0bmVzcxgCIA'
+    'EoDVIKYnJpZ2h0bmVzcxI/Cgppb1NldHRpbmdzGAMgASgLMh8uUXJvbWFTdHJpcF9XUzI4MTJG'
+    'WF9Jb1NldHRpbmdzUgppb1NldHRpbmdzEjwKCWFuaW1hdGlvbhgEIAEoCzIeLlFyb21hU3RyaX'
+    'BfV1MyODEyRlhfQW5pbWF0aW9uUglhbmltYXRpb24=');
 
-@$core.Deprecated('Use qromaLightsConfigDescriptor instead')
-const QromaLightsConfig$json = {
-  '1': 'QromaLightsConfig',
+@$core.Deprecated('Use qromaLightsDeviceConfigDescriptor instead')
+const QromaLightsDeviceConfig$json = {
+  '1': 'QromaLightsDeviceConfig',
   '2': [
-    {'1': 'qromaStrip1Config', '3': 1, '4': 1, '5': 11, '6': '.QromaStripConfig', '10': 'qromaStrip1Config'},
-    {'1': 'qromaStrip2Config', '3': 2, '4': 1, '5': 11, '6': '.QromaStripConfig', '10': 'qromaStrip2Config'},
+    {'1': 'deviceName', '3': 1, '4': 1, '5': 9, '10': 'deviceName'},
+    {'1': 'qromaStrip1Config', '3': 2, '4': 1, '5': 11, '6': '.QromaStripConfig', '10': 'qromaStrip1Config'},
+    {'1': 'qromaStrip2Config', '3': 3, '4': 1, '5': 11, '6': '.QromaStripConfig', '10': 'qromaStrip2Config'},
   ],
 };
 
-/// Descriptor for `QromaLightsConfig`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List qromaLightsConfigDescriptor = $convert.base64Decode(
-    'ChFRcm9tYUxpZ2h0c0NvbmZpZxI/ChFxcm9tYVN0cmlwMUNvbmZpZxgBIAEoCzIRLlFyb21hU3'
-    'RyaXBDb25maWdSEXFyb21hU3RyaXAxQ29uZmlnEj8KEXFyb21hU3RyaXAyQ29uZmlnGAIgASgL'
-    'MhEuUXJvbWFTdHJpcENvbmZpZ1IRcXJvbWFTdHJpcDJDb25maWc=');
+/// Descriptor for `QromaLightsDeviceConfig`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List qromaLightsDeviceConfigDescriptor = $convert.base64Decode(
+    'ChdRcm9tYUxpZ2h0c0RldmljZUNvbmZpZxIeCgpkZXZpY2VOYW1lGAEgASgJUgpkZXZpY2VOYW'
+    '1lEj8KEXFyb21hU3RyaXAxQ29uZmlnGAIgASgLMhEuUXJvbWFTdHJpcENvbmZpZ1IRcXJvbWFT'
+    'dHJpcDFDb25maWcSPwoRcXJvbWFTdHJpcDJDb25maWcYAyABKAsyES5Rcm9tYVN0cmlwQ29uZm'
+    'lnUhFxcm9tYVN0cmlwMkNvbmZpZw==');
 

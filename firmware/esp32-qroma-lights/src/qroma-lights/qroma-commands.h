@@ -5,4 +5,6 @@
 
 void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response);
 
+bool hasQromaStartupCommandsFile();
+
 #endif

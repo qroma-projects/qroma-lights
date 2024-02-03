@@ -4,7 +4,8 @@
 #include "qroma/qroma.h"
 #include "boards/qroma-boards.h"
 #include "qroma-project.h"
-
+#include "qroma-lights-handler.h"
+#include "qroma-strip-handler.h"
 
 FwUpdateConfiguration updateConfiguration = FwUpdateConfiguration_init_zero; 
 
@@ -65,31 +66,6 @@ void onHelloQromaRequest(HelloQromaRequest * request, HelloQromaResponse * respo
 }
 
 
-void onMathRequest(MathRequest * request, MathResponse * response) {
-  switch (request->op) {
-    case MathOperation_MathOp_Add:
-      response->which_response = MathResponse_addResult_tag;
-      response->response.addResult.result = request->a + request->b;
-      break;
-
-    case MathOperation_MathOp_Subtract:
-      response->which_response = MathResponse_subtractResult_tag;
-      response->response.subtractResult.result = request->a - request->b;
-      break;
-
-    case MathOperation_MathOp_Add_And_Subtract:
-      response->which_response = MathResponse_addAndSubtractResult_tag;
-      response->response.addAndSubtractResult.addResult = request->a + request->b;
-      response->response.addAndSubtractResult.subtractResult = request->a - request->b;
-      break;
-
-    case MathOperation_MathOp_NotSet:
-    default:
-      logError("Bad message: MathOp_NotSet");
-  }
-}
-
-
 void handleNoArgCommand(NoArgCommands noArgCommand, MyProjectResponse * response) {
   switch (noArgCommand) {
     case NoArgCommands_Nac_NotSet:
@@ -139,11 +115,6 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
       onHelloQromaRequest(&(message->command.helloQromaRequest), &(response->response.helloQromaResponse));
       break;
 
-    case MyProjectCommand_mathRequest_tag:
-      response->which_response = MyProjectResponse_mathResponse_tag;
-      onMathRequest(&(message->command.mathRequest), &(response->response.mathResponse));
-      break;
-
     case MyProjectCommand_setUpdateConfiguration_tag:
       response->which_response = MyProjectResponse_setUpdateConfigurationResponse_tag;
       response->response.setUpdateConfigurationResponse = SetUpdateConfigurationResponse_init_zero;
@@ -157,6 +128,16 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
       response->response.pingResponse.pingId = message->command.pingRequest.pingId;
       response->response.pingResponse.uptime = millis();
       break;
+
+    case MyProjectCommand_qromaLightsCommand_tag:
+      response->which_response = MyProjectResponse_qromaLightsResponse_tag;
+      handleQromaLightsDeviceCommand(&(message->command.qromaLightsCommand), &(response->response.qromaLightsResponse));
+      break;
+    
+    // case MyProjectCommand_qromaStripCommand_tag:
+    //   response->which_response = MyProjectResponse_qromaStripResponse_tag;
+    //   handleQromaStripCommand(&(message->command.qromaStripCommand), &(response->response.qromaStripResponse));
+    //   break;
 
     case MyProjectCommand_getBoardDetailsRequest_tag:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;
