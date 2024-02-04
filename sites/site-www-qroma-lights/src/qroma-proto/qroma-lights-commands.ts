@@ -14,28 +14,6 @@ import { QromaLightsDeviceConfig } from "./qroma-lights-types";
 import { QromaStrip_WS2812FX_IoSettings } from "./qroma-lights-types";
 import { QromaStrip_WS2812FX_Animation } from "./qroma-lights-types";
 import { QromaStrip_WS2812FX_StripIndex } from "./qroma-lights-types";
-// message SetQromaStrip_WS2812FX_Segments {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   uint32 numSegments = 2;
-//   repeated QromaStrip_WS2812FX_Segment segments = 3;
-// }
-
-// message SetQromaStrip_WS2812FX_Animation {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   QromaStrip_WS2812FX_Animation animation = 2;
-//   // uint32 segmentIndex = 3;
-// }
-
-// message SetQromaStrip_WS2812FX_Brightness {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   uint32 brightness = 2;  // 0-255
-// }
-
-// message SetQromaStrip_WS2812FX_IoSettings {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   QromaStrip_WS2812FX_IoSettings settings = 2;
-// }
-
 /**
  * @generated from protobuf message SaveQromaStrip_CurrentState
  */
@@ -73,25 +51,11 @@ export interface QromaStripCommand {
         /**
          * @generated from protobuf field: QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 12;
          */
-        setQromaStripIoSettings: QromaStrip_WS2812FX_IoSettings; // SetQromaStrip_WS2812FX_Segments setQromaStripSegments = 3;
-        // SaveQromaStrip_CurrentState saveQromaStripCurrentState = 4;
+        setQromaStripIoSettings: QromaStrip_WS2812FX_IoSettings;
     } | {
         oneofKind: undefined;
     };
 }
-// message QromaStripResponse {
-
-// }
-
-// message QromaStrip_Status {
-//   uint32 lastConfigChangeTimeInMs = 1;
-// }
-
-// message QpmCommand_SetQromaStripName {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   string name = 2;
-// }
-
 /**
  * @generated from protobuf message SetQromaDeviceName
  */
@@ -100,15 +64,6 @@ export interface SetQromaDeviceName {
      * @generated from protobuf field: string name = 1;
      */
     name: string;
-}
-/**
- * @generated from protobuf message UseCurrentSetupOnStartup
- */
-export interface UseCurrentSetupOnStartup {
-    /**
-     * @generated from protobuf field: uint32 startupDelayInMs = 1;
-     */
-    startupDelayInMs: number;
 }
 /**
  * @generated from protobuf message QromaLightsDeviceCommand
@@ -370,53 +325,6 @@ class SetQromaDeviceName$Type extends MessageType<SetQromaDeviceName> {
  * @generated MessageType for protobuf message SetQromaDeviceName
  */
 export const SetQromaDeviceName = new SetQromaDeviceName$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class UseCurrentSetupOnStartup$Type extends MessageType<UseCurrentSetupOnStartup> {
-    constructor() {
-        super("UseCurrentSetupOnStartup", [
-            { no: 1, name: "startupDelayInMs", kind: "scalar", T: 13 /*ScalarType.UINT32*/ }
-        ]);
-    }
-    create(value?: PartialMessage<UseCurrentSetupOnStartup>): UseCurrentSetupOnStartup {
-        const message = globalThis.Object.create((this.messagePrototype!));
-        message.startupDelayInMs = 0;
-        if (value !== undefined)
-            reflectionMergePartial<UseCurrentSetupOnStartup>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: UseCurrentSetupOnStartup): UseCurrentSetupOnStartup {
-        let message = target ?? this.create(), end = reader.pos + length;
-        while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
-            switch (fieldNo) {
-                case /* uint32 startupDelayInMs */ 1:
-                    message.startupDelayInMs = reader.uint32();
-                    break;
-                default:
-                    let u = options.readUnknownField;
-                    if (u === "throw")
-                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
-                    if (u !== false)
-                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
-            }
-        }
-        return message;
-    }
-    internalBinaryWrite(message: UseCurrentSetupOnStartup, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* uint32 startupDelayInMs = 1; */
-        if (message.startupDelayInMs !== 0)
-            writer.tag(1, WireType.Varint).uint32(message.startupDelayInMs);
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message UseCurrentSetupOnStartup
- */
-export const UseCurrentSetupOnStartup = new UseCurrentSetupOnStartup$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class QromaLightsDeviceCommand$Type extends MessageType<QromaLightsDeviceCommand> {
     constructor() {

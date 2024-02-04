@@ -12,21 +12,6 @@ PB_BIND(HelloQromaRequest, HelloQromaRequest, AUTO)
 PB_BIND(HelloQromaResponse, HelloQromaResponse, AUTO)
 
 
-PB_BIND(MathRequest, MathRequest, AUTO)
-
-
-PB_BIND(MathResult_Add, MathResult_Add, AUTO)
-
-
-PB_BIND(MathResult_Subtract, MathResult_Subtract, AUTO)
-
-
-PB_BIND(MathResult_AddAndSubtract, MathResult_AddAndSubtract, AUTO)
-
-
-PB_BIND(MathResponse, MathResponse, AUTO)
-
-
 PB_BIND(FwUpdateConfiguration, FwUpdateConfiguration, AUTO)
 
 
@@ -79,7 +64,6 @@ PB_BIND(MyProjectCommand, MyProjectCommand, AUTO)
 
 
 PB_BIND(MyProjectResponse, MyProjectResponse, 2)
-
 
 
 

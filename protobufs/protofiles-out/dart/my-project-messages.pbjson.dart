@@ -13,22 +13,6 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
-@$core.Deprecated('Use mathOperationDescriptor instead')
-const MathOperation$json = {
-  '1': 'MathOperation',
-  '2': [
-    {'1': 'MathOp_NotSet', '2': 0},
-    {'1': 'MathOp_Add', '2': 1},
-    {'1': 'MathOp_Subtract', '2': 2},
-    {'1': 'MathOp_Add_And_Subtract', '2': 3},
-  ],
-};
-
-/// Descriptor for `MathOperation`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List mathOperationDescriptor = $convert.base64Decode(
-    'Cg1NYXRoT3BlcmF0aW9uEhEKDU1hdGhPcF9Ob3RTZXQQABIOCgpNYXRoT3BfQWRkEAESEwoPTW'
-    'F0aE9wX1N1YnRyYWN0EAISGwoXTWF0aE9wX0FkZF9BbmRfU3VidHJhY3QQAw==');
-
 @$core.Deprecated('Use updateTypeDescriptor instead')
 const UpdateType$json = {
   '1': 'UpdateType',
@@ -90,79 +74,6 @@ const HelloQromaResponse$json = {
 final $typed_data.Uint8List helloQromaResponseDescriptor = $convert.base64Decode(
     'ChJIZWxsb1Fyb21hUmVzcG9uc2USGgoIcmVzcG9uc2UYASABKAlSCHJlc3BvbnNlEhwKCWNhbG'
     'xDb3VudBgCIAEoDVIJY2FsbENvdW50Eh4KCm5hbWVMZW5ndGgYAyABKA1SCm5hbWVMZW5ndGg=');
-
-@$core.Deprecated('Use mathRequestDescriptor instead')
-const MathRequest$json = {
-  '1': 'MathRequest',
-  '2': [
-    {'1': 'a', '3': 1, '4': 1, '5': 13, '10': 'a'},
-    {'1': 'b', '3': 2, '4': 1, '5': 13, '10': 'b'},
-    {'1': 'op', '3': 3, '4': 1, '5': 14, '6': '.MathOperation', '10': 'op'},
-  ],
-};
-
-/// Descriptor for `MathRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List mathRequestDescriptor = $convert.base64Decode(
-    'CgtNYXRoUmVxdWVzdBIMCgFhGAEgASgNUgFhEgwKAWIYAiABKA1SAWISHgoCb3AYAyABKA4yDi'
-    '5NYXRoT3BlcmF0aW9uUgJvcA==');
-
-@$core.Deprecated('Use mathResult_AddDescriptor instead')
-const MathResult_Add$json = {
-  '1': 'MathResult_Add',
-  '2': [
-    {'1': 'result', '3': 1, '4': 1, '5': 13, '10': 'result'},
-  ],
-};
-
-/// Descriptor for `MathResult_Add`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List mathResult_AddDescriptor = $convert.base64Decode(
-    'Cg5NYXRoUmVzdWx0X0FkZBIWCgZyZXN1bHQYASABKA1SBnJlc3VsdA==');
-
-@$core.Deprecated('Use mathResult_SubtractDescriptor instead')
-const MathResult_Subtract$json = {
-  '1': 'MathResult_Subtract',
-  '2': [
-    {'1': 'result', '3': 1, '4': 1, '5': 13, '10': 'result'},
-  ],
-};
-
-/// Descriptor for `MathResult_Subtract`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List mathResult_SubtractDescriptor = $convert.base64Decode(
-    'ChNNYXRoUmVzdWx0X1N1YnRyYWN0EhYKBnJlc3VsdBgBIAEoDVIGcmVzdWx0');
-
-@$core.Deprecated('Use mathResult_AddAndSubtractDescriptor instead')
-const MathResult_AddAndSubtract$json = {
-  '1': 'MathResult_AddAndSubtract',
-  '2': [
-    {'1': 'addResult', '3': 1, '4': 1, '5': 13, '10': 'addResult'},
-    {'1': 'subtractResult', '3': 2, '4': 1, '5': 13, '10': 'subtractResult'},
-  ],
-};
-
-/// Descriptor for `MathResult_AddAndSubtract`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List mathResult_AddAndSubtractDescriptor = $convert.base64Decode(
-    'ChlNYXRoUmVzdWx0X0FkZEFuZFN1YnRyYWN0EhwKCWFkZFJlc3VsdBgBIAEoDVIJYWRkUmVzdW'
-    'x0EiYKDnN1YnRyYWN0UmVzdWx0GAIgASgNUg5zdWJ0cmFjdFJlc3VsdA==');
-
-@$core.Deprecated('Use mathResponseDescriptor instead')
-const MathResponse$json = {
-  '1': 'MathResponse',
-  '2': [
-    {'1': 'addResult', '3': 1, '4': 1, '5': 11, '6': '.MathResult_Add', '9': 0, '10': 'addResult'},
-    {'1': 'subtractResult', '3': 2, '4': 1, '5': 11, '6': '.MathResult_Subtract', '9': 0, '10': 'subtractResult'},
-    {'1': 'addAndSubtractResult', '3': 3, '4': 1, '5': 11, '6': '.MathResult_AddAndSubtract', '9': 0, '10': 'addAndSubtractResult'},
-  ],
-  '8': [
-    {'1': 'response'},
-  ],
-};
-
-/// Descriptor for `MathResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List mathResponseDescriptor = $convert.base64Decode(
-    'CgxNYXRoUmVzcG9uc2USLwoJYWRkUmVzdWx0GAEgASgLMg8uTWF0aFJlc3VsdF9BZGRIAFIJYW'
-    'RkUmVzdWx0Ej4KDnN1YnRyYWN0UmVzdWx0GAIgASgLMhQuTWF0aFJlc3VsdF9TdWJ0cmFjdEgA'
-    'Ug5zdWJ0cmFjdFJlc3VsdBJQChRhZGRBbmRTdWJ0cmFjdFJlc3VsdBgDIAEoCzIaLk1hdGhSZX'
-    'N1bHRfQWRkQW5kU3VidHJhY3RIAFIUYWRkQW5kU3VidHJhY3RSZXN1bHRCCgoIcmVzcG9uc2U=');
 
 @$core.Deprecated('Use fwUpdateConfigurationDescriptor instead')
 const FwUpdateConfiguration$json = {

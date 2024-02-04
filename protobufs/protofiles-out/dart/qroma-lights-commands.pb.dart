@@ -232,56 +232,6 @@ class SetQromaDeviceName extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 }
 
-class UseCurrentSetupOnStartup extends $pb.GeneratedMessage {
-  factory UseCurrentSetupOnStartup({
-    $core.int? startupDelayInMs,
-  }) {
-    final $result = create();
-    if (startupDelayInMs != null) {
-      $result.startupDelayInMs = startupDelayInMs;
-    }
-    return $result;
-  }
-  UseCurrentSetupOnStartup._() : super();
-  factory UseCurrentSetupOnStartup.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UseCurrentSetupOnStartup.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UseCurrentSetupOnStartup', createEmptyInstance: create)
-    ..a<$core.int>(1, _omitFieldNames ? '' : 'startupDelayInMs', $pb.PbFieldType.OU3, protoName: 'startupDelayInMs')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  UseCurrentSetupOnStartup clone() => UseCurrentSetupOnStartup()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  UseCurrentSetupOnStartup copyWith(void Function(UseCurrentSetupOnStartup) updates) => super.copyWith((message) => updates(message as UseCurrentSetupOnStartup)) as UseCurrentSetupOnStartup;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static UseCurrentSetupOnStartup create() => UseCurrentSetupOnStartup._();
-  UseCurrentSetupOnStartup createEmptyInstance() => create();
-  static $pb.PbList<UseCurrentSetupOnStartup> createRepeated() => $pb.PbList<UseCurrentSetupOnStartup>();
-  @$core.pragma('dart2js:noInline')
-  static UseCurrentSetupOnStartup getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UseCurrentSetupOnStartup>(create);
-  static UseCurrentSetupOnStartup? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.int get startupDelayInMs => $_getIZ(0);
-  @$pb.TagNumber(1)
-  set startupDelayInMs($core.int v) { $_setUnsignedInt32(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasStartupDelayInMs() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearStartupDelayInMs() => clearField(1);
-}
-
 enum QromaLightsDeviceCommand_Command {
   noArgCommand, 
   setQromaDeviceName, 

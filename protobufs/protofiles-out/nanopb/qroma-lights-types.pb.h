@@ -170,8 +170,7 @@ typedef struct _QromaStripConfig {
     bool has_ioSettings;
     QromaStrip_WS2812FX_IoSettings ioSettings;
     bool has_animation;
-    QromaStrip_WS2812FX_Animation animation; /* QromaStrip_WS2812FX_SegmentsDefinition segmentsDefinition = 3;
- QromaStrip_WS2812FX_StartupAnimations startupAnimations = 4; */
+    QromaStrip_WS2812FX_Animation animation;
 } QromaStripConfig;
 
 typedef struct _QromaLightsDeviceConfig {

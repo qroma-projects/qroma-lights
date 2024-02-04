@@ -13,25 +13,6 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class MathOperation extends $pb.ProtobufEnum {
-  static const MathOperation MathOp_NotSet = MathOperation._(0, _omitEnumNames ? '' : 'MathOp_NotSet');
-  static const MathOperation MathOp_Add = MathOperation._(1, _omitEnumNames ? '' : 'MathOp_Add');
-  static const MathOperation MathOp_Subtract = MathOperation._(2, _omitEnumNames ? '' : 'MathOp_Subtract');
-  static const MathOperation MathOp_Add_And_Subtract = MathOperation._(3, _omitEnumNames ? '' : 'MathOp_Add_And_Subtract');
-
-  static const $core.List<MathOperation> values = <MathOperation> [
-    MathOp_NotSet,
-    MathOp_Add,
-    MathOp_Subtract,
-    MathOp_Add_And_Subtract,
-  ];
-
-  static final $core.Map<$core.int, MathOperation> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static MathOperation? valueOf($core.int value) => _byValue[value];
-
-  const MathOperation._($core.int v, $core.String n) : super(v, n);
-}
-
 class UpdateType extends $pb.ProtobufEnum {
   static const UpdateType UpdateType_NotSet = UpdateType._(0, _omitEnumNames ? '' : 'UpdateType_NotSet');
   static const UpdateType UpdateType_None = UpdateType._(1, _omitEnumNames ? '' : 'UpdateType_None');

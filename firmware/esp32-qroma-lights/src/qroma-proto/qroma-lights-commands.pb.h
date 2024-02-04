@@ -31,18 +31,13 @@ typedef struct _QromaStripCommand {
     union {
         uint32_t setQromaStripBrightness; /* 0-255 */
         QromaStrip_WS2812FX_Animation setQromaStripAnimation;
-        QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings; /* SetQromaStrip_WS2812FX_Segments setQromaStripSegments = 3;
-     SaveQromaStrip_CurrentState saveQromaStripCurrentState = 4; */
+        QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings;
     } command;
 } QromaStripCommand;
 
 typedef struct _SetQromaDeviceName {
     char name[30];
 } SetQromaDeviceName;
-
-typedef struct _UseCurrentSetupOnStartup {
-    uint32_t startupDelayInMs;
-} UseCurrentSetupOnStartup;
 
 typedef struct _QromaLightsDeviceCommand {
     pb_size_t which_command;
@@ -80,7 +75,6 @@ extern "C" {
 #define QromaStripCommand_stripIndex_ENUMTYPE QromaStrip_WS2812FX_StripIndex
 
 
-
 #define QromaLightsDeviceCommand_command_noArgCommand_ENUMTYPE NoArgCommands_QromaLightsDeviceCommand
 
 
@@ -90,14 +84,12 @@ extern "C" {
 #define SaveQromaStrip_CurrentState_init_default {_QromaStrip_WS2812FX_StripIndex_MIN}
 #define QromaStripCommand_init_default           {_QromaStrip_WS2812FX_StripIndex_MIN, 0, {0}}
 #define SetQromaDeviceName_init_default          {""}
-#define UseCurrentSetupOnStartup_init_default    {0}
 #define QromaLightsDeviceCommand_init_default    {0, {_NoArgCommands_QromaLightsDeviceCommand_MIN}}
 #define QromaLightsDeviceError_init_default      {""}
 #define QromaLightsResponse_init_default         {0, {QromaLightsDeviceConfig_init_default}}
 #define SaveQromaStrip_CurrentState_init_zero    {_QromaStrip_WS2812FX_StripIndex_MIN}
 #define QromaStripCommand_init_zero              {_QromaStrip_WS2812FX_StripIndex_MIN, 0, {0}}
 #define SetQromaDeviceName_init_zero             {""}
-#define UseCurrentSetupOnStartup_init_zero       {0}
 #define QromaLightsDeviceCommand_init_zero       {0, {_NoArgCommands_QromaLightsDeviceCommand_MIN}}
 #define QromaLightsDeviceError_init_zero         {""}
 #define QromaLightsResponse_init_zero            {0, {QromaLightsDeviceConfig_init_zero}}
@@ -109,7 +101,6 @@ extern "C" {
 #define QromaStripCommand_setQromaStripAnimation_tag 11
 #define QromaStripCommand_setQromaStripIoSettings_tag 12
 #define SetQromaDeviceName_name_tag              1
-#define UseCurrentSetupOnStartup_startupDelayInMs_tag 1
 #define QromaLightsDeviceCommand_noArgCommand_tag 1
 #define QromaLightsDeviceCommand_setQromaDeviceName_tag 2
 #define QromaLightsDeviceCommand_qromaStripCommand_tag 3
@@ -138,11 +129,6 @@ X(a, STATIC,   SINGULAR, STRING,   name,              1)
 #define SetQromaDeviceName_CALLBACK NULL
 #define SetQromaDeviceName_DEFAULT NULL
 
-#define UseCurrentSetupOnStartup_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UINT32,   startupDelayInMs,   1)
-#define UseCurrentSetupOnStartup_CALLBACK NULL
-#define UseCurrentSetupOnStartup_DEFAULT NULL
-
 #define QromaLightsDeviceCommand_FIELDLIST(X, a) \
 X(a, STATIC,   ONEOF,    UENUM,    (command,noArgCommand,command.noArgCommand),   1) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,setQromaDeviceName,command.setQromaDeviceName),   2) \
@@ -168,7 +154,6 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (response,error,response.error),   2)
 extern const pb_msgdesc_t SaveQromaStrip_CurrentState_msg;
 extern const pb_msgdesc_t QromaStripCommand_msg;
 extern const pb_msgdesc_t SetQromaDeviceName_msg;
-extern const pb_msgdesc_t UseCurrentSetupOnStartup_msg;
 extern const pb_msgdesc_t QromaLightsDeviceCommand_msg;
 extern const pb_msgdesc_t QromaLightsDeviceError_msg;
 extern const pb_msgdesc_t QromaLightsResponse_msg;
@@ -177,7 +162,6 @@ extern const pb_msgdesc_t QromaLightsResponse_msg;
 #define SaveQromaStrip_CurrentState_fields &SaveQromaStrip_CurrentState_msg
 #define QromaStripCommand_fields &QromaStripCommand_msg
 #define SetQromaDeviceName_fields &SetQromaDeviceName_msg
-#define UseCurrentSetupOnStartup_fields &UseCurrentSetupOnStartup_msg
 #define QromaLightsDeviceCommand_fields &QromaLightsDeviceCommand_msg
 #define QromaLightsDeviceError_fields &QromaLightsDeviceError_msg
 #define QromaLightsResponse_fields &QromaLightsResponse_msg
@@ -190,7 +174,6 @@ extern const pb_msgdesc_t QromaLightsResponse_msg;
 #define QromaStripCommand_size                   80
 #define SaveQromaStrip_CurrentState_size         2
 #define SetQromaDeviceName_size                  31
-#define UseCurrentSetupOnStartup_size            6
 
 #ifdef __cplusplus
 } /* extern "C" */

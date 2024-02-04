@@ -89,23 +89,6 @@ export interface QromaStrip_WS2812FX_IoSettings {
      */
     neoPixelTxRate: QromaStrip_WS2812FX_NeoPixelTxRate;
 }
-// message QromaStrip_WS2812FX_Segment {
-//   uint32 startIndex = 1;
-//   uint32 endIndex = 2;
-// }
-
-// message QromaStrip_WS2812FX_SegmentsDefinition {
-//   uint32 brightness = 1;
-//   uint32 numSegments = 2;
-//   uint32 maxNumSegments = 3;
-//   repeated QromaStrip_WS2812FX_Segment segments = 4;
-// }
-
-// message QromaStrip_WS2812FX_StartupAnimations {
-//   uint32 startupDelayInMs = 1;
-//   repeated QromaStrip_WS2812FX_Animation segmentAnimations = 2;
-// }
-
 /**
  * @generated from protobuf message QromaStripConfig
  */
@@ -125,8 +108,7 @@ export interface QromaStripConfig {
     /**
      * @generated from protobuf field: QromaStrip_WS2812FX_Animation animation = 4;
      */
-    animation?: QromaStrip_WS2812FX_Animation; // QromaStrip_WS2812FX_SegmentsDefinition segmentsDefinition = 3;
-    // QromaStrip_WS2812FX_StartupAnimations startupAnimations = 4;
+    animation?: QromaStrip_WS2812FX_Animation;
 }
 /**
  * @generated from protobuf message QromaLightsDeviceConfig

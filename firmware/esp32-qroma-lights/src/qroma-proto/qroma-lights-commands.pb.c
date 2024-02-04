@@ -15,9 +15,6 @@ PB_BIND(QromaStripCommand, QromaStripCommand, AUTO)
 PB_BIND(SetQromaDeviceName, SetQromaDeviceName, AUTO)
 
 
-PB_BIND(UseCurrentSetupOnStartup, UseCurrentSetupOnStartup, AUTO)
-
-
 PB_BIND(QromaLightsDeviceCommand, QromaLightsDeviceCommand, AUTO)
 
 

@@ -14,27 +14,25 @@ _sym_db = _symbol_database.Default()
 import qroma_lights_types_pb2 as qroma__lights__types__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bqroma-lights-commands.proto\x1a\x18qroma-lights-types.proto\"R\n\x1bSaveQromaStrip_CurrentState\x12\x33\n\nstripIndex\x18\x01 \x01(\x0e\x32\x1f.QromaStrip_WS2812FX_StripIndex\"\xfc\x01\n\x11QromaStripCommand\x12\x33\n\nstripIndex\x18\x01 \x01(\x0e\x32\x1f.QromaStrip_WS2812FX_StripIndex\x12!\n\x17setQromaStripBrightness\x18\n \x01(\rH\x00\x12@\n\x16setQromaStripAnimation\x18\x0b \x01(\x0b\x32\x1e.QromaStrip_WS2812FX_AnimationH\x00\x12\x42\n\x17setQromaStripIoSettings\x18\x0c \x01(\x0b\x32\x1f.QromaStrip_WS2812FX_IoSettingsH\x00\x42\t\n\x07\x63ommand\"\"\n\x12SetQromaDeviceName\x12\x0c\n\x04name\x18\x01 \x01(\t\"4\n\x18UseCurrentSetupOnStartup\x12\x18\n\x10startupDelayInMs\x18\x01 \x01(\r\"\xca\x01\n\x18QromaLightsDeviceCommand\x12?\n\x0cnoArgCommand\x18\x01 \x01(\x0e\x32\'.NoArgCommands_QromaLightsDeviceCommandH\x00\x12\x31\n\x12setQromaDeviceName\x18\x02 \x01(\x0b\x32\x13.SetQromaDeviceNameH\x00\x12/\n\x11qromaStripCommand\x18\x03 \x01(\x0b\x32\x12.QromaStripCommandH\x00\x42\t\n\x07\x63ommand\")\n\x16QromaLightsDeviceError\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x8a\x01\n\x13QromaLightsResponse\x12=\n\x19qromaLightsConfigResponse\x18\x01 \x01(\x0b\x32\x18.QromaLightsDeviceConfigH\x00\x12(\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x17.QromaLightsDeviceErrorH\x00\x42\n\n\x08response*\xc8\x01\n&NoArgCommands_QromaLightsDeviceCommand\x12\x11\n\rNacQlc_NotSet\x10\x00\x12#\n\x1fNacQlc_UseCurrentSetupOnStartup\x10\x01\x12\x1d\n\x19NacQlc_RestartQromaDevice\x10\x02\x12\"\n\x1eNacQlc_FactoryResetQromaDevice\x10\x03\x12#\n\x1fNacQlc_RequestQromaLightsConfig\x10\x04\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1bqroma-lights-commands.proto\x1a\x18qroma-lights-types.proto\"R\n\x1bSaveQromaStrip_CurrentState\x12\x33\n\nstripIndex\x18\x01 \x01(\x0e\x32\x1f.QromaStrip_WS2812FX_StripIndex\"\xfc\x01\n\x11QromaStripCommand\x12\x33\n\nstripIndex\x18\x01 \x01(\x0e\x32\x1f.QromaStrip_WS2812FX_StripIndex\x12!\n\x17setQromaStripBrightness\x18\n \x01(\rH\x00\x12@\n\x16setQromaStripAnimation\x18\x0b \x01(\x0b\x32\x1e.QromaStrip_WS2812FX_AnimationH\x00\x12\x42\n\x17setQromaStripIoSettings\x18\x0c \x01(\x0b\x32\x1f.QromaStrip_WS2812FX_IoSettingsH\x00\x42\t\n\x07\x63ommand\"\"\n\x12SetQromaDeviceName\x12\x0c\n\x04name\x18\x01 \x01(\t\"\xca\x01\n\x18QromaLightsDeviceCommand\x12?\n\x0cnoArgCommand\x18\x01 \x01(\x0e\x32\'.NoArgCommands_QromaLightsDeviceCommandH\x00\x12\x31\n\x12setQromaDeviceName\x18\x02 \x01(\x0b\x32\x13.SetQromaDeviceNameH\x00\x12/\n\x11qromaStripCommand\x18\x03 \x01(\x0b\x32\x12.QromaStripCommandH\x00\x42\t\n\x07\x63ommand\")\n\x16QromaLightsDeviceError\x12\x0f\n\x07message\x18\x01 \x01(\t\"\x8a\x01\n\x13QromaLightsResponse\x12=\n\x19qromaLightsConfigResponse\x18\x01 \x01(\x0b\x32\x18.QromaLightsDeviceConfigH\x00\x12(\n\x05\x65rror\x18\x02 \x01(\x0b\x32\x17.QromaLightsDeviceErrorH\x00\x42\n\n\x08response*\xc8\x01\n&NoArgCommands_QromaLightsDeviceCommand\x12\x11\n\rNacQlc_NotSet\x10\x00\x12#\n\x1fNacQlc_UseCurrentSetupOnStartup\x10\x01\x12\x1d\n\x19NacQlc_RestartQromaDevice\x10\x02\x12\"\n\x1eNacQlc_FactoryResetQromaDevice\x10\x03\x12#\n\x1fNacQlc_RequestQromaLightsConfig\x10\x04\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'qroma_lights_commands_pb2', _globals)
 if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
-  _globals['_NOARGCOMMANDS_QROMALIGHTSDEVICECOMMAND']._serialized_start=876
-  _globals['_NOARGCOMMANDS_QROMALIGHTSDEVICECOMMAND']._serialized_end=1076
+  _globals['_NOARGCOMMANDS_QROMALIGHTSDEVICECOMMAND']._serialized_start=822
+  _globals['_NOARGCOMMANDS_QROMALIGHTSDEVICECOMMAND']._serialized_end=1022
   _globals['_SAVEQROMASTRIP_CURRENTSTATE']._serialized_start=57
   _globals['_SAVEQROMASTRIP_CURRENTSTATE']._serialized_end=139
   _globals['_QROMASTRIPCOMMAND']._serialized_start=142
   _globals['_QROMASTRIPCOMMAND']._serialized_end=394
   _globals['_SETQROMADEVICENAME']._serialized_start=396
   _globals['_SETQROMADEVICENAME']._serialized_end=430
-  _globals['_USECURRENTSETUPONSTARTUP']._serialized_start=432
-  _globals['_USECURRENTSETUPONSTARTUP']._serialized_end=484
-  _globals['_QROMALIGHTSDEVICECOMMAND']._serialized_start=487
-  _globals['_QROMALIGHTSDEVICECOMMAND']._serialized_end=689
-  _globals['_QROMALIGHTSDEVICEERROR']._serialized_start=691
-  _globals['_QROMALIGHTSDEVICEERROR']._serialized_end=732
-  _globals['_QROMALIGHTSRESPONSE']._serialized_start=735
-  _globals['_QROMALIGHTSRESPONSE']._serialized_end=873
+  _globals['_QROMALIGHTSDEVICECOMMAND']._serialized_start=433
+  _globals['_QROMALIGHTSDEVICECOMMAND']._serialized_end=635
+  _globals['_QROMALIGHTSDEVICEERROR']._serialized_start=637
+  _globals['_QROMALIGHTSDEVICEERROR']._serialized_end=678
+  _globals['_QROMALIGHTSRESPONSE']._serialized_start=681
+  _globals['_QROMALIGHTSRESPONSE']._serialized_end=819
 # @@protoc_insertion_point(module_scope)

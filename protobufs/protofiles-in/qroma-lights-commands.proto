@@ -3,32 +3,6 @@ syntax = "proto3";
 import "qroma-lights-types.proto";
 
 
-// message SetQromaStrip_WS2812FX_Segments {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   uint32 numSegments = 2;
-//   repeated QromaStrip_WS2812FX_Segment segments = 3;
-// }
-
-
-// message SetQromaStrip_WS2812FX_Animation {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   QromaStrip_WS2812FX_Animation animation = 2;
-//   // uint32 segmentIndex = 3;
-// }
-
-
-// message SetQromaStrip_WS2812FX_Brightness {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   uint32 brightness = 2;  // 0-255
-// }
-
-
-// message SetQromaStrip_WS2812FX_IoSettings {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   QromaStrip_WS2812FX_IoSettings settings = 2;
-// }
-
-
 message SaveQromaStrip_CurrentState {
   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
 }
@@ -40,36 +14,12 @@ message QromaStripCommand {
     uint32 setQromaStripBrightness = 10; // 0-255
     QromaStrip_WS2812FX_Animation setQromaStripAnimation = 11;
     QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 12;
-    // SetQromaStrip_WS2812FX_Segments setQromaStripSegments = 3;
-    // SaveQromaStrip_CurrentState saveQromaStripCurrentState = 4;
   }
 }
 
 
-// message QromaStripResponse {
-
-// }
-
-
-// message QromaStrip_Status {
-//   uint32 lastConfigChangeTimeInMs = 1;
-// }
-
-
-
-// message QpmCommand_SetQromaStripName {
-//   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
-//   string name = 2;
-// }
-
-
 message SetQromaDeviceName {
   string name = 1;
-}
-
-
-message UseCurrentSetupOnStartup {
-  uint32 startupDelayInMs = 1;
 }
 
 

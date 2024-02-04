@@ -11,13 +11,6 @@
 #endif
 
 /* Enum definitions */
-typedef enum _MathOperation {
-    MathOperation_MathOp_NotSet = 0,
-    MathOperation_MathOp_Add = 1,
-    MathOperation_MathOp_Subtract = 2,
-    MathOperation_MathOp_Add_And_Subtract = 3
-} MathOperation;
-
 typedef enum _UpdateType {
     UpdateType_UpdateType_NotSet = 0,
     UpdateType_UpdateType_None = 1,
@@ -43,34 +36,6 @@ typedef struct _HelloQromaResponse {
     uint32_t callCount;
     uint32_t nameLength;
 } HelloQromaResponse;
-
-typedef struct _MathRequest {
-    uint32_t a;
-    uint32_t b;
-    MathOperation op;
-} MathRequest;
-
-typedef struct _MathResult_Add {
-    uint32_t result;
-} MathResult_Add;
-
-typedef struct _MathResult_Subtract {
-    uint32_t result;
-} MathResult_Subtract;
-
-typedef struct _MathResult_AddAndSubtract {
-    uint32_t addResult;
-    uint32_t subtractResult;
-} MathResult_AddAndSubtract;
-
-typedef struct _MathResponse {
-    pb_size_t which_response;
-    union {
-        MathResult_Add addResult;
-        MathResult_Subtract subtractResult;
-        MathResult_AddAndSubtract addAndSubtractResult;
-    } response;
-} MathResponse;
 
 typedef struct _FwUpdateConfiguration {
     UpdateType updateType;
@@ -161,7 +126,6 @@ typedef struct _MyProjectCommand {
     union {
         NoArgCommands noArgCommand;
         HelloQromaRequest helloQromaRequest;
-        /* MathRequest mathRequest = 3; */
         SetUpdateConfiguration setUpdateConfiguration;
         PingRequest pingRequest;
         GetBoardDetailsRequest getBoardDetailsRequest;
@@ -175,7 +139,6 @@ typedef struct _MyProjectResponse {
     union {
         InvalidCommandResponse invalidCommandResponse;
         HelloQromaResponse helloQromaResponse;
-        /* MathResponse mathResponse = 3; */
         SetUpdateConfigurationResponse setUpdateConfigurationResponse;
         PingResponse pingResponse;
         UpdateResponse updateResponse;
@@ -192,10 +155,6 @@ extern "C" {
 #endif
 
 /* Helper constants for enums */
-#define _MathOperation_MIN MathOperation_MathOp_NotSet
-#define _MathOperation_MAX MathOperation_MathOp_Add_And_Subtract
-#define _MathOperation_ARRAYSIZE ((MathOperation)(MathOperation_MathOp_Add_And_Subtract+1))
-
 #define _UpdateType_MIN UpdateType_UpdateType_NotSet
 #define _UpdateType_MAX UpdateType_UpdateType_ProgressIndicator
 #define _UpdateType_ARRAYSIZE ((UpdateType)(UpdateType_UpdateType_ProgressIndicator+1))
@@ -203,12 +162,6 @@ extern "C" {
 #define _NoArgCommands_MIN NoArgCommands_Nac_NotSet
 #define _NoArgCommands_MAX NoArgCommands_Nac_RequestQromaLightsConfig
 #define _NoArgCommands_ARRAYSIZE ((NoArgCommands)(NoArgCommands_Nac_RequestQromaLightsConfig+1))
-
-
-
-#define MathRequest_op_ENUMTYPE MathOperation
-
-
 
 
 
@@ -236,11 +189,6 @@ extern "C" {
 /* Initializer values for message structs */
 #define HelloQromaRequest_init_default           {""}
 #define HelloQromaResponse_init_default          {"", 0, 0}
-#define MathRequest_init_default                 {0, 0, _MathOperation_MIN}
-#define MathResult_Add_init_default              {0}
-#define MathResult_Subtract_init_default         {0}
-#define MathResult_AddAndSubtract_init_default   {0, 0}
-#define MathResponse_init_default                {0, {MathResult_Add_init_default}}
 #define FwUpdateConfiguration_init_default       {_UpdateType_MIN, 0}
 #define SetUpdateConfiguration_init_default      {false, FwUpdateConfiguration_init_default, 0}
 #define SetUpdateConfigurationResponse_init_default {0, false, FwUpdateConfiguration_init_default}
@@ -261,11 +209,6 @@ extern "C" {
 #define MyProjectResponse_init_default           {0, {InvalidCommandResponse_init_default}}
 #define HelloQromaRequest_init_zero              {""}
 #define HelloQromaResponse_init_zero             {"", 0, 0}
-#define MathRequest_init_zero                    {0, 0, _MathOperation_MIN}
-#define MathResult_Add_init_zero                 {0}
-#define MathResult_Subtract_init_zero            {0}
-#define MathResult_AddAndSubtract_init_zero      {0, 0}
-#define MathResponse_init_zero                   {0, {MathResult_Add_init_zero}}
 #define FwUpdateConfiguration_init_zero          {_UpdateType_MIN, 0}
 #define SetUpdateConfiguration_init_zero         {false, FwUpdateConfiguration_init_zero, 0}
 #define SetUpdateConfigurationResponse_init_zero {0, false, FwUpdateConfiguration_init_zero}
@@ -290,16 +233,6 @@ extern "C" {
 #define HelloQromaResponse_response_tag          1
 #define HelloQromaResponse_callCount_tag         2
 #define HelloQromaResponse_nameLength_tag        3
-#define MathRequest_a_tag                        1
-#define MathRequest_b_tag                        2
-#define MathRequest_op_tag                       3
-#define MathResult_Add_result_tag                1
-#define MathResult_Subtract_result_tag           1
-#define MathResult_AddAndSubtract_addResult_tag  1
-#define MathResult_AddAndSubtract_subtractResult_tag 2
-#define MathResponse_addResult_tag               1
-#define MathResponse_subtractResult_tag          2
-#define MathResponse_addAndSubtractResult_tag    3
 #define FwUpdateConfiguration_updateType_tag     1
 #define FwUpdateConfiguration_updateIntervalInMs_tag 2
 #define SetUpdateConfiguration_updateConfiguration_tag 1
@@ -357,39 +290,6 @@ X(a, STATIC,   SINGULAR, UINT32,   callCount,         2) \
 X(a, STATIC,   SINGULAR, UINT32,   nameLength,        3)
 #define HelloQromaResponse_CALLBACK NULL
 #define HelloQromaResponse_DEFAULT NULL
-
-#define MathRequest_FIELDLIST(X, a_) \
-X(a_, STATIC,   SINGULAR, UINT32,   a,                 1) \
-X(a_, STATIC,   SINGULAR, UINT32,   b,                 2) \
-X(a_, STATIC,   SINGULAR, UENUM,    op,                3)
-#define MathRequest_CALLBACK NULL
-#define MathRequest_DEFAULT NULL
-
-#define MathResult_Add_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UINT32,   result,            1)
-#define MathResult_Add_CALLBACK NULL
-#define MathResult_Add_DEFAULT NULL
-
-#define MathResult_Subtract_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UINT32,   result,            1)
-#define MathResult_Subtract_CALLBACK NULL
-#define MathResult_Subtract_DEFAULT NULL
-
-#define MathResult_AddAndSubtract_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UINT32,   addResult,         1) \
-X(a, STATIC,   SINGULAR, UINT32,   subtractResult,    2)
-#define MathResult_AddAndSubtract_CALLBACK NULL
-#define MathResult_AddAndSubtract_DEFAULT NULL
-
-#define MathResponse_FIELDLIST(X, a) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response,addResult,response.addResult),   1) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response,subtractResult,response.subtractResult),   2) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response,addAndSubtractResult,response.addAndSubtractResult),   3)
-#define MathResponse_CALLBACK NULL
-#define MathResponse_DEFAULT NULL
-#define MathResponse_response_addResult_MSGTYPE MathResult_Add
-#define MathResponse_response_subtractResult_MSGTYPE MathResult_Subtract
-#define MathResponse_response_addAndSubtractResult_MSGTYPE MathResult_AddAndSubtract
 
 #define FwUpdateConfiguration_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UENUM,    updateType,        1) \
@@ -531,11 +431,6 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (response,qromaLightsResponse,response.qromaL
 
 extern const pb_msgdesc_t HelloQromaRequest_msg;
 extern const pb_msgdesc_t HelloQromaResponse_msg;
-extern const pb_msgdesc_t MathRequest_msg;
-extern const pb_msgdesc_t MathResult_Add_msg;
-extern const pb_msgdesc_t MathResult_Subtract_msg;
-extern const pb_msgdesc_t MathResult_AddAndSubtract_msg;
-extern const pb_msgdesc_t MathResponse_msg;
 extern const pb_msgdesc_t FwUpdateConfiguration_msg;
 extern const pb_msgdesc_t SetUpdateConfiguration_msg;
 extern const pb_msgdesc_t SetUpdateConfigurationResponse_msg;
@@ -558,11 +453,6 @@ extern const pb_msgdesc_t MyProjectResponse_msg;
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
 #define HelloQromaRequest_fields &HelloQromaRequest_msg
 #define HelloQromaResponse_fields &HelloQromaResponse_msg
-#define MathRequest_fields &MathRequest_msg
-#define MathResult_Add_fields &MathResult_Add_msg
-#define MathResult_Subtract_fields &MathResult_Subtract_msg
-#define MathResult_AddAndSubtract_fields &MathResult_AddAndSubtract_msg
-#define MathResponse_fields &MathResponse_msg
 #define FwUpdateConfiguration_fields &FwUpdateConfiguration_msg
 #define SetUpdateConfiguration_fields &SetUpdateConfiguration_msg
 #define SetUpdateConfigurationResponse_fields &SetUpdateConfigurationResponse_msg
@@ -592,11 +482,6 @@ extern const pb_msgdesc_t MyProjectResponse_msg;
 #define InvalidCommandResponse_size              51
 #define LoadBoardConfigurationResponse_size      12
 #define MY_PROJECT_MESSAGES_PB_H_MAX_SIZE        MyProjectResponse_size
-#define MathRequest_size                         14
-#define MathResponse_size                        14
-#define MathResult_AddAndSubtract_size           12
-#define MathResult_Add_size                      6
-#define MathResult_Subtract_size                 6
 #define MyProjectCommand_size                    84
 #define MyProjectDetails_size                    51
 #define MyProjectResponse_size                   319

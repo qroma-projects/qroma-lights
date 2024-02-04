@@ -81,19 +81,6 @@ const SetQromaDeviceName$json = {
 final $typed_data.Uint8List setQromaDeviceNameDescriptor = $convert.base64Decode(
     'ChJTZXRRcm9tYURldmljZU5hbWUSEgoEbmFtZRgBIAEoCVIEbmFtZQ==');
 
-@$core.Deprecated('Use useCurrentSetupOnStartupDescriptor instead')
-const UseCurrentSetupOnStartup$json = {
-  '1': 'UseCurrentSetupOnStartup',
-  '2': [
-    {'1': 'startupDelayInMs', '3': 1, '4': 1, '5': 13, '10': 'startupDelayInMs'},
-  ],
-};
-
-/// Descriptor for `UseCurrentSetupOnStartup`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List useCurrentSetupOnStartupDescriptor = $convert.base64Decode(
-    'ChhVc2VDdXJyZW50U2V0dXBPblN0YXJ0dXASKgoQc3RhcnR1cERlbGF5SW5NcxgBIAEoDVIQc3'
-    'RhcnR1cERlbGF5SW5Ncw==');
-
 @$core.Deprecated('Use qromaLightsDeviceCommandDescriptor instead')
 const QromaLightsDeviceCommand$json = {
   '1': 'QromaLightsDeviceCommand',
