@@ -4,8 +4,11 @@
 #include <qroma-proto/qroma-lights-types.pb.h>
 
 
-void populateQromaLightsConfig(QromaLightsDeviceConfig * config);
-bool saveQromaLightsConfig();
+QromaLightsDeviceConfig * getQromaLightsDeviceConfig();
+
+void populateQromaLightsConfig();
+bool saveQromaLightsConfig(QromaLightsDeviceConfig * config);
+bool saveCurrentQromaLightsConfig();
 
 void setQromaLightsDeviceName(const char * name);
 // bool saveQromaLightsAnimations();

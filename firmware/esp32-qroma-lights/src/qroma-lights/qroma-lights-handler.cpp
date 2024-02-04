@@ -12,7 +12,7 @@ void handleQromaLightsNoArgCommand(NoArgCommands_QromaLightsDeviceCommand whichN
       populateConfigFromQromaLights(&(response->response.qromaLightsConfigResponse));
       break;
     case NoArgCommands_QromaLightsDeviceCommand_NacQlc_UseCurrentSetupOnStartup:
-      saveQromaLightsConfig();
+      saveCurrentQromaLightsConfig();
       break;
     default:
       logError("Unrecognized NoArgCommands_QromaLightsDeviceCommand command");

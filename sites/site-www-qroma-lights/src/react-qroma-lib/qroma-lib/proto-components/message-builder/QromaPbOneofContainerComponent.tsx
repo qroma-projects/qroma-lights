@@ -47,9 +47,10 @@ export const QromaPbOneofContainerComponent = (props: IQromaPbOneofContainerComp
     // console.log(field)
     // console.log(newValue)
 
-    const updateValue = {[field.name]: newValue};
+    // const updateValue = {[field.name]: newValue};
     
-    props.updateFieldValueInParentMessage(field, updateValue);
+    // props.updateOneofFieldValueInParent(field, updateValue);
+    props.updateFieldValueInParentMessage(field, newValue);
   }
 
   const onOneofEnumValueChange = (field: FieldInfo, objectValue: JsonValue) => {

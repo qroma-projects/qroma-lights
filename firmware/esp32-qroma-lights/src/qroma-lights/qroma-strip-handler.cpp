@@ -42,24 +42,18 @@ void handleQromaStripCommand(QromaStrip_WS2812FX_StripIndex stripIndex, QromaStr
     case QromaStripCommand_setQromaStripBrightness_tag:
       logInfo("HANDLING QromaStripCommand_setQromaStripBrightness_tag");
       lights = getLightsForStripIndex(stripIndex);
-      lights->updateQromaStripBrightness(message->command.setQromaStripBrightness);
+      lights->applyQromaStripBrightness(message->command.setQromaStripBrightness);
       break;
     case QromaStripCommand_setQromaStripAnimation_tag:
       logInfo("HANDLING setQromaStripAnimation_tag");
       lights = getLightsForStripIndex(stripIndex);
-      lights->updateQromaStripAnimation(&(message->command.setQromaStripAnimation));
+      lights->applyQromaStripAnimation(&(message->command.setQromaStripAnimation));
       break;
-    // case QromaStripCommand_setQromaStripSegments_tag:
-    //   logInfo("HANDLING setQromaStripSegments_tag");
-    //   lights = getLightsForStripIndex(message->command.setQromaStripSegments.stripIndex);
-    //   lights->updateQromaStripSegments(&(message->command.setQromaStripSegments));
-    //   saveQromaLightsConfig();
-    //   break;
     case QromaStripCommand_setQromaStripIoSettings_tag:
       logInfo("HANDLING setQromaStripIoSettings_tag");
       lights = getLightsForStripIndex(stripIndex);
-      lights->updateQromaStripIoSettings(&(message->command.setQromaStripIoSettings));
-      saveQromaLightsConfig();
+      lights->applyQromaStripIoSettings(&(message->command.setQromaStripIoSettings));
+      saveCurrentQromaLightsConfig();
       break;
     // case QromaStripCommand_saveQromaStripCurrentState_tag:
     //   logInfo("HANDLING saveQromaStripCurrentState_tag");

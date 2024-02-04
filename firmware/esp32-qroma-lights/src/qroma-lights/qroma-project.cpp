@@ -34,7 +34,7 @@ void qromaProjectSetup()
 
   myQromaApp.startupQroma();
 
-  updateConfiguration.updateIntervalInMs = 1000;
+  updateConfiguration.updateIntervalInMs = 10;
   // updateConfiguration.updateType = UpdateType_UpdateType_ProgressIndicator;
   // updateConfiguration.updateType = UpdateType_UpdateType_Interval;
   updateConfiguration.updateType = UpdateType_UpdateType_None;
@@ -46,12 +46,12 @@ void qromaProjectSetup()
     }
   }
 
-   // load qroma config or use defaults if not initialized
-  QromaLightsDeviceConfig qromaLightsConfig;
+   // load qroma config (uses defaults if not initialized)
+  populateQromaLightsConfig();
 
-  populateQromaLightsConfig(&qromaLightsConfig);
+  QromaLightsDeviceConfig * qromaLightsConfig = getQromaLightsDeviceConfig();
 
-  initQromaLightsFromConfig(&qromaLightsConfig);
+  initQromaLightsFromConfig(qromaLightsConfig);
 }
 
 
@@ -92,6 +92,7 @@ void qromaProjectLoop()
   delay(updateConfiguration.updateIntervalInMs);
   updateCounter++;
 
+  tickQromaLights();
   myQromaApp.processHeartbeat();
 
   switch (updateConfiguration.updateType) {

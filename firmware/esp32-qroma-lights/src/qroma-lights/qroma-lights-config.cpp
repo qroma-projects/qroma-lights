@@ -10,20 +10,26 @@ const char * DEFAULT_NAME_FOR_QROMA_LIGHTS_DEVICE = "Qroma Lights";
 const char * DEFAULT_NAME_FOR_QROMA_STRIP_1 = "Qroma Strip 1";
 const char * DEFAULT_NAME_FOR_QROMA_STRIP_2 = "Qroma Strip 2";
 
-const char * QROMA_CONFIG_FILE_NAME = "/config.qroma";
+const char * QROMA_LIGHTS_CONFIG_FILE_NAME = "/qroma-lights.config";
 
 QromaLightsDeviceConfig _qromaLightsDeviceConfig;
 
 
 
-void populateQromaLightsConfig(QromaLightsDeviceConfig * config) {
+QromaLightsDeviceConfig * getQromaLightsDeviceConfig() {
+  return &_qromaLightsDeviceConfig;
+}
+
+
+void populateQromaLightsConfig() {
   if (hasQromaLightsConfigFile()) {
-    if (populateQromaLightsConfigFromFile(config)) {
+    if (populateQromaLightsConfigFromFile(&_qromaLightsDeviceConfig)) {
       return;
     }
   }
 
-  populateWithDefaultQromaLightsConfig(config);
+  populateWithDefaultQromaLightsConfig(&_qromaLightsDeviceConfig);
+  saveQromaLightsConfig(&_qromaLightsDeviceConfig);
 }
 
 
@@ -33,42 +39,48 @@ void populateWithDefaultQromaLightsConfig(QromaLightsDeviceConfig * config) {
   strncpy(config->qromaStrip1Config.name, DEFAULT_NAME_FOR_QROMA_STRIP_1, sizeof(config->qromaStrip1Config.name));
   strncpy(config->qromaStrip2Config.name, DEFAULT_NAME_FOR_QROMA_STRIP_2, sizeof(config->qromaStrip2Config.name));
 
+  config->qromaStrip1Config.brightness = 30;
+  config->qromaStrip2Config.brightness = 30;
+
   populateWithBoardSpecificDefaultQromaLightsDeviceConfig(config);
 
-  // doInitializeQromaStripDefaultSegmentsDefinition_Ws2812FX(&(config->qromaStrip1Config.segmentsDefinition));
-  // doInitializeQromaStripDefaultSegmentsDefinition_Ws2812FX(&(config->qromaStrip2Config.segmentsDefinition));
-
-  // doInitializeQromaStripDefaultStartupAnimations_Ws2812FX(&(config->qromaStrip1Config.startupAnimations), 
-  //   config->qromaStrip1Config.segmentsDefinition.maxNumSegments);
-  // doInitializeQromaStripDefaultStartupAnimations_Ws2812FX(&(config->qromaStrip2Config.startupAnimations), 
-  //   config->qromaStrip2Config.segmentsDefinition.maxNumSegments);
+  populateWithQromaStripDefaultAnimation_Ws2812FX(&(config->qromaStrip1Config.animation));
+  populateWithQromaStripDefaultAnimation_Ws2812FX(&(config->qromaStrip2Config.animation));
 
   config->has_qromaStrip1Config = true;
   config->qromaStrip1Config.has_ioSettings = true;
-  // config->qromaStrip1Config.has_segmentsDefinition = true;
 
   config->has_qromaStrip2Config = true;
   config->qromaStrip2Config.has_ioSettings = true;
-  // config->qromaStrip2Config.has_segmentsDefinition = true;
 }
 
 
-bool saveQromaLightsConfig() {
+bool saveQromaLightsConfig(QromaLightsDeviceConfig * config) {
   logInfo("SAVING QROMA LIGHTS CONFIG");
-  QromaLightsDeviceConfig config;
+  // QromaLightsDeviceConfig config;
   
-  populateConfigFromQromaLights(&config);
+  // populateConfigFromQromaLights(&config);
 
-  bool saved = savePbToPersistence<QromaLightsDeviceConfig>(&config, QROMA_CONFIG_FILE_NAME, QromaLightsDeviceConfig_fields);
+  bool saved = savePbToPersistence<QromaLightsDeviceConfig>(config, QROMA_LIGHTS_CONFIG_FILE_NAME, QromaLightsDeviceConfig_fields);
 
   if (!saved) {
     logError("ERROR SAVING QROMA LIGHTS CONFIG");
-    logError(QROMA_CONFIG_FILE_NAME);
+    logError(QROMA_LIGHTS_CONFIG_FILE_NAME);
   }
 
   logInfo("DONE SAVING QROMA LIGHTS CONFIG");
+  logInfo(QROMA_LIGHTS_CONFIG_FILE_NAME);
 
   return saved;
+}
+
+
+bool saveCurrentQromaLightsConfig() {
+  logInfo("SAVING CURRENT QROMA LIGHTS CONFIG");
+  QromaLightsDeviceConfig config;
+  
+  populateConfigFromQromaLights(&config);
+  return saveQromaLightsConfig(&config);
 }
 
 
@@ -92,15 +104,15 @@ bool saveQromaLightsConfig() {
 
 
 bool hasQromaLightsConfigFile() {
-  return doesFileExist(QROMA_CONFIG_FILE_NAME);
+  return doesFileExist(QROMA_LIGHTS_CONFIG_FILE_NAME);
 }
 
 
 bool populateQromaLightsConfigFromFile(QromaLightsDeviceConfig * config) {
-  bool success = loadPbFromPersistence(config, QROMA_CONFIG_FILE_NAME, QromaLightsDeviceConfig_fields);
+  bool success = loadPbFromPersistence(config, QROMA_LIGHTS_CONFIG_FILE_NAME, QromaLightsDeviceConfig_fields);
   if (!success) {
     logError("ERROR LOADING QROMA LIGHTS CONFIG");
-    logError(QROMA_CONFIG_FILE_NAME);
+    logError(QROMA_LIGHTS_CONFIG_FILE_NAME);
   }
 
   return success;
@@ -109,19 +121,19 @@ bool populateQromaLightsConfigFromFile(QromaLightsDeviceConfig * config) {
 
 void populateStripConfigFromLights(QromaStripConfig * stripConfig, QromaStripDriverWs2812Fx * lights) {
   strncpy(stripConfig->name, lights->getName(), sizeof(stripConfig->name));
+  stripConfig->brightness = lights->getBrightness();
 
   lights->populateQromaStripIoSettings(&(stripConfig->ioSettings));
   stripConfig->has_ioSettings = true;
 
-  // lights->populateQromaStripSegmentsDefinition(&(stripConfig->segmentsDefinition));
-  // stripConfig->has_segmentsDefinition = true;
-
-  // lights->populateQromaStripStartupAnimations(&(stripConfig->startupAnimations));
-  // stripConfig->has_startupAnimations = true;
+  lights->populateQromaStripStartupAnimation(&(stripConfig->animation));
+  stripConfig->has_animation = true;
 }
 
 
 void populateConfigFromQromaLights(QromaLightsDeviceConfig * config) {
+  strncpy(config->deviceName, _qromaLightsDeviceConfig.deviceName, sizeof(config->deviceName));
+  
   QromaStripDriverWs2812Fx * lights1 = getLightsForStripIndex(QromaStrip_WS2812FX_StripIndex_QSSI_STRIP_01);
   QromaStripDriverWs2812Fx * lights2 = getLightsForStripIndex(QromaStrip_WS2812FX_StripIndex_QSSI_STRIP_02);
 

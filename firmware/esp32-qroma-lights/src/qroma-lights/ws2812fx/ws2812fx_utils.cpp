@@ -32,29 +32,29 @@
 //   }
 // }
 
-void doInitializeQromaStripDefaultStartupAnimation_Ws2812FX(QromaStrip_WS2812FX_Animation * startupAnimation) {
+void populateWithQromaStripDefaultAnimation_Ws2812FX(QromaStrip_WS2812FX_Animation * animation) {
   
   // animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_STATIC;
-  startupAnimation->pattern = QromaStrip_WS2812FX_Pattern_QSP_RAINBOW_CYCLE;
+  animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_RAINBOW_CYCLE;
 
-  const uint32_t INIT_BRIGHTNESS = 0;
+  const uint32_t INIT_COLOR_INTENSITY = 30;
 
-  startupAnimation->color1.red = INIT_BRIGHTNESS;
-  startupAnimation->color1.green = INIT_BRIGHTNESS;
-  startupAnimation->color1.blue = INIT_BRIGHTNESS;
+  animation->color1.red = INIT_COLOR_INTENSITY;
+  animation->color1.green = INIT_COLOR_INTENSITY;
+  animation->color1.blue = INIT_COLOR_INTENSITY;
 
-  startupAnimation->color2.red = INIT_BRIGHTNESS;
-  startupAnimation->color2.green = INIT_BRIGHTNESS;
-  startupAnimation->color2.blue = INIT_BRIGHTNESS;
+  animation->color2.red = INIT_COLOR_INTENSITY;
+  animation->color2.green = INIT_COLOR_INTENSITY;
+  animation->color2.blue = INIT_COLOR_INTENSITY;
 
-  startupAnimation->color3.red = INIT_BRIGHTNESS;
-  startupAnimation->color3.green = INIT_BRIGHTNESS;
-  startupAnimation->color3.blue = INIT_BRIGHTNESS;
+  animation->color3.red = INIT_COLOR_INTENSITY;
+  animation->color3.green = INIT_COLOR_INTENSITY;
+  animation->color3.blue = INIT_COLOR_INTENSITY;
 
-  startupAnimation->speed = 1000;
-  startupAnimation->reversed = false;
-  startupAnimation->fadeSpeed = QromaStrip_WS2812FX_FadeSpeed_QSFS_MEDIUM;
-  startupAnimation->size = QromaStrip_WS2812FX_PixelsSize_QSPS_MEDIUM;
+  animation->speed = 1000;
+  animation->reversed = false;
+  animation->fadeSpeed = QromaStrip_WS2812FX_FadeSpeed_QSFS_MEDIUM;
+  animation->size = QromaStrip_WS2812FX_PixelsSize_QSPS_MEDIUM;
 }
 
 

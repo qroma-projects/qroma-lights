@@ -10,7 +10,7 @@ const int COLOR_COUNT = 3;
 
 // void doInitializeQromaStripDefaultSegmentsDefinition_Ws2812FX(QromaStrip_WS2812FX_SegmentsDefinition * segmentsDefinition);
 // void doInitializeQromaStripDefaultStartupAnimations_Ws2812FX(QromaStrip_WS2812FX_StartupAnimations * startupAnimations, uint32_t numSegments);
-void doInitializeQromaStripDefaultStartupAnimation_Ws2812FX(QromaStrip_WS2812FX_Animation * startupAnimation);
+void populateWithQromaStripDefaultAnimation_Ws2812FX(QromaStrip_WS2812FX_Animation * animation);
 
 uint32_t convertColorRgbBytesToUint(pb_byte_t * colorRgbBytes, int index);
 uint32_t convertQromaStripColorToUint(QromaStripColor * qromaStripColor);

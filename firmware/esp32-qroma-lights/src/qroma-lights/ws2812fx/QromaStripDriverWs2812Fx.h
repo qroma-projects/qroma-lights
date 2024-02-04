@@ -26,19 +26,20 @@ class QromaStripDriverWs2812Fx {
 
     void startup(QromaStripConfig * config);
 
-    void updateQromaStripBrightness(uint32_t brightness);
-    void updateQromaStripAnimation(QromaStrip_WS2812FX_Animation * cmd);
-    // void updateQromaStripSegments(SetQromaStrip_WS2812FX_Segments * cmd);
-    void updateQromaStripIoSettings(QromaStrip_WS2812FX_IoSettings * cmd);
+    void applyQromaStripBrightness(uint32_t brightness);
+    void applyQromaStripAnimation(QromaStrip_WS2812FX_Animation * cmd);
+    void applyQromaStripIoSettings(QromaStrip_WS2812FX_IoSettings * cmd);
+
     void saveQromaStripCurrentState(SaveQromaStrip_CurrentState * cmd);
 
     void tick();
     void populateQromaStripIoSettings(QromaStrip_WS2812FX_IoSettings * settings);
     // void populateQromaStripLedsConfig(QromaStrip_WS2812FX_LedsConfig * config);
     // void populateQromaStripSegmentsDefinition(QromaStrip_WS2812FX_SegmentsDefinition * segmentsDefinition);
-    void populateQromaStripStartupAnimations(QromaStrip_WS2812FX_Animation * startupAnimation);
+    void populateQromaStripStartupAnimation(QromaStrip_WS2812FX_Animation * startupAnimation);
 
     const char * getName();
+    uint32_t getBrightness();
 
   private:
     WS2812FX * _ws2812fx;
