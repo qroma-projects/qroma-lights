@@ -55,11 +55,6 @@ void handleQromaStripCommand(QromaStrip_WS2812FX_StripIndex stripIndex, QromaStr
       lights->applyQromaStripIoSettings(&(message->command.setQromaStripIoSettings));
       saveCurrentQromaLightsConfig();
       break;
-    // case QromaStripCommand_saveQromaStripCurrentState_tag:
-    //   logInfo("HANDLING saveQromaStripCurrentState_tag");
-    //   saveQromaLightsConfig();
-    //   // saveQromaLightsAnimations();
-    //   break;
     default:
       logError("Unrecognized WS2812Fx driver command");
       logError(message->which_command);

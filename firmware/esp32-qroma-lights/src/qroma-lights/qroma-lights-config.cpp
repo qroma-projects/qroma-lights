@@ -57,9 +57,6 @@ void populateWithDefaultQromaLightsConfig(QromaLightsDeviceConfig * config) {
 
 bool saveQromaLightsConfig(QromaLightsDeviceConfig * config) {
   logInfo("SAVING QROMA LIGHTS CONFIG");
-  // QromaLightsDeviceConfig config;
-  
-  // populateConfigFromQromaLights(&config);
 
   bool saved = savePbToPersistence<QromaLightsDeviceConfig>(config, QROMA_LIGHTS_CONFIG_FILE_NAME, QromaLightsDeviceConfig_fields);
 
@@ -82,25 +79,6 @@ bool saveCurrentQromaLightsConfig() {
   populateConfigFromQromaLights(&config);
   return saveQromaLightsConfig(&config);
 }
-
-
-// bool saveQromaLightsStartupAnimations() {
-//   logInfo("SAVING QROMA LIGHTS ANIMATIONS");
-//   QromaStripStartupAnimation config;
-  
-//   populateConfigFromQromaLights(&config);
-
-//   bool saved = savePbToPersistence<QromaLightsConfig>(&config, QROMA_CONFIG_FILE_NAME, QromaLightsConfig_fields);
-
-//   if (!saved) {
-//     logError("ERROR SAVING QROMA LIGHTS CONFIG");
-//     logError(QROMA_CONFIG_FILE_NAME);
-//   }
-
-//   logInfo("DONE SAVING QROMA LIGHTS CONFIG");
-
-//   return saved;
-// }
 
 
 bool hasQromaLightsConfigFile() {

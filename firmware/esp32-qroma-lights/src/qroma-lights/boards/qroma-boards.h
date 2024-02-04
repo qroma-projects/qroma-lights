@@ -3,7 +3,6 @@
 
 #include <qroma-proto/my-project-messages.pb.h>
 #include <qroma-proto/qroma-lights-types.pb.h>
-#include "../ws2812fx/qroma_init_settings.h"
 
 
 extern void onInit();

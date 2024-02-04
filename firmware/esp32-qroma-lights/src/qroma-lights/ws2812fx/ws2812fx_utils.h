@@ -6,10 +6,8 @@
 #include <WS2812FX.h>
 
 const int COLOR_COUNT = 3;
-// const int BYTES_PER_INCOMING_COLOR = 3;
 
-// void doInitializeQromaStripDefaultSegmentsDefinition_Ws2812FX(QromaStrip_WS2812FX_SegmentsDefinition * segmentsDefinition);
-// void doInitializeQromaStripDefaultStartupAnimations_Ws2812FX(QromaStrip_WS2812FX_StartupAnimations * startupAnimations, uint32_t numSegments);
+
 void populateWithQromaStripDefaultAnimation_Ws2812FX(QromaStrip_WS2812FX_Animation * animation);
 
 uint32_t convertColorRgbBytesToUint(pb_byte_t * colorRgbBytes, int index);

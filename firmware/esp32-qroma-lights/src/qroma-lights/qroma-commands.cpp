@@ -133,11 +133,6 @@ void onMyProjectCommand(MyProjectCommand * message, MyProjectResponse * response
       response->which_response = MyProjectResponse_qromaLightsResponse_tag;
       handleQromaLightsDeviceCommand(&(message->command.qromaLightsCommand), &(response->response.qromaLightsResponse));
       break;
-    
-    // case MyProjectCommand_qromaStripCommand_tag:
-    //   response->which_response = MyProjectResponse_qromaStripResponse_tag;
-    //   handleQromaStripCommand(&(message->command.qromaStripCommand), &(response->response.qromaStripResponse));
-    //   break;
 
     case MyProjectCommand_getBoardDetailsRequest_tag:
       response->which_response = MyProjectResponse_getBoardDetailsResponse_tag;

@@ -42,9 +42,6 @@ void handleQromaLightsDeviceCommand(QromaLightsDeviceCommand * message, QromaLig
       handleQromaLightsSetQromaDeviceName(message->command.setQromaDeviceName.name, response);
       break;
 
-    //   response->which_response = MyProjectResponse_qromaStripResponse_tag;
-    //   handleQromaStripCommand(&(message->command.qromaStripCommand), &(response->response.qromaStripResponse));
-
     default:
       logError("Unrecognized QromaLightsCommand command");
       logError(message->which_command);

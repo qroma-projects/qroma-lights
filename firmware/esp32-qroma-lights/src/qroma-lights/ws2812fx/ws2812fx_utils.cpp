@@ -1,41 +1,11 @@
 #include "ws2812fx_utils.h"
-#include "qroma_init_settings.h"
 #include <qroma/qroma.h>
 
 
-// void doInitializeQromaStripDefaultStartupAnimations_Ws2812FX(QromaStrip_WS2812FX_StartupAnimations * startupAnimations, uint32_t numSegments) {
-  
-//   for (int i=0; i < numSegments; i++) {
-//     QromaStrip_WS2812FX_Animation * animation = &(startupAnimations->segmentAnimations[i]);
-
-//     // animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_STATIC;
-//     animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_RAINBOW_CYCLE;
-
-//     const uint32_t INIT_BRIGHTNESS = 0;
-
-//     animation->color1.red = INIT_BRIGHTNESS;
-//     animation->color1.green = INIT_BRIGHTNESS;
-//     animation->color1.blue = INIT_BRIGHTNESS;
-
-//     animation->color2.red = INIT_BRIGHTNESS;
-//     animation->color2.green = INIT_BRIGHTNESS;
-//     animation->color2.blue = INIT_BRIGHTNESS;
-
-//     animation->color3.red = INIT_BRIGHTNESS;
-//     animation->color3.green = INIT_BRIGHTNESS;
-//     animation->color3.blue = INIT_BRIGHTNESS;
-
-//     animation->speed = 1000;
-//     animation->reversed = false;
-//     animation->fadeSpeed = QromaStrip_WS2812FX_FadeSpeed_QSFS_MEDIUM;
-//     animation->size = QromaStrip_WS2812FX_PixelsSize_QSPS_MEDIUM;
-//   }
-// }
-
 void populateWithQromaStripDefaultAnimation_Ws2812FX(QromaStrip_WS2812FX_Animation * animation) {
   
-  // animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_STATIC;
-  animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_RAINBOW_CYCLE;
+  animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_STATIC;
+  // animation->pattern = QromaStrip_WS2812FX_Pattern_QSP_RAINBOW_CYCLE;
 
   const uint32_t INIT_COLOR_INTENSITY = 30;
 
@@ -56,17 +26,6 @@ void populateWithQromaStripDefaultAnimation_Ws2812FX(QromaStrip_WS2812FX_Animati
   animation->fadeSpeed = QromaStrip_WS2812FX_FadeSpeed_QSFS_MEDIUM;
   animation->size = QromaStrip_WS2812FX_PixelsSize_QSPS_MEDIUM;
 }
-
-
-// void doInitializeQromaStripDefaultSegmentsDefinition_Ws2812FX(QromaStrip_WS2812FX_SegmentsDefinition * segmentsDefinition) {
-//   logInfo("INITIALIZING SEGMENTS DEFINITION - QROMA STRIP WS2812FX");
-
-//   segmentsDefinition->brightness = DEFAULT_QS_WS2812FX_BRIGHTNESS;
-//   segmentsDefinition->numSegments = 1;
-//   segmentsDefinition->maxNumSegments = MAX_QP_SEGMENT_COUNT;
-//   segmentsDefinition->segments[0].startIndex = 0;
-//   segmentsDefinition->segments[0].endIndex = QS_1_LED_COUNT - 1;
-// }
 
 
 uint32_t convertQromaStripColorToUint(QromaStripColor * qromaStripColor) {

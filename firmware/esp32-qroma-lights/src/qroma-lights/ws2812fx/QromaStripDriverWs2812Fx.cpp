@@ -35,16 +35,6 @@ void QromaStripDriverWs2812Fx::populateQromaStripIoSettings(QromaStrip_WS2812FX_
 }
 
 
-// void QromaStripDriverWs2812Fx::populateQromaStripLedsConfig(QromaStrip_WS2812FX_LedsConfig * config) {
-//   memcpy(config, &(_config.ledsConfig), sizeof(QromaStrip_WS2812FX_LedsConfig));
-// }
-
-
-// void QromaStripDriverWs2812Fx::populateQromaStripSegmentsDefinition(QromaStrip_WS2812FX_SegmentsDefinition * segmentsDefinition) {
-//   memcpy(segmentsDefinition, &(_config.segmentsDefinition), sizeof(QromaStrip_WS2812FX_SegmentsDefinition));
-// }
-
-
 void QromaStripDriverWs2812Fx::populateQromaStripStartupAnimation(QromaStrip_WS2812FX_Animation * animation) {
   memcpy(animation, &(_config.animation), sizeof(QromaStrip_WS2812FX_Animation));
 }
@@ -61,28 +51,16 @@ uint32_t QromaStripDriverWs2812Fx::getBrightness() {
 
 
 void QromaStripDriverWs2812Fx::tick() {
-  // if (tickData->currentPowerMode != QromaPower_PowerMode_Qpm_WithBattery_LowBatteryVoltage_StopNormalOps) {
-    _ws2812fx->service();
-  // } else {
-  //   _ws2812fx->stop();
-  // }
+  _ws2812fx->service();
 }
 
 
 void QromaStripDriverWs2812Fx::applyQromaStripBrightness(uint32_t brightness) {
   _ws2812fx->setBrightness(brightness);
   _config.brightness = brightness;
-  
-  // _config.segmentsDefinition.brightness = cmd->brightness;
+
   logInfo("UPDATED BRIGHTNESS");
   logInfo(brightness);
-  // _ws2812fx->trigger();
-  // _ws2812fx->service();
-
-  // _ws2812fx->stop();
-  // _ws2812fx->start();
-  
-  // notifyWs2812FxConfigChanged();
 }
 
 
@@ -100,25 +78,13 @@ void QromaStripDriverWs2812Fx::copyQromaStripAnimation(QromaStrip_WS2812FX_Anima
 }
 
 
-// void QromaStripDriverWs2812Fx::copyQromaStripSegment(QromaStrip_WS2812FX_Segment * dest, QromaStrip_WS2812FX_Segment * src) {
-//   dest->startIndex = src->startIndex;
-//   dest->endIndex = src->endIndex;
-// }
-
-
 void QromaStripDriverWs2812Fx::applyQromaStripAnimation(QromaStrip_WS2812FX_Animation * animation) {
   logInfo("updateQromaStripAnimation()");
-  // logInfo(cmd->segmentIndex);
   logInfo(animation->pattern);
 
-  // applySegmentAnimation(cmd->segmentIndex, &(cmd->animation));
   applyAnimation(animation);
 
-  // logInfo("COPYING - copyQromaStripAnimation");
-  // copyQromaStripAnimation(&(_config.ledsConfig.segmentAnimations[cmd->segmentIndex]), &(cmd->animation));
-
   _ws2812fx->trigger();
-  // notifyWs2812FxConfigChanged();
 }
 
 
@@ -158,111 +124,8 @@ void QromaStripDriverWs2812Fx::applyAnimation(QromaStrip_WS2812FX_Animation * an
   logInfo("COPYING - calling copyQromaStripAnimation");
   copyQromaStripAnimation(&(_config.animation), animation);
 
-  // copyQromaStripAnimation(&(_config.ledsConfig.segmentAnimations[segmentIndex]), animation);
-
   _ws2812fx->trigger();
-  // notifyWs2812FxConfigChanged();
 }
-
-// void QromaStripDriverWs2812Fx::applySegmentAnimation(int segmentIndex, QromaStrip_WS2812FX_Animation * animation) {
-//   logInfo("updateQromaStripAnimation()");
-//   logInfo(segmentIndex);
-//   logInfo(animation->pattern);
-
-//   uint32_t colors[COLOR_COUNT];
-//   // for (int i = 0; i < COLOR_COUNT; i++) {
-//     // colors[i] = convertColorRgbBytesToUint(animation->threeSetsOfColorRgbBytes, i);
-//   //   colors[i] = convertQromaStripColorToUint(&(animation->color));
-//   // }
-//   colors[0] = convertQromaStripColorToUint(&(animation->color1));
-//   colors[1] = convertQromaStripColorToUint(&(animation->color2));
-//   colors[2] = convertQromaStripColorToUint(&(animation->color3));
-
-
-//   uint8_t options = calculateQromaStripAnimationOptions(animation);
-  
-//   WS2812FX::Segment * segment = _ws2812fx->getSegment(segmentIndex);
-
-//   segment->mode = animation->pattern;
-//   segment->speed = animation->speed;
-//   for (int i=0; i < COLOR_COUNT; i++) {
-//     segment->colors[i] = colors[i];
-//   }
-//   segment->options = options;
-
-//   logInfo("COPYING - copyQromaStripAnimation");
-//   // copyQromaStripAnimation(&(_config.ledsConfig.segmentAnimations[segmentIndex]), animation);
-
-//   // _ws2812fx->trigger();
-//   // notifyWs2812FxConfigChanged();
-// }
-
-
-// void QromaStripDriverWs2812Fx::updateWs2812FxSegments(int numSegments, 
-//   QromaStrip_WS2812FX_Segment * segments, QromaStrip_WS2812FX_Animation * animations) 
-// {
-//   for (int i=0; i < numSegments; i++) {
-//     QromaStrip_WS2812FX_Segment * cmdSegment = &(segments[i]);
-//     QromaStrip_WS2812FX_Animation * cmdSegmentAnimation = &(animations[i]);
-
-//     uint32_t colors[COLOR_COUNT];
-//     // for (int i = 0; i < COLOR_COUNT; i++) {
-//       // colors[i] = convertColorRgbBytesToUint(cmdSegmentAnimation->threeSetsOfColorRgbBytes, i);
-//       // colors[i] = convertQromaStripColorToUint(&(cmdSegmentAnimation->color));
-//     // }
-//     colors[0] = convertQromaStripColorToUint(&(cmdSegmentAnimation->color1));
-//     colors[1] = convertQromaStripColorToUint(&(cmdSegmentAnimation->color2));
-//     colors[2] = convertQromaStripColorToUint(&(cmdSegmentAnimation->color3));
-    
-//     uint8_t options = calculateQromaStripAnimationOptions(cmdSegmentAnimation);
-
-//     _ws2812fx->setSegment(
-//       i, 
-//       cmdSegment->startIndex, 
-//       cmdSegment->endIndex,
-//       cmdSegmentAnimation->pattern, 
-//       colors,
-//       cmdSegmentAnimation->speed,
-//       options
-//       );
-
-//     copyQromaStripSegment(&(_config.segmentsDefinition.segments[i]), cmdSegment);
-//     // copyQromaStripAnimation(&(_config.ledsConfig.segmentAnimations[i]), cmdSegmentAnimation);
-//   }
-// }
-
-
-// void QromaStripDriverWs2812Fx::updateQromaStripSegments(SetQromaStrip_WS2812FX_Segments * cmd) {
-
-//   if (_config.segmentsDefinition.numSegments != cmd->numSegments) {
-//     logInfo("CHANGING NUMBER OF SEGMENTS (OLD/NEW)");
-//     logInfo(_config.segmentsDefinition.numSegments);
-//     logInfo(cmd->numSegments);
-//     _config.segmentsDefinition.numSegments = cmd->numSegments;
-    
-//     _ws2812fx->resetSegments();
-//     _ws2812fx->setNumSegments(cmd->numSegments);
-//   }
-
-//   // updateWs2812FxSegments(cmd->numSegments, cmd->segments, cmd->animations);
-
-//   _ws2812fx->trigger();
-// }
-
-
-// void QromaStripDriverWs2812Fx::resetSegmentsForNewLedCount(uint32_t newLedCount) {
-//   logInfo("NEW LED COUNT. RESETTING SEGMENTS");
-//   logInfo(newLedCount);
-//   SetQromaStrip_WS2812FX_Segments segmentsCommand = SetQromaStrip_WS2812FX_Segments();
-
-//   // we will reset everything based on the first segment
-//   segmentsCommand.numSegments = 1;
-//   segmentsCommand.segments[0].startIndex = 0;
-//   segmentsCommand.segments[0].endIndex = newLedCount - 1;
-//   // copyQromaStripAnimation(&(segmentsCommand.animations[0]), &(_config.ledsConfig.segmentAnimations[0]));
-
-//   updateQromaStripSegments(&segmentsCommand);
-// }
 
 
 void QromaStripDriverWs2812Fx::applyQromaStripIoSettings(QromaStrip_WS2812FX_IoSettings * cmd) {
@@ -274,10 +137,6 @@ void QromaStripDriverWs2812Fx::applyQromaStripIoSettings(QromaStrip_WS2812FX_IoS
     logInfo("NO IO CHANGES");
     return;
   }
-
-  // if (cmd->ledCount != _config.ioSettings.ledCount) {
-  //   resetSegmentsForNewLedCount(cmd->ledCount);
-  // }
 
   logInfo("UPDATE LED COUNT -> OLD/NEW");
   logInfo(_config.ioSettings.ledCount);
@@ -301,107 +160,14 @@ void QromaStripDriverWs2812Fx::applyQromaStripIoSettings(QromaStrip_WS2812FX_IoS
 
   neoPixelType newType = mapRgbOrderAndTxRateToNeoPixelType(cmd->neoPixelRgbOrder, cmd->neoPixelTxRate);
   _ws2812fx->updateType(newType);
-  
-  // // QfsPath qfsPath;
-  // // initQfsPath(&qfsPath);
-  // // getLocationForQromaPointFile(_manifest.instanceId, STARTUP_FILE_NAME, &qfsPath);
-  // // bool saved = savePbToPersistence<WS2812FX_Config>(&_config, qfsPath.qfsPath, WS2812FX_Config_fields);
-
-  // bool saved = false;
-
-  // if (!saved) {
-  //   logError("ERROR SAVING QROMA STRIP IO SETTINGS");
-  //   // logError(qfsPath.qfsPath);
-  //   return;
-  // }
-
-  // // notifyWs2812FxConfigChanged();
 }
 
 
 void QromaStripDriverWs2812Fx::saveQromaStripCurrentState(SaveQromaStrip_CurrentState * cmd) {
-  // QfsPath qfsPath;
-  // initQfsPath(&qfsPath);
-  // getLocationForQromaPointFile(_manifest.instanceId, STARTUP_FILE_NAME, &qfsPath);
-  // bool saved = savePbToPersistence<WS2812FX_Config>(&_config, qfsPath.qfsPath, WS2812FX_Config_fields);
 
   bool saved = false;
 
   if (!saved) {
     logError("ERROR SAVING QROMA STRIP IO SETTINGS");
-    // logError(qfsPath.qfsPath);
   }
 }
-
-
-// void _taskHandleWS2812FX_Command(void * pvParameters) {
-//   logInfo("HANDLING _taskHandleWS2812FX_Command");
-//   logInfo(millis());
-  
-//   QromaPointDriverWs2812Fx * qpd = (QromaPointDriverWs2812Fx*)pvParameters;
-
-//   qpd->processQpBtCommand();
-
-//   vTaskDelete(NULL);
-// }
-
-
-// // void QromaPointDriverWs2812Fx::onQpBtCommand(WS2812FX_Command * ws2812fxCommand) {
-// // logInfo("RECEIVED QromaPointDriverWs2812Fx::onQpBtCommand");
-// void QromaPointDriverWs2812Fx::onQpPbCommand(WS2812FX_Command * ws2812fxCommand) {
-//   logInfo("RECEIVED QromaPointDriverWs2812Fx::onQpPbCommand");
-//   logInfo(millis());
-
-//   memcpy(&_btCommand, ws2812fxCommand, sizeof(_btCommand));
-
-//   BaseType_t xTaskStatus = xTaskCreate(_taskHandleWS2812FX_Command, "_taskHandleWS2812FX_Command", 8000, (void*)this, 1, NULL);
-
-//   if (xTaskStatus != pdPASS) {
-//     logError("ERROR CREATING TASK: _taskHandleWS2812FX_Command");
-//     logError(xTaskStatus);
-//     return;
-//   }
-// }
-
-
-// void QromaPointDriverWs2812Fx::processQpBtCommand() {
-//   switch (_btCommand.which_command) {
-//     case WS2812FX_Command_setQromaStripBrightness_tag:
-//       logInfo("HANDLING WS2812FX_Command_setQromaStripBrightness_tag");
-//       updateQromaStripBrightness(&(_btCommand.command.setQromaStripBrightness));
-//       break;
-//     case WS2812FX_Command_setQromaStripSegmentAnimation_tag:
-//       logInfo("HANDLING WS2812FX_Command_setQromaStripSegmentAnimation_tag");
-//       updateQromaStripAnimation(&(_btCommand.command.setQromaStripSegmentAnimation));
-//       break;
-//     case WS2812FX_Command_setQromaStripSegments_tag:
-//       logInfo("HANDLING WS2812FX_Command_setQromaStripSegments_tag");
-//       updateQromaStripSegments(&(_btCommand.command.setQromaStripSegments));
-//       break;
-//     case WS2812FX_Command_setQromaStripIoSettings_tag:
-//       logInfo("HANDLING WS2812FX_Command_setQromaStripIoSettings_tag");
-//       updateQromaStripIoSettings(&(_btCommand.command.setQromaStripIoSettings));
-//       break;
-//     case WS2812FX_Command_saveQromaStripCurrentState_tag:
-//       logInfo("HANDLING WS2812FX_Command_saveQromaStripCurrentState_tag");
-//       saveQromaStripCurrentState(&(_btCommand.command.saveQromaStripCurrentState));
-//       break;
-//     default:
-//       logError("Unrecognized WS2812Fx driver command");
-//       logError(_btCommand.which_command);
-//       break;
-//   }
-
-//   logInfo("DONE processQpBtCommand");
-//   logInfo(millis());
-// }
-
-
-// void QromaPointDriverWs2812Fx::notifyWs2812FxConfigChanged() {
-//   logInfo("notifyWs2812FxConfigChanged()");
-//   notifyQpConfig(&_config);
-//   logInfo("notifyWs2812FxConfigChanged() - pre status");
-//   _status.lastConfigChangeTimeInMs = millis();
-//   notifyQpStatus(&_status);
-//   logInfo("notifyWs2812FxConfigChanged() - post status");
-// }

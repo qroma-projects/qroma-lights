@@ -5,6 +5,7 @@
 
 #include <Adafruit_NeoPixel.h>
 #include "qroma-boards.h"
+#include "../ws2812fx/qroma_init_settings.h"
 
 
 #define NUMPIXELS        1
