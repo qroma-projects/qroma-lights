@@ -1,9 +1,10 @@
 import React from 'react';
 import { ColorBox } from 'material-ui-color';
-import QCheckbox from '../input-controls/QCheckbox';
-import QNumberSelect from '../input-controls/QNumberSelect';
-import { QButton } from '../input-controls/QButton';
-import { createNumberRange } from '../app_utils';
+import { QCheckbox } from '../../react-qroma-mui/input-controls/QCheckbox';
+import { QButton } from '../../react-qroma-mui/input-controls/QButton';
+import { Stack } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { QTheme } from '../../react-qroma-mui/input-controls/theme';
 
 
 type SetColorPanelProps = {
@@ -17,7 +18,9 @@ type SetColorPanelProps = {
   // saveFlashConfiguration: () => void
   // onEditingSegmentIndexChange: (newEditingSegmentIndex: number) => void
   
-  saveFlashCommand: () => void
+  // saveFlashCommand: () => void
+  saveConfig: () => void
+  renameQromaStrip: () => void
 }
 
 
@@ -63,16 +66,71 @@ const SetColorPanel = (props: SetColorPanelProps) => {
         checked={props.gammaCorrectionEnabled}
         />
 
+      {/* <QButton 
+        fullWidth 
+        variant='outlined'      
+        sx={{
+          marginTop: "16px",
+        }}
+        // onClick={() => props.saveFlashConfiguration()}
+        >
+        Rename
+      </QButton> */}
+
+      <Stack
+        direction="row"
+        sx={{paddingLeft: "24px", paddingRight: "24px"}}
+        >
+        <QButton
+          variant="contained"
+          onClick={props.renameQromaStrip}
+          sx={{
+            color: "white",
+            backgroundColor: QTheme.Q3,
+            fontFamily: "Exo",
+            fontWeight: "bold",
+            marginTop: "10px",
+          }}
+          >
+          <EditIcon />Rename
+        </QButton>
+        <QButton
+          sx={{
+            marginTop: "10px",
+            marginLeft: "10px",
+          }}
+          onClick={() => { props.saveConfig(); }}
+          >
+          Save
+        </QButton>
+      </Stack>
+{/* 
+      <QButton
+        variant="contained"
+        // onClick={onRenameDevice}
+        sx={{
+          color: "white",
+          backgroundColor: QTheme.Q3,
+          fontFamily: "Exo",
+          fontWeight: "bold",
+          marginTop: "10px",
+          textTransform: "none",
+        }}
+        >
+        <EditIcon />Rename
+      </QButton>
+
       <QButton 
         fullWidth 
         variant='outlined'      
         sx={{
           marginTop: "16px",
         }}
-        onClick={() => props.saveFlashConfiguration()}
+        // onClick={() => props.saveFlashConfiguration()}
         >
-        Do on Startup
-      </QButton>
+        Save
+      </QButton> */}
+
 
       {/* <QButton 
         fullWidth 

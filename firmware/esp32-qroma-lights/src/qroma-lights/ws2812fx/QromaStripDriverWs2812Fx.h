@@ -11,6 +11,7 @@ class QromaStripDriverWs2812Fx {
     void startup(QromaStripConfig * config);
 
     void applyQromaStripBrightness(uint32_t brightness);
+    void applyQromaStripName(const char * name);
     void applyQromaStripAnimation(QromaStrip_WS2812FX_Animation * cmd);
     void applyQromaStripIoSettings(QromaStrip_WS2812FX_IoSettings * cmd);
 

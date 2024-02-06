@@ -14,6 +14,10 @@ void handleQromaLightsNoArgCommand(NoArgCommands_QromaLightsDeviceCommand whichN
     case NoArgCommands_QromaLightsDeviceCommand_NacQlc_UseCurrentSetupOnStartup:
       saveCurrentQromaLightsConfig();
       break;
+    case NoArgCommands_QromaLightsDeviceCommand_NacQlc_RestartQromaDevice:
+      // no response to be forthcoming
+      ESP.restart();
+      break;
     default:
       logError("Unrecognized NoArgCommands_QromaLightsDeviceCommand command");
       logError(whichNoArgCommand);

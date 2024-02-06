@@ -11,6 +11,10 @@ export interface IQromaStripPanelProps {
   assignedStripIndex: QromaStrip_WS2812FX_StripIndex
   refreshConfig: (delayInMs: number) => void
   setActiveQromaStripPathIndex: (activeQromaStripPathIndex: QromaStrip_WS2812FX_StripIndex) => void
+
+  isConfigChanged: boolean
+  notifyConfigChanged: () => void
+  saveConfig: () => void
 }
 
 export const QromaStripPanel = (props: IQromaStripPanelProps) => {
@@ -30,22 +34,23 @@ export const QromaStripPanel = (props: IQromaStripPanelProps) => {
       <ConnectedDeviceBreadcrumbs
         qromaLightsApi={props.qromaLightsApi}
         qromaLightsDeviceConfig={props.qldConfig}
-        // activeQromaStripPathIndex={props.assignedStripIndex}
         qromaStripConfig={qromaStripConfig}
         setActiveQromaStripPathIndex={props.setActiveQromaStripPathIndex}
+        isConfigChanged={props.isConfigChanged}
         />
-      {/* Qroma Strip Panel */}
       
       <QpWs2812FxPanel_Loaded 
-        // qromaPoint={props.qromaPoint}
         qromaLightsApi={props.qromaLightsApi}
         stripIndex={props.assignedStripIndex}
         config={qromaStripConfig}
         tabIndex={tabIndex}
         onSetTabIndex={setTabIndex}
-        // refreshConfig={props.refreshConfig}
+
+        isConfigChanged={props.isConfigChanged}
+        notifyConfigChanged={props.notifyConfigChanged}
+        refreshConfig={props.refreshConfig}
+        saveConfig={props.saveConfig}
         />
-      {/* <RefreshConfigPanel /> */}
     </>
   )
 }

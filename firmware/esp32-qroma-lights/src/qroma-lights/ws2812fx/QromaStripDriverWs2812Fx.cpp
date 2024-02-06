@@ -64,6 +64,14 @@ void QromaStripDriverWs2812Fx::applyQromaStripBrightness(uint32_t brightness) {
 }
 
 
+void QromaStripDriverWs2812Fx::applyQromaStripName(const char * name) {
+  strncpy(_config.name, name, sizeof(_config.name));
+
+  logInfo("UPDATED QROMASTRIP NAME");
+  logInfo(name);
+}
+
+
 void QromaStripDriverWs2812Fx::copyQromaStripAnimation(QromaStrip_WS2812FX_Animation * dest, QromaStrip_WS2812FX_Animation * src) {
   dest->pattern = src->pattern;
   dest->fadeSpeed = src->fadeSpeed;

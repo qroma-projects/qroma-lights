@@ -17,6 +17,9 @@ export interface IQromaLightsApi {
   setStripBrightness: (stripIndex: QromaStrip_WS2812FX_StripIndex, brightness: number) => void
   setStripAnimation: (stripIndex: QromaStrip_WS2812FX_StripIndex, animation: QromaStrip_WS2812FX_Animation) => void
   setStripIoSettings: (stripIndex: QromaStrip_WS2812FX_StripIndex, ioSettings: QromaStrip_WS2812FX_IoSettings) => void
+
+  saveCurrentState: () => void
+  restartDevice: () => void
 }
 
 
@@ -56,11 +59,6 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
   const clearLatestAppResponse = () => {
     _latestAppResponse = undefined;
   }
-  // const onConnectionChange = (latestConnectionState: IQromaConnectionState) => {
-  //   setConnectionState(latestConnectionState);
-  //   qromaAppWebSerial.getConnectionState();
-  // }
-
   
   const qromaAppWebSerialInputs = {
     onConnect: () => () => { console.log("ON CONNECT") },
@@ -136,9 +134,6 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
     }
 
     const result = await waitForAppResponse(appResponseFilter, 1000);
-
-    // console.log("GET CONFIG RESULT");
-    // console.log(result)
 
     return result;
   }
@@ -248,7 +243,38 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
 
     qromaAppWebSerial.sendQromaAppCommand(appCommand);
   }
+
+  const saveCurrentState = () => {
+    const appCommand: MyProjectCommand = {
+      command: {
+        oneofKind: 'qromaLightsCommand',
+        qromaLightsCommand: {
+          command: {
+            oneofKind: 'noArgCommand',
+            noArgCommand: NoArgCommands_QromaLightsDeviceCommand.NacQlc_UseCurrentSetupOnStartup,
+          }
+        }
+      }
+    };
+
+    qromaAppWebSerial.sendQromaAppCommand(appCommand);
+  }
   
+  const restartDevice = () => {
+    const appCommand: MyProjectCommand = {
+      command: {
+        oneofKind: 'qromaLightsCommand',
+        qromaLightsCommand: {
+          command: {
+            oneofKind: 'noArgCommand',
+            noArgCommand: NoArgCommands_QromaLightsDeviceCommand.NacQlc_RestartQromaDevice,
+          }
+        }
+      }
+    };
+
+    qromaAppWebSerial.sendQromaAppCommand(appCommand);
+  }
 
   return {
     init: startMonitoring,
@@ -261,5 +287,8 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
     setStripBrightness,
     setStripAnimation,
     setStripIoSettings,
+
+    saveCurrentState,
+    restartDevice,
   };
 }

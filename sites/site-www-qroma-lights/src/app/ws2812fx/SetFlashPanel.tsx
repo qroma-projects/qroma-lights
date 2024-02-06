@@ -1,14 +1,15 @@
 import React from 'react';
-import QSelect from '../input-controls/QSelect';
-import QCheckbox from '../input-controls/QCheckbox';
-import QColorPicker from '../input-controls/QColorPicker';
+import { QSelect } from '../../react-qroma-mui/input-controls/QSelect';
+import { QCheckbox } from '../../react-qroma-mui/input-controls/QCheckbox';
+import { QColorPicker } from '../../react-qroma-mui/input-controls/QColorPicker';
 import { PATTERN_VALUES, PATTERN_LABELS, FADE_SPEED_LABELS, FADE_SPEED_VALUES, PIXEL_SIZE_LABELS, PIXEL_SIZE_VALUES } from './EnumValues';
-import QNumberRange from '../input-controls/QNumberRange';
-import { Divider } from '@mui/material';
-import QNumberSelect from '../input-controls/QNumberSelect';
-import { QButton } from '../input-controls/QButton';
+import { QNumberRange } from '../../react-qroma-mui/input-controls/QNumberRange';
+import { Divider, Stack } from '@mui/material';
+import { QButton } from '../../react-qroma-mui/input-controls/QButton';
 import { QromaStrip_WS2812FX_FadeSpeed, QromaStrip_WS2812FX_Pattern, QromaStrip_WS2812FX_PixelsSize } from '../../qroma-proto/qroma-lights-types';
-import { createNumberRange } from '../app_utils';
+import { QTheme } from '../../react-qroma-mui/input-controls/theme';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 type SetFlashPanelProps = {
   color1Hex: string
@@ -36,7 +37,10 @@ type SetFlashPanelProps = {
   pixelsSize: QromaStrip_WS2812FX_PixelsSize
   onPixelsSizeChange: (newValue: QromaStrip_WS2812FX_PixelsSize) => void
 
-  saveFlashConfiguration: () => void
+  saveConfig: () => void
+  renameQromaStrip: () => void
+
+  // saveFlashConfiguration: () => void
   // saveFlashCommand: () => void
 
   // numActiveSegments: number
@@ -152,7 +156,46 @@ const SetFlashPanel = (props: SetFlashPanelProps) => {
         checked={props.gammaCorrectionEnabled}
         />
 
+      <Stack
+        direction="row"
+        sx={{paddingLeft: "24px", paddingRight: "24px"}}
+        >
+        <QButton
+          variant="contained"
+          onClick={props.renameQromaStrip}
+          sx={{
+            color: "white",
+            backgroundColor: QTheme.Q3,
+            fontFamily: "Exo",
+            fontWeight: "bold",
+            marginTop: "10px",
+          }}
+          >
+          <EditIcon />Rename
+        </QButton>
+        <QButton
+          sx={{
+            marginTop: "10px",
+            marginLeft: "10px",
+          }}
+          onClick={() => { props.saveConfig(); }}
+          >
+          Save
+        </QButton>
+      </Stack>
+{/* 
       <QButton 
+        fullWidth 
+        variant='outlined'      
+        sx={{
+          marginTop: "16px",
+        }}
+        // onClick={() => props.saveFlashConfiguration()}
+        >
+        Save
+      </QButton> */}
+
+      {/* <QButton 
         fullWidth 
         variant='outlined'
         sx={{
@@ -161,7 +204,7 @@ const SetFlashPanel = (props: SetFlashPanelProps) => {
         onClick={() => props.saveFlashConfiguration()}
         >
         Do on Startup
-      </QButton>
+      </QButton> */}
 
       {/* <QButton 
         sx={{

@@ -1,94 +1,63 @@
 import React, { useState } from 'react';
-import { Container, Stack } from '@mui/material';
-// import { QromaStrip_WS2812FX_NeoPixelRgbOrder, QromaStrip_WS2812FX_NeoPixelTxRate } from '../../../proto-ts/driver-ws2812fx';
-// import { useLocalStorage } from '@rehooks/local-storage';
-// import { createNumberRange } from '../../../utils';
-import { QButton } from '../input-controls/QButton';
-import QNumberRange from '../input-controls/QNumberRange';
-import QNumberSelect from '../input-controls/QNumberSelect';
-import QSelect from '../input-controls/QSelect';
+import { Stack } from '@mui/material';
+import { QButton } from '../../react-qroma-mui/input-controls/QButton';
+import { QNumberRange } from '../../react-qroma-mui/input-controls/QNumberRange';
+import { QNumberSelect } from '../../react-qroma-mui/input-controls/QNumberSelect';
+import { QSelect } from '../../react-qroma-mui/input-controls/QSelect';
 import { RGB_ORDER_LABELS, RGB_ORDER_VALUES, TX_RATE_LABELS, TX_RATE_VALUES } from './EnumValues';
-import { QSelectAValueDialog } from '../input-controls/QSelectAValueDialog';
-// import { Ws2812FxQromaPointConfiguration, QromaPointWs2812FxConfigurationsStorageKey } from '../../../qroma-persist/local-storage/qroma-point-configurations';
-// import { QromaStrip_WS2812FX_NeoPixelRgbOrder, QromaStrip_WS2812FX_NeoPixelTxRate } from '../../qroma-proto/qroma-lights-types';
-import { createNumberRange } from '../app_utils';
 import { QromaStrip_WS2812FX_NeoPixelRgbOrder, QromaStrip_WS2812FX_NeoPixelTxRate } from '../../qroma-proto/qroma-lights-types';
+import EditIcon from '@mui/icons-material/Edit';
+import { QTheme } from '../../react-qroma-mui/input-controls/theme';
+
 
 export type ConfigureWx2812FxPanelProps = {
   maxBrightness: number
   ledCount: number
-  // segmentCount: number
-  // maxSegmentCount: number
   pinIoNumber: number
   ledSignalColorOrder: QromaStrip_WS2812FX_NeoPixelRgbOrder
   ledDataRate: QromaStrip_WS2812FX_NeoPixelTxRate
 
   onNewMaxBrightness: (brightness: number) => void
-  // onNewSegmentCount: (segmentCount: number) => void
+
   onNewLedCount: (segmentCount: number) => void
   onNewPinIoNumber: (segmentCount: number) => void
   onNewLedSignalColorOrder: (ledSignalColorOrder: QromaStrip_WS2812FX_NeoPixelRgbOrder) => void
   onNewTxDataRate: (ledDataRate: QromaStrip_WS2812FX_NeoPixelTxRate) => void
-
-  // onNewConfiguration: (
-  //   maxBrightness: number,
-  //   ledCount: number,
-  //   numberOfSegments: number,
-  //   maxSegmentCount: number,
-  //   pinIoNumber: number,
-  //   ledSignalColorOrder: QromaStrip_WS2812FX_NeoPixelRgbOrder,
-  //   ledDataRate: QromaStrip_WS2812FX_NeoPixelTxRate,  
-  // ) => void
   
-  saveQromaPointConfiguration: () => void
+  // saveQromaPointConfiguration: () => void
+  saveConfig: () => void
+  renameQromaStrip: () => void
 }
 
 
-const ConfigureWx2812FxPanel = (props: ConfigureWx2812FxPanelProps) => {
+export const ConfigureWx2812FxPanel = (props: ConfigureWx2812FxPanelProps) => {
 
   const brightnessLevelOptions = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 150, 200, 225, 255];
-  // const numberOfSegments = createNumberRange(1, props.maxSegmentCount);
   const pinIoNumbers = [14, 15];
   const pinIoNumberLabels = pinIoNumbers.map(n => n.toString());
 
   const [showApplySavedConfigurationDialog, setShowApplySavedConfigurationDialog] = useState(false);
 
-  // const [allConfigs] = useLocalStorage<Ws2812FxQromaPointConfiguration[]>(QromaPointWs2812FxConfigurationsStorageKey, []);
-  // const allConfigTitles = allConfigs.map(c => c.configurationName);
-  // const allConfigValues = allConfigs;
-
-  const applySavedConfiguration = async (configIndex: number) => {
-    const configName = allConfigTitles[configIndex];
-    const config = allConfigValues[configIndex];
+  // const applySavedConfiguration = async (configIndex: number) => {
+  //   const configName = allConfigTitles[configIndex];
+  //   const config = allConfigValues[configIndex];
     
-    console.log("APPLYING CONFIG: " + configName);
+  //   console.log("APPLYING CONFIG: " + configName);
     
-    props.onNewConfiguration(
-      config.maxBrightness,
-      config.ledCount,
-      config.numberOfSegments,
-      config.maxSegmentCount,
-      config.pinIoNumber,
-      config.ledSignalColorOrder,
-      config.ledDataRate,
-      );
-    setShowApplySavedConfigurationDialog(false);
-  }
+  //   props.onNewConfiguration(
+  //     config.maxBrightness,
+  //     config.ledCount,
+  //     config.numberOfSegments,
+  //     config.maxSegmentCount,
+  //     config.pinIoNumber,
+  //     config.ledSignalColorOrder,
+  //     config.ledDataRate,
+  //     );
+  //   setShowApplySavedConfigurationDialog(false);
+  // }
 
   return (
     <>
-      {/* <QSelectAValueDialog 
-        isOpen={showApplySavedConfigurationDialog}
-        title='Apply Configuration'
-        description='description'
-        values={allConfigTitles}
-        valueLabels={allConfigTitles}
-        cancelButtonLabel='Cancel'
-        commitButtonLabel='Apply'
-        onHandleClose={() => setShowApplySavedConfigurationDialog(false)}
-        onHandleCommit={(valueIndex: number) => applySavedConfiguration(valueIndex)}
-        /> */}
-
       <QNumberSelect 
         id="max-brightness"
         label='Max Brightness'
@@ -97,15 +66,6 @@ const ConfigureWx2812FxPanel = (props: ConfigureWx2812FxPanelProps) => {
         valueLabelOffset={0}
         onSetValue={props.onNewMaxBrightness}
         />
-
-      {/* <QNumberSelect
-        id="num-segments"
-        label='Number of Segments'
-        value={props.segmentCount}
-        values={numberOfSegments}
-        valueLabelOffset={0}
-        onSetValue={props.onNewSegmentCount}
-        /> */}
 
       <QNumberRange
         label='LED Count'
@@ -140,7 +100,35 @@ const ConfigureWx2812FxPanel = (props: ConfigureWx2812FxPanelProps) => {
         onSetValue={props.onNewTxDataRate}
         />
 
-      <Stack 
+      <Stack
+        direction="row"
+        sx={{paddingLeft: "24px", paddingRight: "24px"}}
+        >
+        <QButton
+          variant="contained"
+          onClick={props.renameQromaStrip}
+          sx={{
+            color: "white",
+            backgroundColor: QTheme.Q3,
+            fontFamily: "Exo",
+            fontWeight: "bold",
+            marginTop: "10px",
+          }}
+          >
+          <EditIcon />Rename
+        </QButton>
+        <QButton
+          sx={{
+            marginTop: "10px",
+            marginLeft: "10px",
+          }}
+          onClick={() => { props.saveConfig(); }}
+          >
+          Save
+        </QButton>
+      </Stack>
+
+      {/* <Stack 
         direction="row"
         sx={{paddingLeft: "24px", paddingRight: "24px"}}
         >
@@ -156,11 +144,17 @@ const ConfigureWx2812FxPanel = (props: ConfigureWx2812FxPanelProps) => {
           >
             Apply Configuration
         </QButton>
-      </Stack>
-
+        <QButton 
+          fullWidth 
+          variant='outlined'      
+          sx={{
+            marginTop: "16px",
+          }}
+          // onClick={() => props.saveFlashConfiguration()}
+          >
+          Save
+        </QButton>
+      </Stack> */}
     </>
   )
-
 }
-
-export default ConfigureWx2812FxPanel;

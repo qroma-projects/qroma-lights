@@ -15,6 +15,8 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
 
   const [qldConfig, setQldConfig] = useState(undefined as QromaLightsDeviceConfig | undefined);
   const [activeQromaStripPathIndex, setActiveQromaStripPathIndex] = useState(QromaStrip_WS2812FX_StripIndex.QSSI_NOT_SET);
+  const [configChanged, setConfigChanged] = useState(false);
+
 
   const refreshConfig = async (delayInMs: number) => {
     if (delayInMs > 0) {
@@ -38,6 +40,11 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
       </>
     )
   }
+
+  const saveConfig = () => {
+    props.qromaLightsApi.saveCurrentState();
+    setConfigChanged(false);
+  }
   
   return (
     <>
@@ -47,6 +54,9 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
           qldConfig={qldConfig}
           refreshConfig={refreshConfig}
           setActiveQromaStripPathIndex={setActiveQromaStripPathIndex}
+          isConfigChanged={configChanged}
+          notifyConfigChanged={() => { setConfigChanged(true); }}
+          saveConfig={saveConfig}
           />
         :
         <QromaStripPanel
@@ -55,6 +65,9 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
           assignedStripIndex={activeQromaStripPathIndex}
           refreshConfig={refreshConfig}
           setActiveQromaStripPathIndex={setActiveQromaStripPathIndex}
+          isConfigChanged={configChanged}
+          notifyConfigChanged={() => { setConfigChanged(true); }}
+          saveConfig={saveConfig}
           />
       }
     </>

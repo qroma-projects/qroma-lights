@@ -7,9 +7,10 @@ import { IQromaLightsApi } from './api/QromaLightsApi';
 export interface IConnectedDeviceBreadcrumbsProps {
   qromaLightsApi: IQromaLightsApi
   qromaLightsDeviceConfig: QromaLightsDeviceConfig
-  // activeQromaStripPathIndex: QromaStrip_WS2812FX_StripIndex
   qromaStripConfig: QromaStripConfig
   setActiveQromaStripPathIndex: (activeQromaStripPathIndex: QromaStrip_WS2812FX_StripIndex) => void
+
+  isConfigChanged: boolean
 }
 
 
@@ -31,17 +32,13 @@ export const ConnectedDeviceBreadcrumbs = (props: IConnectedDeviceBreadcrumbsPro
       href="#"
       key="qroma-strip-breadcrumb"
       >
-      {props.qromaStripConfig.name}
+      {props.qromaStripConfig.name} {props.isConfigChanged ? " *" : ""}
     </Link>
   ];
 
 
   return (
-    <Breadcrumbs separator="›" aria-label="breadcrumb" 
-      sx={{
-        // marginBottom: "15px"
-        // marginTop: "20px"
-      }}>
+    <Breadcrumbs separator="›" aria-label="breadcrumb">
       {breadcrumbLinks}
     </Breadcrumbs>
   )

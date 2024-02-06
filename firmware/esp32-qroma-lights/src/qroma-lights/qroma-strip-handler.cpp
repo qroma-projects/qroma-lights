@@ -39,20 +39,24 @@ QromaStripDriverWs2812Fx * getLightsForStripIndex(QromaStrip_WS2812FX_StripIndex
 void handleQromaStripCommand(QromaStrip_WS2812FX_StripIndex stripIndex, QromaStripCommand * message, QromaLightsResponse * response) {
   QromaStripDriverWs2812Fx * lights = NULL;
 
-  // TODO - set response type/information
-  // e.g. response->which_response = QromaLightsResponse_qromaLightsConfigResponse_tag;
   switch (message->which_command) {
+    case QromaStripCommand_setQromaStripAnimation_tag:
+      logInfo("HANDLING setQromaStripAnimation_tag");
+      lights = getLightsForStripIndex(stripIndex);
+      lights->applyQromaStripAnimation(&(message->command.setQromaStripAnimation));
+      setQromaLightsDeviceConfigUpdatedResponse(response, "New animation");
+      break;
     case QromaStripCommand_setQromaStripBrightness_tag:
       logInfo("HANDLING QromaStripCommand_setQromaStripBrightness_tag");
       lights = getLightsForStripIndex(stripIndex);
       lights->applyQromaStripBrightness(message->command.setQromaStripBrightness);
       setQromaLightsDeviceConfigUpdatedResponse(response, "New brightness: ", message->command.setQromaStripBrightness);
       break;
-    case QromaStripCommand_setQromaStripAnimation_tag:
-      logInfo("HANDLING setQromaStripAnimation_tag");
+    case QromaStripCommand_setQromaStripName_tag:
+      logInfo("HANDLING QromaStripCommand_setQromaStripName_tag");
       lights = getLightsForStripIndex(stripIndex);
-      lights->applyQromaStripAnimation(&(message->command.setQromaStripAnimation));
-      setQromaLightsDeviceConfigUpdatedResponse(response, "New animation");
+      lights->applyQromaStripName(message->command.setQromaStripName);
+      setQromaLightsDeviceConfigUpdatedResponse(response, "New name: ", message->command.setQromaStripName);
       break;
     case QromaStripCommand_setQromaStripIoSettings_tag:
       logInfo("HANDLING setQromaStripIoSettings_tag");

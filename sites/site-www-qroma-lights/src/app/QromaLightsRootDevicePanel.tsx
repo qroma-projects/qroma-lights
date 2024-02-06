@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { IQromaLightsApi } from './api/QromaLightsApi';
-import { QButton } from './input-controls/QButton';
-import { QTheme } from './input-controls/theme';
+import { QButton } from '../react-qroma-mui/input-controls/QButton';
+import { QTheme } from '../react-qroma-mui/input-controls/theme';
 import EditIcon from '@mui/icons-material/Edit';
-import { DoValidationResponse, QInputAValueDialog } from './input-controls/QInputAValueDialog';
+import { DoValidationResponse, QInputAValueDialog } from '../react-qroma-mui/input-controls/QInputAValueDialog';
 import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../qroma-proto/qroma-lights-types';
+import { Stack } from '@mui/material';
 
 
 export interface IQromaLightsRootDevicePanelProps {
@@ -12,6 +13,10 @@ export interface IQromaLightsRootDevicePanelProps {
   qldConfig: QromaLightsDeviceConfig
   refreshConfig: (delayInMs: number) => void
   setActiveQromaStripPathIndex: (activeQromaStripPathIndex: QromaStrip_WS2812FX_StripIndex) => void
+  
+  isConfigChanged: boolean
+  notifyConfigChanged: () => void
+  saveConfig: () => void
 }
 
 export const QromaLightsRootDevicePanel = (props: IQromaLightsRootDevicePanelProps) => {
@@ -28,6 +33,7 @@ export const QromaLightsRootDevicePanel = (props: IQromaLightsRootDevicePanelPro
   }
 
   const setNewDeviceName = async (newValue: string) => {
+    props.notifyConfigChanged();
     props.qromaLightsApi.setDeviceName(newValue);
     props.refreshConfig(250);
   }
@@ -55,8 +61,12 @@ export const QromaLightsRootDevicePanel = (props: IQromaLightsRootDevicePanelPro
         key={"rename-device-" + props.qldConfig.deviceName}
         />
 
-      <p>
-      {props.qldConfig?.deviceName}
+      <p style={{
+          fontFamily: "Exo",
+          fontWeight: "bold",
+          fontSize: "24px",
+        }}>
+      {props.qldConfig?.deviceName} {props.isConfigChanged ? " *" : ""}
       </p>
 
       <QButton
@@ -73,20 +83,42 @@ export const QromaLightsRootDevicePanel = (props: IQromaLightsRootDevicePanelPro
         {props.qldConfig.qromaStrip2Config.name}
       </QButton>
 
-      <QButton
-        variant="contained"
-        onClick={onRenameDevice}
-        sx={{
-          color: "white",
-          backgroundColor: QTheme.Q3,
-          fontFamily: "Exo",
-          fontWeight: "bold",
-          marginTop: "10px",
-          textTransform: "none",
-        }}
+      <Stack 
+        direction="row"
+        sx={{paddingLeft: "30px", paddingRight: "30px"}}
         >
-        <EditIcon />Rename
-      </QButton>
+        <QButton
+          variant="contained"
+          onClick={onRenameDevice}
+          sx={{
+            color: "white",
+            backgroundColor: QTheme.Q3,
+            fontFamily: "Exo",
+            fontWeight: "bold",
+            marginTop: "10px",
+          }}
+          >
+          <EditIcon />Rename
+        </QButton>
+        <QButton
+          sx={{
+            marginTop: "10px",
+            marginLeft: "10px",
+          }}
+          onClick={() => { props.qromaLightsApi.restartDevice(); }}
+          >
+          Restart
+        </QButton>
+      </Stack>
+
+      <QButton
+          sx={{ 
+            marginTop: "10px",            
+          }}
+          onClick={() => { props.saveConfig(); }}
+          >
+          Save
+        </QButton>
     </>
   )
 }

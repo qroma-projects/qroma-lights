@@ -1,45 +1,33 @@
-import React, { useEffect, useState } from 'react';
-// import { QromaPointDetails } from '../../../proto-ts/qroma-point-config';
+import React, { useState } from 'react';
 import { Tab, Tabs } from '@mui/material';
 import SetColorPanel from './SetColorPanel';
 import SetFlashPanel from './SetFlashPanel';
-import ConfigureWx2812FxPanel from './ConfigureWx2812FxPanel';
-// import { 
-//   createSaveQromaStripStateCommandBytes, 
-//   createSetAnimationCommandBytes,
-//   createSetBrightnessCommandBytes,
-//   createSetLedCountCommandBytes,
-//   createSetLedDataRateCommandBytes,
-//   createSetLedIoSettingsCommandBytes,
-//   createSetLedSignalColorOrderCommandBytes,
-//   createSetPinNumberCommandBytes,
-//   createSetSolidColorAnimation,
-//   createSetSolidColorCommandBytes,
-//   createUpdateSegmentCountCommandBytes
-// } from '../../../qroma-api/qroma-device/qroma-ws2812fx';
-// import { getSerialProviderConnection } from '../../../qroma-serial/SerialProvider';
-// import { readQromaPointConfig } from '../../../qroma-api/qroma-device/qroma-device';
-// import { QromaPoint_WS2812FX_IoSettings, QromaStrip_WS2812FX_FadeSpeed, QromaStrip_WS2812FX_NeoPixelRgbOrder, QromaStrip_WS2812FX_NeoPixelTxRate, QromaStrip_WS2812FX_Pattern, QromaStrip_WS2812FX_PixelsSize, WS2812FX_Config } from '../../../proto-ts/driver-ws2812fx';
+import { ConfigureWx2812FxPanel } from './ConfigureWx2812FxPanel';
 import { convertHexColorToRgbBytes, convertRgbBytesToHexColor } from '../app_utils';
-
-// import { SaveFlashCommandDialog } from './SaveFlashCommandDialog';
-// import { SaveQromaPointConfigurationDialog } from './SaveQromaPointConfigurationDialog';
-import { QromaStripConfig, QromaStrip_WS2812FX_FadeSpeed, QromaStrip_WS2812FX_NeoPixelRgbOrder, QromaStrip_WS2812FX_NeoPixelTxRate, QromaStrip_WS2812FX_Pattern, QromaStrip_WS2812FX_PixelsSize, QromaStrip_WS2812FX_StripIndex } from '../qroma-proto/qroma-lights-types';
-import { sleep } from '../../react-qroma-lib';
-import { createSetAnimationCommandBytes, createSetSolidColorAnimation } from './qroma-ws2812fx';
 import { IQromaLightsApi } from '../api/QromaLightsApi';
-// import { SaveFlashCommandDialog } from './SaveFlashCommandDialog';
-// import { SaveQromaPointConfigurationDialog } from './SaveQromaPointConfigurationDialog';
+import { 
+  QromaStripConfig,
+  QromaStrip_WS2812FX_FadeSpeed,
+  QromaStrip_WS2812FX_NeoPixelRgbOrder,
+  QromaStrip_WS2812FX_NeoPixelTxRate,
+  QromaStrip_WS2812FX_Pattern,
+  QromaStrip_WS2812FX_PixelsSize,
+  QromaStrip_WS2812FX_StripIndex
+} from '../../qroma-proto/qroma-lights-types';
+import { DoValidationResponse, QInputAValueDialog } from '../../react-qroma-mui/input-controls/QInputAValueDialog';
 
 
 type QpWs2812FxPanel_LoadedProps = {
-  // qromaPoint: QromaPointDetails
   qromaLightsApi: IQromaLightsApi
   config: QromaStripConfig
   stripIndex: QromaStrip_WS2812FX_StripIndex
   tabIndex: number
   onSetTabIndex: (newTabIndex: number) => void
-  // onRefreshConfig: () => void
+
+  refreshConfig: (delayInMs: number) => void
+  isConfigChanged: boolean
+  notifyConfigChanged: () => void
+  saveConfig: () => void
 }
 
 
@@ -78,17 +66,16 @@ function a11yProps(index: number) {
 
 export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
   
-  const [ws2812fxConfig, setWs2812fxConfig] = useState(props.config);
-  // const [editingSegmentIndex, setEditingSegment] = useState(0);
+  // const [ws2812fxConfig, setWs2812fxConfig] = useState(props.config);
+  const ws2812fxConfig = props.config;
 
-  const [isSaveAnimationCommandModalOpen, setIsSaveAnimationCommandModalOpen] = useState(false);
-  const [isSaveQromaPointConfigurationModalOpen, setIsSaveQromaPointConfigurationModalOpen] = useState(false);
+  // const [isSaveAnimationCommandModalOpen, setIsSaveAnimationCommandModalOpen] = useState(false);
+  // const [isSaveQromaPointConfigurationModalOpen, setIsSaveQromaPointConfigurationModalOpen] = useState(false);
+  const [isRenameDialogOpen, setIsRenameDialogOpen] = useState(false);
 
   console.log("SHOWING QpWs2812FxPanel_Loaded")
   console.log(props)
 
-  // const ledsConfig = ws2812fxConfig?.leds!;
-  // const animation = ledsConfig.segmentAnimations[editingSegmentIndex];
   const animation = ws2812fxConfig.animation;
 
   const animationColor1Hex = convertRgbBytesToHexColor(
@@ -118,34 +105,9 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
   const ioSettings = ws2812fxConfig.ioSettings;
   const maxBrightness = ws2812fxConfig.brightness;
   const ledCount = ioSettings.ledCount;
-  // const numSegments = ledsConfig.numSegments;
-  // const maxSegmentCount = ledsConfig.maxNumSegments;
   const pinIoNumber = ioSettings.pin;
   const ledSignalColorOrder = ioSettings.neoPixelRgbOrder;
   const ledDataRate = ioSettings.neoPixelTxRate;
-
-  
-  // useEffect(() => {
-  //   const loadConfig = async () => {
-  //     if (ws2812fxConfig !== null) {
-  //       return;
-  //     }
-
-  //     const qpConfigBytes = await readQromaPointConfig(props.qromaPoint.instanceId);
-  //     if (qpConfigBytes === null) {
-  //       console.log("FAILED TO LOAD QP CONFIG");
-  //       return;
-  //     }
-
-  //     const qpConfig = WS2812FX_Config.fromBinary(qpConfigBytes);
-  //     console.log(qpConfig);
-
-  //     setWs2812fxConfig(qpConfig);
-  //   }
-
-  //   loadConfig()
-  //     .catch(console.error);
-  // }, []);
 
   
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -155,23 +117,10 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
   const onNewGammaCorrectionEnabled = (enabled: boolean) => {
     console.log("onNewGammaCorrectionEnabled: " + enabled);
 
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
     const animationUpdate = ws2812fxConfig.animation;
     animationUpdate.useGammaCorrection = enabled;
 
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    // animationCmd.useGammaCorrection = enabled;
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-
-    // // const conn = getSerialProviderConnection();
-    // // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].useGammaCorrection = enabled;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
   }
 
 
@@ -185,28 +134,7 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.color1.green = hexRgb[1];
     animationUpdate.color1.blue = hexRgb[2];
 
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[1] = hexRgb[1];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[2] = hexRgb[2];
-
-    // animationUpdate.color1 = enabled;
-
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-
-    // const animationCmd = createSetSolidColorAnimation(newSolidColorHex, gammaCorrectionEnabled);
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // const hexRgb = convertHexColorToRgbBytes(newSolidColorHex);
-
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[0] = hexRgb[0];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[1] = hexRgb[1];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[2] = hexRgb[2];
-
-    // setWs2812fxConfig(newWs2812FxConfig);
   }
 
   const onNewAnimationColor1Hex = (colorHex: string) => {
@@ -218,26 +146,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.color1.blue = hexRgb[2];
 
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-
-    // const hexRgb = convertHexColorToRgbBytes(colorHex);
-    // animationCmd.threeSetsOfColorRgbBytes[0] = hexRgb[0];
-    // animationCmd.threeSetsOfColorRgbBytes[1] = hexRgb[1];
-    // animationCmd.threeSetsOfColorRgbBytes[2] = hexRgb[2];
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[0] = hexRgb[0];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[1] = hexRgb[1];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[2] = hexRgb[2];
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    // console.log("Implement color command");
   }
 
   const onNewAnimationColor2Hex = (colorHex: string) => {
@@ -249,26 +157,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.color2.blue = hexRgb[5];
 
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-
-    // const hexRgb = convertHexColorToRgbBytes(colorHex);
-    // animationCmd.threeSetsOfColorRgbBytes[3] = hexRgb[0];
-    // animationCmd.threeSetsOfColorRgbBytes[4] = hexRgb[1];
-    // animationCmd.threeSetsOfColorRgbBytes[5] = hexRgb[2];
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[3] = hexRgb[0];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[4] = hexRgb[1];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[5] = hexRgb[2];
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    // console.log("Implement color command");
   }
 
   const onNewAnimationColor3Hex = (colorHex: string) => {
@@ -280,26 +168,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.color3.blue = hexRgb[8];
 
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-
-    // const hexRgb = convertHexColorToRgbBytes(colorHex);
-    // animationCmd.threeSetsOfColorRgbBytes[6] = hexRgb[0];
-    // animationCmd.threeSetsOfColorRgbBytes[7] = hexRgb[1];
-    // animationCmd.threeSetsOfColorRgbBytes[8] = hexRgb[2];
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[6] = hexRgb[0];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[7] = hexRgb[1];
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].threeSetsOfColorRgbBytes[8] = hexRgb[2];
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    // console.log("Implement color command");
   }
 
   const onReverseDirection = (reverse: boolean) => {
@@ -307,20 +175,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.reversed = reverse;
     
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-    // animationCmd.reversed = reverse;
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].reversed = reverse;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    // console.log("Implement reverse direction command");
   }
 
   const onPatternChange = (value: QromaStrip_WS2812FX_Pattern) => {
@@ -328,20 +182,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.pattern = value;
     
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-    // animationCmd.pattern = value;
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].pattern = value;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    // console.log("Implement new pattern command: " + value);
   }
 
   const onPixelSpeedChange = (value: number) => {
@@ -349,21 +189,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.speed = value;
     
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-    // animationCmd.speed = value;
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].speed = value;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    console.log("Implement new pixel speed command");
   }
 
   const onFadeSpeedChange = (value: QromaStrip_WS2812FX_FadeSpeed) => {
@@ -371,21 +196,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.fadeSpeed = value;
     
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-    // animationCmd.fadeSpeed = value;
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].fadeSpeed = value;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    console.log("Implement new fade speed command");
   }
 
   const onPixelsSizeChange = (value: QromaStrip_WS2812FX_PixelsSize) => {
@@ -393,68 +203,19 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     animationUpdate.size = value;
     
     props.qromaLightsApi.setStripAnimation(props.stripIndex, animationUpdate);
-
-    
-    // const animationCmd = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-    // animationCmd.size = value;
-
-    // const cmdBytes = createSetAnimationCommandBytes(props.qromaPoint.instanceId, animationCmd, editingSegmentIndex);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.segmentAnimations[editingSegmentIndex].size = value;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-
-    console.log("Implement new pixel size command");
   }
 
   const onNewMaxBrightness = (brightness: number) => {
     props.qromaLightsApi.setStripBrightness(props.stripIndex, brightness);
 
     console.log("onNewMaxBrightness() - 1: " + brightness);
-
-    // const cmdBytes = createSetBrightnessCommandBytes(props.qromaPoint.instanceId, brightness);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-    
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.brightness = brightness;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
-    // console.log("onNewMaxBrightness()");
   } 
 
-  // const onNewSegmentCount = (segmentCount: number) => {
-
-  //   const cmdBytes = createUpdateSegmentCountCommandBytes(props.qromaPoint.instanceId, 
-  //     segmentCount, maxSegmentCount, ledCount);
-  //   const conn = getSerialProviderConnection();
-  //   conn.sendBytes(cmdBytes);
-
-  //   console.log("REFRESH CONFIG - SEGMENT");
-  //   props.onRefreshConfig();
-  // } 
-  
   const onNewLedCount = (newLedCount: number): void => {
     const ioSettingsUpdate = ws2812fxConfig.ioSettings;
     ioSettingsUpdate.ledCount = newLedCount;
     
     props.qromaLightsApi.setStripIoSettings(props.stripIndex, ioSettingsUpdate);
-
-
-    // const conn = getSerialProviderConnection();
-
-    // const setLedCountCmdBytes = createSetLedCountCommandBytes(props.qromaPoint.instanceId, ioSettings, newLedCount);
-    // conn.sendBytes(setLedCountCmdBytes);
-
-    // const setSegmentCountCmdBytes = createUpdateSegmentCountCommandBytes(props.qromaPoint.instanceId, 
-    //   numSegments, maxSegmentCount, newLedCount);
-    // conn.sendBytes(setSegmentCountCmdBytes);
-
-    // console.log("REFRESH CONFIG - LED COUNT");
-    // props.onRefreshConfig();
   } 
   
   const onNewPinIoNumber = (pinNumber: number) => {
@@ -462,16 +223,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     ioSettingsUpdate.pin = pinNumber;
     
     props.qromaLightsApi.setStripIoSettings(props.stripIndex, ioSettingsUpdate);
-
-
-    // const cmdBytes = createSetPinNumberCommandBytes(props.qromaPoint.instanceId, ioSettings, pinNumber);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-    
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.ioSettings!.pin = pinNumber;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
   } 
   
   const onNewTxDataRate = (txRate: QromaStrip_WS2812FX_NeoPixelTxRate) => {
@@ -479,16 +230,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     ioSettingsUpdate.neoPixelTxRate = txRate;
     
     props.qromaLightsApi.setStripIoSettings(props.stripIndex, ioSettingsUpdate);
-
-
-    // const cmdBytes = createSetLedDataRateCommandBytes(props.qromaPoint.instanceId, ioSettings, txRate);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-    
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.ioSettings!.neoPixelTxRate = txRate;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
   }
 
   const onNewLedSignalColorOrder = (ledSignalColorOrder: QromaStrip_WS2812FX_NeoPixelRgbOrder) => {
@@ -496,95 +237,60 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     ioSettingsUpdate.neoPixelRgbOrder = ledSignalColorOrder;
     
     props.qromaLightsApi.setStripIoSettings(props.stripIndex, ioSettingsUpdate);
-
-
-    // const cmdBytes = createSetLedSignalColorOrderCommandBytes(props.qromaPoint.instanceId, ioSettings, ledSignalColorOrder);
-    // const conn = getSerialProviderConnection();
-    // conn.sendBytes(cmdBytes);
-    
-    // const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-    // newWs2812FxConfig.leds!.brightness = maxBrightness;
-
-    // setWs2812fxConfig(newWs2812FxConfig);
   }
 
-  // const onNewConfiguration = async (
-  //   maxBrightness: number,
-  //   ledCount: number,
-  //   numberOfSegments: number,
-  //   maxSegmentCount: number,
-  //   pinIoNumber: number,
-  //   ledSignalColorOrder: QromaStrip_WS2812FX_NeoPixelRgbOrder,
-  //   ledDataRate: QromaStrip_WS2812FX_NeoPixelTxRate,  ) => 
-  // {
-  //   const newIoSettings = {
-  //     pin: pinIoNumber,
-  //     ledCount: ledCount,
-  //     neoPixelRgbOrder: ledSignalColorOrder,
-  //     neoPixelTxRate: ledDataRate,
-  //   } as QromaPoint_WS2812FX_IoSettings;
+  const onCloseRenameDialog = () => {
+    setIsRenameDialogOpen(false);
+  }
 
-  //   const cmdBytes = createSetLedIoSettingsCommandBytes(
-  //     props.qromaPoint.instanceId, 
-  //     newIoSettings
-  //     );
+  const setNewQromaStripName = async (name: string) => {
+    props.notifyConfigChanged();
+    props.qromaLightsApi.setStripName(props.stripIndex, name);
+    props.refreshConfig(250);
+  }
 
-  //   const updateSegmentCountCmdBytes = createUpdateSegmentCountCommandBytes(
-  //     props.qromaPoint.instanceId, numberOfSegments, maxSegmentCount, ledCount);
-
-  //   const setBrightnessCmdBytes = createSetBrightnessCommandBytes(props.qromaPoint.instanceId, maxBrightness);
-
-  //   const conn = getSerialProviderConnection();
-  //   conn.sendBytes(setBrightnessCmdBytes);
-    
-  //   await sleep(100);
-
-  //   conn.sendBytes(cmdBytes);
-    
-  //   await sleep(100);
-
-  //   conn.sendBytes(updateSegmentCountCmdBytes);
-
-  //   const newWs2812FxConfig = WS2812FX_Config.clone(ws2812fxConfig);
-  //   newWs2812FxConfig.ioSettings = newIoSettings;
-  //   newWs2812FxConfig.leds!.brightness = maxBrightness;
-    
-  //   setWs2812fxConfig(newWs2812FxConfig);
+  // const saveAnimationCommand = () => {
+  //   setIsSaveAnimationCommandModalOpen(true);
   // }
 
-  // const saveAnimationConfiguration = () => {
-  //   const cmdBytes = createSaveQromaStripStateCommandBytes(props.qromaPoint.instanceId);
-  //   const conn = getSerialProviderConnection();
-  //   conn.sendBytes(cmdBytes);
+  // const handleCloseAnimationCommandModal = () => {
+  //   setIsSaveAnimationCommandModalOpen(false);
   // }
 
-  // const onNewEditingSegmentIndex = (newEditingSegmentIndex: number) => {
-  //   console.log("EDIT SEGMENT INDEX: " + newEditingSegmentIndex);
-  //   setEditingSegment(newEditingSegmentIndex);
+  // const saveQromaPointConfiguration = () => {
+  //   setIsSaveQromaPointConfigurationModalOpen(true);
   // }
 
-  const saveAnimationCommand = () => {
-    setIsSaveAnimationCommandModalOpen(true);
-  }
+  // const handleCloseSaveQromaPointConfigurationModal = () => {
+  //   setIsSaveQromaPointConfigurationModalOpen(false);
+  // }
 
-  const handleCloseAnimationCommandModal = () => {
-    setIsSaveAnimationCommandModalOpen(false);
-  }
-
-  const saveQromaPointConfiguration = () => {
-    setIsSaveQromaPointConfigurationModalOpen(true);
-  }
-
-  const handleCloseSaveQromaPointConfigurationModal = () => {
-    setIsSaveQromaPointConfigurationModalOpen(false);
-  }
-
-  const currentAnimation = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-  const qromaPointIoSettings = ws2812fxConfig?.ioSettings!;
+  // const currentAnimation = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
+  // const qromaPointIoSettings = ws2812fxConfig?.ioSettings!;
 
   
   return (
     <>
+      <QInputAValueDialog 
+        isOpen={isRenameDialogOpen}
+        title={'Rename Qroma Strip [' + props.config.name + ']'} 
+        inputLabel={'Name'} 
+        initValue={props.config.name}
+        commitButtonLabel={'Save'} 
+        doValidation={(latestValue: string): DoValidationResponse => {
+          return {
+            isValidValue: latestValue.length > 0,
+            validationMessage: latestValue.length > 0 ? undefined : "Qroma Strip must have a name"
+          } as DoValidationResponse;
+        }}
+        onHandleCommit={(name: string): void => {
+          setNewQromaStripName(name);
+          onCloseRenameDialog();
+        }}
+        onHandleClose={onCloseRenameDialog}
+        key={"rename-qroma-strip-" + props.config.name}
+        />
+
       {/* <SaveFlashCommandDialog 
         isOpen={isSaveAnimationCommandModalOpen}
         animation={currentAnimation}
@@ -598,6 +304,7 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
         maxSegmentCount={maxSegmentCount}
         onHandleClose={handleCloseSaveQromaPointConfigurationModal}
         /> */}
+
       <Tabs value={props.tabIndex} onChange={handleChange} aria-label="basic tabs example">
         <Tab label="Color" {...a11yProps(0)} />
         <Tab label="Flash" {...a11yProps(1)} />
@@ -609,11 +316,9 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
           onColorChange={onNewSolidColorHex}
           gammaCorrectionEnabled={gammaCorrectionEnabled}
           onGammaCorrectionEnabledChange={onNewGammaCorrectionEnabled}
-          // saveFlashConfiguration={saveAnimationConfiguration}
-          // numActiveSegments={numSegments}
-          // editingSegmentIndex={editingSegmentIndex}
-          // onEditingSegmentIndexChange={onNewEditingSegmentIndex}
-          saveFlashCommand={saveAnimationCommand}
+          
+          saveConfig={props.saveConfig}
+          renameQromaStrip={() => setIsRenameDialogOpen(true) }
           />
       </TabPanel>
       <TabPanel value={props.tabIndex} index={1}>
@@ -636,36 +341,29 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
           onPixelsSizeChange={onPixelsSizeChange}
           pixelSpeed={pixelSpeed}
           onPixelSpeedChange={onPixelSpeedChange}
-          // saveFlashConfiguration={saveAnimationConfiguration}
-          // numActiveSegments={numSegments}
-          // editingSegmentIndex={editingSegmentIndex}
-          // onEditingSegmentIndexChange={onNewEditingSegmentIndex}
-          saveFlashCommand={saveAnimationCommand}
+
+          saveConfig={props.saveConfig}
+          renameQromaStrip={() => setIsRenameDialogOpen(true) }
           />
       </TabPanel>
       <TabPanel value={props.tabIndex} index={2}>
         <ConfigureWx2812FxPanel 
           maxBrightness={maxBrightness}
           ledCount={ledCount}
-          // segmentCount={numSegments}
-          // maxSegmentCount={maxSegmentCount}
           pinIoNumber={pinIoNumber}
           ledSignalColorOrder={ledSignalColorOrder}
           ledDataRate={ledDataRate}
           
           onNewMaxBrightness={onNewMaxBrightness}
-          // onNewSegmentCount={onNewSegmentCount}
           onNewLedCount={onNewLedCount}
           onNewPinIoNumber={onNewPinIoNumber}
           onNewTxDataRate={onNewTxDataRate}
           onNewLedSignalColorOrder={onNewLedSignalColorOrder}
 
-          // onNewConfiguration={onNewConfiguration}
-
-          saveQromaPointConfiguration={saveQromaPointConfiguration}
+          saveConfig={props.saveConfig}
+          renameQromaStrip={() => setIsRenameDialogOpen(true) }
           />
       </TabPanel>
     </>
   )
 }
-
