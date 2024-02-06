@@ -39,39 +39,13 @@ type SetFlashPanelProps = {
 
   saveConfig: () => void
   renameQromaStrip: () => void
-
-  // saveFlashConfiguration: () => void
-  // saveFlashCommand: () => void
-
-  // numActiveSegments: number
-  // editingSegmentIndex: number
-  // onEditingSegmentIndexChange: (newEditingSegmentIndex: number) => void
 }
 
-const SetFlashPanel = (props: SetFlashPanelProps) => {
 
-  // const getEditingSegmentIndexComponent = () => {
-  //   if (props.numActiveSegments === 1) {
-  //     return undefined;
-  //   }
-
-  //   const segmentIndexes = createNumberRange(0, props.numActiveSegments);
-
-  //   return <QNumberSelect 
-  //     label='Segment' 
-  //     id={'active-segment'} 
-  //     value={props.editingSegmentIndex} 
-  //     values={segmentIndexes}
-  //     valueLabelOffset={1}
-  //     onSetValue={(newValue: number): void => {
-  //       props.onEditingSegmentIndexChange(newValue);
-  //     }} 
-  //     />
-  // }
+export const SetFlashPanel = (props: SetFlashPanelProps) => {
 
   return (
     <>
-      {/* {getEditingSegmentIndexComponent()} */}
       <QSelect id="pattern"
         label='Pattern'
         value={props.pattern}
@@ -118,8 +92,7 @@ const SetFlashPanel = (props: SetFlashPanelProps) => {
         onNewValue={props.onPixelSpeedChange} 
         rangeMin={2}
         rangeMax={65535}
-        />
-        
+        />        
 
       <Divider light 
         sx={{
@@ -183,40 +156,6 @@ const SetFlashPanel = (props: SetFlashPanelProps) => {
           Save
         </QButton>
       </Stack>
-{/* 
-      <QButton 
-        fullWidth 
-        variant='outlined'      
-        sx={{
-          marginTop: "16px",
-        }}
-        // onClick={() => props.saveFlashConfiguration()}
-        >
-        Save
-      </QButton> */}
-
-      {/* <QButton 
-        fullWidth 
-        variant='outlined'
-        sx={{
-          marginTop: "16px",
-        }}
-        onClick={() => props.saveFlashConfiguration()}
-        >
-        Do on Startup
-      </QButton> */}
-
-      {/* <QButton 
-        sx={{
-          marginTop: "16px", 
-        }}
-        onClick={() => props.saveFlashCommand()}
-        >
-        Save as Command
-      </QButton> */}
     </>
   )
-
 }
-
-export default SetFlashPanel;

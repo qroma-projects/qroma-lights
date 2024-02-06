@@ -10,49 +10,24 @@ import { QTheme } from '../../react-qroma-mui/input-controls/theme';
 type SetColorPanelProps = {
   activeColorHex: string
   gammaCorrectionEnabled: boolean
-  // numActiveSegments: number
-  // editingSegmentIndex: number
 
   onColorChange: (newColorHex: string) => void
   onGammaCorrectionEnabledChange: (enabled: boolean) => void
-  // saveFlashConfiguration: () => void
-  // onEditingSegmentIndexChange: (newEditingSegmentIndex: number) => void
   
-  // saveFlashCommand: () => void
   saveConfig: () => void
   renameQromaStrip: () => void
 }
 
 
-const SetColorPanel = (props: SetColorPanelProps) => {
-
-  // const getEditingSegmentIndexComponent = () => {
-  //   if (props.numActiveSegments === 1) {
-  //     return undefined;
-  //   }
-
-  //   const segmentIndexes = createNumberRange(0, props.numActiveSegments);
-
-  //   return <QNumberSelect 
-  //     label='Segment' 
-  //     id={'active-segment'} 
-  //     value={props.editingSegmentIndex} 
-  //     values={segmentIndexes}
-  //     valueLabelOffset={1}
-  //     onSetValue={(newValue: number): void => {
-  //       props.onEditingSegmentIndexChange(newValue);
-  //     }} 
-  //     />
-  // }
+export const SetColorPanel = (props: SetColorPanelProps) => {
 
   return (
     <>
-      {/* {getEditingSegmentIndexComponent()} */}
       <ColorBox 
         defaultValue={props.activeColorHex}
         value={props.activeColorHex}
         disableAlpha
-        key={"color-" + props.editingSegmentIndex}
+        key={"color-panel"}
         onChange={(newColor) => {
           console.log("NEW COLOR");
           console.log(newColor);
@@ -65,17 +40,6 @@ const SetColorPanel = (props: SetColorPanelProps) => {
         label="Use Gamma Correction"
         checked={props.gammaCorrectionEnabled}
         />
-
-      {/* <QButton 
-        fullWidth 
-        variant='outlined'      
-        sx={{
-          marginTop: "16px",
-        }}
-        // onClick={() => props.saveFlashConfiguration()}
-        >
-        Rename
-      </QButton> */}
 
       <Stack
         direction="row"
@@ -104,46 +68,6 @@ const SetColorPanel = (props: SetColorPanelProps) => {
           Save
         </QButton>
       </Stack>
-{/* 
-      <QButton
-        variant="contained"
-        // onClick={onRenameDevice}
-        sx={{
-          color: "white",
-          backgroundColor: QTheme.Q3,
-          fontFamily: "Exo",
-          fontWeight: "bold",
-          marginTop: "10px",
-          textTransform: "none",
-        }}
-        >
-        <EditIcon />Rename
-      </QButton>
-
-      <QButton 
-        fullWidth 
-        variant='outlined'      
-        sx={{
-          marginTop: "16px",
-        }}
-        // onClick={() => props.saveFlashConfiguration()}
-        >
-        Save
-      </QButton> */}
-
-
-      {/* <QButton 
-        fullWidth 
-        variant='outlined'      
-        sx={{
-          marginTop: "16px",
-        }}
-        onClick={() => props.saveFlashCommand()}
-        >
-        Save as Command
-      </QButton> */}
     </>
   )
 }
-
-export default SetColorPanel;

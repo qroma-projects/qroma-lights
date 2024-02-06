@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs } from '@mui/material';
-import SetColorPanel from './SetColorPanel';
-import SetFlashPanel from './SetFlashPanel';
+import { SetColorPanel } from './SetColorPanel';
+import { SetFlashPanel } from './SetFlashPanel';
 import { ConfigureWx2812FxPanel } from './ConfigureWx2812FxPanel';
 import { convertHexColorToRgbBytes, convertRgbBytesToHexColor } from '../app_utils';
 import { IQromaLightsApi } from '../api/QromaLightsApi';
@@ -249,25 +249,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     props.refreshConfig(250);
   }
 
-  // const saveAnimationCommand = () => {
-  //   setIsSaveAnimationCommandModalOpen(true);
-  // }
-
-  // const handleCloseAnimationCommandModal = () => {
-  //   setIsSaveAnimationCommandModalOpen(false);
-  // }
-
-  // const saveQromaPointConfiguration = () => {
-  //   setIsSaveQromaPointConfigurationModalOpen(true);
-  // }
-
-  // const handleCloseSaveQromaPointConfigurationModal = () => {
-  //   setIsSaveQromaPointConfigurationModalOpen(false);
-  // }
-
-  // const currentAnimation = ws2812fxConfig?.leds?.segmentAnimations[editingSegmentIndex]!;
-  // const qromaPointIoSettings = ws2812fxConfig?.ioSettings!;
-
   
   return (
     <>
@@ -291,20 +272,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
         key={"rename-qroma-strip-" + props.config.name}
         />
 
-      {/* <SaveFlashCommandDialog 
-        isOpen={isSaveAnimationCommandModalOpen}
-        animation={currentAnimation}
-        onHandleClose={handleCloseAnimationCommandModal}
-        />
-      <SaveQromaPointConfigurationDialog
-        isOpen={isSaveQromaPointConfigurationModalOpen}
-        qromaPointIoSettings={qromaPointIoSettings}
-        maxBrightness={maxBrightness}
-        numberOfSegments={numSegments}
-        maxSegmentCount={maxSegmentCount}
-        onHandleClose={handleCloseSaveQromaPointConfigurationModal}
-        /> */}
-
       <Tabs value={props.tabIndex} onChange={handleChange} aria-label="basic tabs example">
         <Tab label="Color" {...a11yProps(0)} />
         <Tab label="Flash" {...a11yProps(1)} />
@@ -316,7 +283,7 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
           onColorChange={onNewSolidColorHex}
           gammaCorrectionEnabled={gammaCorrectionEnabled}
           onGammaCorrectionEnabledChange={onNewGammaCorrectionEnabled}
-          
+
           saveConfig={props.saveConfig}
           renameQromaStrip={() => setIsRenameDialogOpen(true) }
           />
