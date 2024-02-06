@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IQromaLightsApi } from './api/QromaLightsApi';
-import { QromaStripPanel } from './QromaStripPanel';
-import { QromaLightsRootDevicePanel } from './QromaLightsRootDevicePanel';
+import { QromaStripPanel } from './ws2812fx/QromaStripPanel';
+import { QromaLightsRootDevicePanel } from './ws2812fx/QromaLightsRootDevicePanel';
 import { sleep } from '../react-qroma-lib';
 import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../qroma-proto/qroma-lights-types';
 

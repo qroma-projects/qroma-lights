@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { IQromaLightsApi } from './api/QromaLightsApi';
-import { QButton } from '../react-qroma-mui/input-controls/QButton';
-import { QTheme } from '../react-qroma-mui/input-controls/theme';
+import { IQromaLightsApi } from '../api/QromaLightsApi';
+import { QButton } from '../../react-qroma-mui/input-controls/QButton';
+import { QTheme } from '../../react-qroma-mui/input-controls/theme';
 import EditIcon from '@mui/icons-material/Edit';
-import { DoValidationResponse, QInputAValueDialog } from '../react-qroma-mui/input-controls/QInputAValueDialog';
-import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../qroma-proto/qroma-lights-types';
+import { DoValidationResponse, QInputAValueDialog } from '../../react-qroma-mui/input-controls/QInputAValueDialog';
+import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../../qroma-proto/qroma-lights-types';
 import { Stack } from '@mui/material';
 
 

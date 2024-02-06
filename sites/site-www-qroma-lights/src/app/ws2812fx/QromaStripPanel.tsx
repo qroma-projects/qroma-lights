@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { IQromaLightsApi } from './api/QromaLightsApi';
-import { ConnectedDeviceBreadcrumbs } from './ConnectedDeviceBreadcrumbs';
-import { QpWs2812FxPanel_Loaded } from './ws2812fx/QpWs2812FxPanel_Loaded';
-import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../qroma-proto/qroma-lights-types';
+import { IQromaLightsApi } from '../api/QromaLightsApi';
+import { ConnectedDeviceBreadcrumbs } from '../ConnectedDeviceBreadcrumbs';
+import { QpWs2812FxPanel_Loaded } from './QpWs2812FxPanel_Loaded';
+import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../../qroma-proto/qroma-lights-types';
 
 
 export interface IQromaStripPanelProps {
