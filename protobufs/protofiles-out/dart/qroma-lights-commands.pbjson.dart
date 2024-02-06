@@ -51,8 +51,9 @@ const QromaStripCommand$json = {
   '2': [
     {'1': 'stripIndex', '3': 1, '4': 1, '5': 14, '6': '.QromaStrip_WS2812FX_StripIndex', '10': 'stripIndex'},
     {'1': 'setQromaStripBrightness', '3': 10, '4': 1, '5': 13, '9': 0, '10': 'setQromaStripBrightness'},
-    {'1': 'setQromaStripAnimation', '3': 11, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_Animation', '9': 0, '10': 'setQromaStripAnimation'},
-    {'1': 'setQromaStripIoSettings', '3': 12, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_IoSettings', '9': 0, '10': 'setQromaStripIoSettings'},
+    {'1': 'setQromaStripName', '3': 11, '4': 1, '5': 9, '9': 0, '10': 'setQromaStripName'},
+    {'1': 'setQromaStripAnimation', '3': 12, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_Animation', '9': 0, '10': 'setQromaStripAnimation'},
+    {'1': 'setQromaStripIoSettings', '3': 13, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_IoSettings', '9': 0, '10': 'setQromaStripIoSettings'},
   ],
   '8': [
     {'1': 'command'},
@@ -63,11 +64,11 @@ const QromaStripCommand$json = {
 final $typed_data.Uint8List qromaStripCommandDescriptor = $convert.base64Decode(
     'ChFRcm9tYVN0cmlwQ29tbWFuZBI/CgpzdHJpcEluZGV4GAEgASgOMh8uUXJvbWFTdHJpcF9XUz'
     'I4MTJGWF9TdHJpcEluZGV4UgpzdHJpcEluZGV4EjoKF3NldFFyb21hU3RyaXBCcmlnaHRuZXNz'
-    'GAogASgNSABSF3NldFFyb21hU3RyaXBCcmlnaHRuZXNzElgKFnNldFFyb21hU3RyaXBBbmltYX'
-    'Rpb24YCyABKAsyHi5Rcm9tYVN0cmlwX1dTMjgxMkZYX0FuaW1hdGlvbkgAUhZzZXRRcm9tYVN0'
-    'cmlwQW5pbWF0aW9uElsKF3NldFFyb21hU3RyaXBJb1NldHRpbmdzGAwgASgLMh8uUXJvbWFTdH'
-    'JpcF9XUzI4MTJGWF9Jb1NldHRpbmdzSABSF3NldFFyb21hU3RyaXBJb1NldHRpbmdzQgkKB2Nv'
-    'bW1hbmQ=');
+    'GAogASgNSABSF3NldFFyb21hU3RyaXBCcmlnaHRuZXNzEi4KEXNldFFyb21hU3RyaXBOYW1lGA'
+    'sgASgJSABSEXNldFFyb21hU3RyaXBOYW1lElgKFnNldFFyb21hU3RyaXBBbmltYXRpb24YDCAB'
+    'KAsyHi5Rcm9tYVN0cmlwX1dTMjgxMkZYX0FuaW1hdGlvbkgAUhZzZXRRcm9tYVN0cmlwQW5pbW'
+    'F0aW9uElsKF3NldFFyb21hU3RyaXBJb1NldHRpbmdzGA0gASgLMh8uUXJvbWFTdHJpcF9XUzI4'
+    'MTJGWF9Jb1NldHRpbmdzSABSF3NldFFyb21hU3RyaXBJb1NldHRpbmdzQgkKB2NvbW1hbmQ=');
 
 @$core.Deprecated('Use setQromaDeviceNameDescriptor instead')
 const SetQromaDeviceName$json = {
@@ -114,12 +115,30 @@ const QromaLightsDeviceError$json = {
 final $typed_data.Uint8List qromaLightsDeviceErrorDescriptor = $convert.base64Decode(
     'ChZRcm9tYUxpZ2h0c0RldmljZUVycm9yEhgKB21lc3NhZ2UYASABKAlSB21lc3NhZ2U=');
 
+@$core.Deprecated('Use qromaLightsDeviceConfigUpdatedDescriptor instead')
+const QromaLightsDeviceConfigUpdated$json = {
+  '1': 'QromaLightsDeviceConfigUpdated',
+  '2': [
+    {'1': 'updateTime', '3': 1, '4': 1, '5': 13, '10': 'updateTime'},
+    {'1': 'updateConfig', '3': 2, '4': 1, '5': 11, '6': '.QromaLightsDeviceConfig', '10': 'updateConfig'},
+    {'1': 'updateDescription', '3': 3, '4': 1, '5': 9, '10': 'updateDescription'},
+  ],
+};
+
+/// Descriptor for `QromaLightsDeviceConfigUpdated`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List qromaLightsDeviceConfigUpdatedDescriptor = $convert.base64Decode(
+    'Ch5Rcm9tYUxpZ2h0c0RldmljZUNvbmZpZ1VwZGF0ZWQSHgoKdXBkYXRlVGltZRgBIAEoDVIKdX'
+    'BkYXRlVGltZRI8Cgx1cGRhdGVDb25maWcYAiABKAsyGC5Rcm9tYUxpZ2h0c0RldmljZUNvbmZp'
+    'Z1IMdXBkYXRlQ29uZmlnEiwKEXVwZGF0ZURlc2NyaXB0aW9uGAMgASgJUhF1cGRhdGVEZXNjcm'
+    'lwdGlvbg==');
+
 @$core.Deprecated('Use qromaLightsResponseDescriptor instead')
 const QromaLightsResponse$json = {
   '1': 'QromaLightsResponse',
   '2': [
     {'1': 'qromaLightsConfigResponse', '3': 1, '4': 1, '5': 11, '6': '.QromaLightsDeviceConfig', '9': 0, '10': 'qromaLightsConfigResponse'},
     {'1': 'error', '3': 2, '4': 1, '5': 11, '6': '.QromaLightsDeviceError', '9': 0, '10': 'error'},
+    {'1': 'configUpdatedResponse', '3': 3, '4': 1, '5': 11, '6': '.QromaLightsDeviceConfigUpdated', '9': 0, '10': 'configUpdatedResponse'},
   ],
   '8': [
     {'1': 'response'},
@@ -130,6 +149,7 @@ const QromaLightsResponse$json = {
 final $typed_data.Uint8List qromaLightsResponseDescriptor = $convert.base64Decode(
     'ChNRcm9tYUxpZ2h0c1Jlc3BvbnNlElgKGXFyb21hTGlnaHRzQ29uZmlnUmVzcG9uc2UYASABKA'
     'syGC5Rcm9tYUxpZ2h0c0RldmljZUNvbmZpZ0gAUhlxcm9tYUxpZ2h0c0NvbmZpZ1Jlc3BvbnNl'
-    'Ei8KBWVycm9yGAIgASgLMhcuUXJvbWFMaWdodHNEZXZpY2VFcnJvckgAUgVlcnJvckIKCghyZX'
-    'Nwb25zZQ==');
+    'Ei8KBWVycm9yGAIgASgLMhcuUXJvbWFMaWdodHNEZXZpY2VFcnJvckgAUgVlcnJvchJXChVjb2'
+    '5maWdVcGRhdGVkUmVzcG9uc2UYAyABKAsyHy5Rcm9tYUxpZ2h0c0RldmljZUNvbmZpZ1VwZGF0'
+    'ZWRIAFIVY29uZmlnVXBkYXRlZFJlc3BvbnNlQgoKCHJlc3BvbnNl');
 

@@ -1,4 +1,7 @@
 
 SetQromaDeviceName.name  max_size:30  fixed_length:true
+QromaStripCommand.setQromaStripName  max_size:20  fixed_length:true
 
 QromaLightsDeviceError.message  max_size:100  fixed_length:true
+
+QromaLightsDeviceConfigUpdated.updateDescription  max_size: 100  fixed_length:true

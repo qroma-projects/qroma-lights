@@ -12,14 +12,17 @@ void populateWithQromaStripDefaultAnimation_Ws2812FX(QromaStrip_WS2812FX_Animati
   animation->color1.red = INIT_COLOR_INTENSITY;
   animation->color1.green = INIT_COLOR_INTENSITY;
   animation->color1.blue = INIT_COLOR_INTENSITY;
+  animation->has_color1 = true;
 
   animation->color2.red = INIT_COLOR_INTENSITY;
   animation->color2.green = INIT_COLOR_INTENSITY;
   animation->color2.blue = INIT_COLOR_INTENSITY;
+  animation->has_color2 = true;
 
   animation->color3.red = INIT_COLOR_INTENSITY;
   animation->color3.green = INIT_COLOR_INTENSITY;
   animation->color3.blue = INIT_COLOR_INTENSITY;
+  animation->has_color3 = true;
 
   animation->speed = 1000;
   animation->reversed = false;

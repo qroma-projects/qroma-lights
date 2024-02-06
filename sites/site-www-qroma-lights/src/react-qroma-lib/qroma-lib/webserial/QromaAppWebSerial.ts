@@ -46,6 +46,9 @@ export const useQromaAppWebSerial =
       throw Error("sendQromaAppCommand() failure - no commandMessageType provided on IUseQromaAppWebSerialInputs")
     }
 
+    console.log("SENDING QROMA APP COMMAND");
+    console.log(appCommand);
+    
     const appMessageBytes = inputs.commandMessageType.toBinary(appCommand);
 
     const qromaCommCommand: QromaCommCommand = {
@@ -76,6 +79,8 @@ export const useQromaAppWebSerial =
   }
 
   const onConnectionChange = (latestConnection: IQromaConnectionState) => {
+    console.log("QROMA APP WEB SERIAL - ONE CONNECTION CHANGE")
+    console.log(latestConnection)
     inputs.onPortRequestResult({success: latestConnection.isWebSerialConnected});
   }
 

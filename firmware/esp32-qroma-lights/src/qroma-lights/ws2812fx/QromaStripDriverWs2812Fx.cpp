@@ -72,9 +72,21 @@ void QromaStripDriverWs2812Fx::copyQromaStripAnimation(QromaStrip_WS2812FX_Anima
   dest->speed = src->speed;
   dest->useGammaCorrection = src->useGammaCorrection;
   
-  memcpy(&(dest->color1), &(src->color1), sizeof(dest->color1));
-  memcpy(&(dest->color2), &(src->color2), sizeof(dest->color2));
-  memcpy(&(dest->color3), &(src->color3), sizeof(dest->color3));
+  dest->color1.red = src->color1.red;
+  dest->color1.green = src->color1.green;
+  dest->color1.blue = src->color1.blue;
+
+  dest->color2.red = src->color2.red;
+  dest->color2.green = src->color2.green;
+  dest->color2.blue = src->color2.blue;
+
+  dest->color3.red = src->color3.red;
+  dest->color3.green = src->color3.green;
+  dest->color3.blue = src->color3.blue;
+
+  dest->has_color1 = true;
+  dest->has_color2 = true;
+  dest->has_color3 = true;
 }
 
 

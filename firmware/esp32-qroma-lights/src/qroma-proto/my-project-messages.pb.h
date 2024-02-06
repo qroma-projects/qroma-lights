@@ -484,7 +484,7 @@ extern const pb_msgdesc_t MyProjectResponse_msg;
 #define MY_PROJECT_MESSAGES_PB_H_MAX_SIZE        MyProjectResponse_size
 #define MyProjectCommand_size                    84
 #define MyProjectDetails_size                    51
-#define MyProjectResponse_size                   319
+#define MyProjectResponse_size                   429
 #define PingRequest_size                         6
 #define PingResponse_size                        12
 #define ProgressIndicatorUpdateResponse_size     51

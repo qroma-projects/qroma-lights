@@ -12,8 +12,9 @@ message QromaStripCommand {
   QromaStrip_WS2812FX_StripIndex stripIndex = 1;
   oneof command {
     uint32 setQromaStripBrightness = 10; // 0-255
-    QromaStrip_WS2812FX_Animation setQromaStripAnimation = 11;
-    QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 12;
+    string setQromaStripName = 11;
+    QromaStrip_WS2812FX_Animation setQromaStripAnimation = 12;
+    QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 13;
   }
 }
 
@@ -47,9 +48,17 @@ message QromaLightsDeviceError {
 }
 
 
+message QromaLightsDeviceConfigUpdated {
+  uint32 updateTime = 1;
+  QromaLightsDeviceConfig updateConfig = 2;
+  string updateDescription = 3;
+}
+
+
 message QromaLightsResponse {
   oneof response {
     QromaLightsDeviceConfig qromaLightsConfigResponse = 1;
     QromaLightsDeviceError error = 2;
+    QromaLightsDeviceConfigUpdated configUpdatedResponse = 3;
   }
 }

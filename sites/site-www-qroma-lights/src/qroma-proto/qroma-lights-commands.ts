@@ -41,15 +41,21 @@ export interface QromaStripCommand {
          */
         setQromaStripBrightness: number; // 0-255
     } | {
+        oneofKind: "setQromaStripName";
+        /**
+         * @generated from protobuf field: string setQromaStripName = 11;
+         */
+        setQromaStripName: string;
+    } | {
         oneofKind: "setQromaStripAnimation";
         /**
-         * @generated from protobuf field: QromaStrip_WS2812FX_Animation setQromaStripAnimation = 11;
+         * @generated from protobuf field: QromaStrip_WS2812FX_Animation setQromaStripAnimation = 12;
          */
         setQromaStripAnimation: QromaStrip_WS2812FX_Animation;
     } | {
         oneofKind: "setQromaStripIoSettings";
         /**
-         * @generated from protobuf field: QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 12;
+         * @generated from protobuf field: QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 13;
          */
         setQromaStripIoSettings: QromaStrip_WS2812FX_IoSettings;
     } | {
@@ -104,6 +110,23 @@ export interface QromaLightsDeviceError {
     message: string;
 }
 /**
+ * @generated from protobuf message QromaLightsDeviceConfigUpdated
+ */
+export interface QromaLightsDeviceConfigUpdated {
+    /**
+     * @generated from protobuf field: uint32 updateTime = 1;
+     */
+    updateTime: number;
+    /**
+     * @generated from protobuf field: QromaLightsDeviceConfig updateConfig = 2;
+     */
+    updateConfig?: QromaLightsDeviceConfig;
+    /**
+     * @generated from protobuf field: string updateDescription = 3;
+     */
+    updateDescription: string;
+}
+/**
  * @generated from protobuf message QromaLightsResponse
  */
 export interface QromaLightsResponse {
@@ -122,6 +145,12 @@ export interface QromaLightsResponse {
          * @generated from protobuf field: QromaLightsDeviceError error = 2;
          */
         error: QromaLightsDeviceError;
+    } | {
+        oneofKind: "configUpdatedResponse";
+        /**
+         * @generated from protobuf field: QromaLightsDeviceConfigUpdated configUpdatedResponse = 3;
+         */
+        configUpdatedResponse: QromaLightsDeviceConfigUpdated;
     } | {
         oneofKind: undefined;
     };
@@ -206,8 +235,9 @@ class QromaStripCommand$Type extends MessageType<QromaStripCommand> {
         super("QromaStripCommand", [
             { no: 1, name: "stripIndex", kind: "enum", T: () => ["QromaStrip_WS2812FX_StripIndex", QromaStrip_WS2812FX_StripIndex] },
             { no: 10, name: "setQromaStripBrightness", kind: "scalar", oneof: "command", T: 13 /*ScalarType.UINT32*/ },
-            { no: 11, name: "setQromaStripAnimation", kind: "message", oneof: "command", T: () => QromaStrip_WS2812FX_Animation },
-            { no: 12, name: "setQromaStripIoSettings", kind: "message", oneof: "command", T: () => QromaStrip_WS2812FX_IoSettings }
+            { no: 11, name: "setQromaStripName", kind: "scalar", oneof: "command", T: 9 /*ScalarType.STRING*/ },
+            { no: 12, name: "setQromaStripAnimation", kind: "message", oneof: "command", T: () => QromaStrip_WS2812FX_Animation },
+            { no: 13, name: "setQromaStripIoSettings", kind: "message", oneof: "command", T: () => QromaStrip_WS2812FX_IoSettings }
         ]);
     }
     create(value?: PartialMessage<QromaStripCommand>): QromaStripCommand {
@@ -232,13 +262,19 @@ class QromaStripCommand$Type extends MessageType<QromaStripCommand> {
                         setQromaStripBrightness: reader.uint32()
                     };
                     break;
-                case /* QromaStrip_WS2812FX_Animation setQromaStripAnimation */ 11:
+                case /* string setQromaStripName */ 11:
+                    message.command = {
+                        oneofKind: "setQromaStripName",
+                        setQromaStripName: reader.string()
+                    };
+                    break;
+                case /* QromaStrip_WS2812FX_Animation setQromaStripAnimation */ 12:
                     message.command = {
                         oneofKind: "setQromaStripAnimation",
                         setQromaStripAnimation: QromaStrip_WS2812FX_Animation.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).setQromaStripAnimation)
                     };
                     break;
-                case /* QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings */ 12:
+                case /* QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings */ 13:
                     message.command = {
                         oneofKind: "setQromaStripIoSettings",
                         setQromaStripIoSettings: QromaStrip_WS2812FX_IoSettings.internalBinaryRead(reader, reader.uint32(), options, (message.command as any).setQromaStripIoSettings)
@@ -262,12 +298,15 @@ class QromaStripCommand$Type extends MessageType<QromaStripCommand> {
         /* uint32 setQromaStripBrightness = 10; */
         if (message.command.oneofKind === "setQromaStripBrightness")
             writer.tag(10, WireType.Varint).uint32(message.command.setQromaStripBrightness);
-        /* QromaStrip_WS2812FX_Animation setQromaStripAnimation = 11; */
+        /* string setQromaStripName = 11; */
+        if (message.command.oneofKind === "setQromaStripName")
+            writer.tag(11, WireType.LengthDelimited).string(message.command.setQromaStripName);
+        /* QromaStrip_WS2812FX_Animation setQromaStripAnimation = 12; */
         if (message.command.oneofKind === "setQromaStripAnimation")
-            QromaStrip_WS2812FX_Animation.internalBinaryWrite(message.command.setQromaStripAnimation, writer.tag(11, WireType.LengthDelimited).fork(), options).join();
-        /* QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 12; */
+            QromaStrip_WS2812FX_Animation.internalBinaryWrite(message.command.setQromaStripAnimation, writer.tag(12, WireType.LengthDelimited).fork(), options).join();
+        /* QromaStrip_WS2812FX_IoSettings setQromaStripIoSettings = 13; */
         if (message.command.oneofKind === "setQromaStripIoSettings")
-            QromaStrip_WS2812FX_IoSettings.internalBinaryWrite(message.command.setQromaStripIoSettings, writer.tag(12, WireType.LengthDelimited).fork(), options).join();
+            QromaStrip_WS2812FX_IoSettings.internalBinaryWrite(message.command.setQromaStripIoSettings, writer.tag(13, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -443,11 +482,74 @@ class QromaLightsDeviceError$Type extends MessageType<QromaLightsDeviceError> {
  */
 export const QromaLightsDeviceError = new QromaLightsDeviceError$Type();
 // @generated message type with reflection information, may provide speed optimized methods
+class QromaLightsDeviceConfigUpdated$Type extends MessageType<QromaLightsDeviceConfigUpdated> {
+    constructor() {
+        super("QromaLightsDeviceConfigUpdated", [
+            { no: 1, name: "updateTime", kind: "scalar", T: 13 /*ScalarType.UINT32*/ },
+            { no: 2, name: "updateConfig", kind: "message", T: () => QromaLightsDeviceConfig },
+            { no: 3, name: "updateDescription", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<QromaLightsDeviceConfigUpdated>): QromaLightsDeviceConfigUpdated {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.updateTime = 0;
+        message.updateDescription = "";
+        if (value !== undefined)
+            reflectionMergePartial<QromaLightsDeviceConfigUpdated>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: QromaLightsDeviceConfigUpdated): QromaLightsDeviceConfigUpdated {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* uint32 updateTime */ 1:
+                    message.updateTime = reader.uint32();
+                    break;
+                case /* QromaLightsDeviceConfig updateConfig */ 2:
+                    message.updateConfig = QromaLightsDeviceConfig.internalBinaryRead(reader, reader.uint32(), options, message.updateConfig);
+                    break;
+                case /* string updateDescription */ 3:
+                    message.updateDescription = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: QromaLightsDeviceConfigUpdated, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* uint32 updateTime = 1; */
+        if (message.updateTime !== 0)
+            writer.tag(1, WireType.Varint).uint32(message.updateTime);
+        /* QromaLightsDeviceConfig updateConfig = 2; */
+        if (message.updateConfig)
+            QromaLightsDeviceConfig.internalBinaryWrite(message.updateConfig, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* string updateDescription = 3; */
+        if (message.updateDescription !== "")
+            writer.tag(3, WireType.LengthDelimited).string(message.updateDescription);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message QromaLightsDeviceConfigUpdated
+ */
+export const QromaLightsDeviceConfigUpdated = new QromaLightsDeviceConfigUpdated$Type();
+// @generated message type with reflection information, may provide speed optimized methods
 class QromaLightsResponse$Type extends MessageType<QromaLightsResponse> {
     constructor() {
         super("QromaLightsResponse", [
             { no: 1, name: "qromaLightsConfigResponse", kind: "message", oneof: "response", T: () => QromaLightsDeviceConfig },
-            { no: 2, name: "error", kind: "message", oneof: "response", T: () => QromaLightsDeviceError }
+            { no: 2, name: "error", kind: "message", oneof: "response", T: () => QromaLightsDeviceError },
+            { no: 3, name: "configUpdatedResponse", kind: "message", oneof: "response", T: () => QromaLightsDeviceConfigUpdated }
         ]);
     }
     create(value?: PartialMessage<QromaLightsResponse>): QromaLightsResponse {
@@ -474,6 +576,12 @@ class QromaLightsResponse$Type extends MessageType<QromaLightsResponse> {
                         error: QromaLightsDeviceError.internalBinaryRead(reader, reader.uint32(), options, (message.response as any).error)
                     };
                     break;
+                case /* QromaLightsDeviceConfigUpdated configUpdatedResponse */ 3:
+                    message.response = {
+                        oneofKind: "configUpdatedResponse",
+                        configUpdatedResponse: QromaLightsDeviceConfigUpdated.internalBinaryRead(reader, reader.uint32(), options, (message.response as any).configUpdatedResponse)
+                    };
+                    break;
                 default:
                     let u = options.readUnknownField;
                     if (u === "throw")
@@ -492,6 +600,9 @@ class QromaLightsResponse$Type extends MessageType<QromaLightsResponse> {
         /* QromaLightsDeviceError error = 2; */
         if (message.response.oneofKind === "error")
             QromaLightsDeviceError.internalBinaryWrite(message.response.error, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* QromaLightsDeviceConfigUpdated configUpdatedResponse = 3; */
+        if (message.response.oneofKind === "configUpdatedResponse")
+            QromaLightsDeviceConfigUpdated.internalBinaryWrite(message.response.configUpdatedResponse, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

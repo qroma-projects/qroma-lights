@@ -21,6 +21,9 @@ PB_BIND(QromaLightsDeviceCommand, QromaLightsDeviceCommand, AUTO)
 PB_BIND(QromaLightsDeviceError, QromaLightsDeviceError, AUTO)
 
 
+PB_BIND(QromaLightsDeviceConfigUpdated, QromaLightsDeviceConfigUpdated, 2)
+
+
 PB_BIND(QromaLightsResponse, QromaLightsResponse, 2)
 
 

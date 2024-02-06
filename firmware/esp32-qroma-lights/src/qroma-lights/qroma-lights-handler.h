@@ -7,5 +7,9 @@
 
 void handleQromaLightsDeviceCommand(QromaLightsDeviceCommand * message, QromaLightsResponse * response);
 
+void setQromaLightsDeviceConfigUpdatedResponse(QromaLightsResponse * response, const char * updateDescription);
+void setQromaLightsDeviceConfigUpdatedResponse(QromaLightsResponse * response, const char * updateDescription, const char * followOn);
+void setQromaLightsDeviceConfigUpdatedResponse(QromaLightsResponse * response, const char * updateDescription, uint32_t followOn);
+
 
 #endif

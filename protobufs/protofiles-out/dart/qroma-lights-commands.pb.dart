@@ -71,6 +71,7 @@ class SaveQromaStrip_CurrentState extends $pb.GeneratedMessage {
 
 enum QromaStripCommand_Command {
   setQromaStripBrightness, 
+  setQromaStripName, 
   setQromaStripAnimation, 
   setQromaStripIoSettings, 
   notSet
@@ -80,6 +81,7 @@ class QromaStripCommand extends $pb.GeneratedMessage {
   factory QromaStripCommand({
     $0.QromaStrip_WS2812FX_StripIndex? stripIndex,
     $core.int? setQromaStripBrightness,
+    $core.String? setQromaStripName,
     $0.QromaStrip_WS2812FX_Animation? setQromaStripAnimation,
     $0.QromaStrip_WS2812FX_IoSettings? setQromaStripIoSettings,
   }) {
@@ -89,6 +91,9 @@ class QromaStripCommand extends $pb.GeneratedMessage {
     }
     if (setQromaStripBrightness != null) {
       $result.setQromaStripBrightness = setQromaStripBrightness;
+    }
+    if (setQromaStripName != null) {
+      $result.setQromaStripName = setQromaStripName;
     }
     if (setQromaStripAnimation != null) {
       $result.setQromaStripAnimation = setQromaStripAnimation;
@@ -104,16 +109,18 @@ class QromaStripCommand extends $pb.GeneratedMessage {
 
   static const $core.Map<$core.int, QromaStripCommand_Command> _QromaStripCommand_CommandByTag = {
     10 : QromaStripCommand_Command.setQromaStripBrightness,
-    11 : QromaStripCommand_Command.setQromaStripAnimation,
-    12 : QromaStripCommand_Command.setQromaStripIoSettings,
+    11 : QromaStripCommand_Command.setQromaStripName,
+    12 : QromaStripCommand_Command.setQromaStripAnimation,
+    13 : QromaStripCommand_Command.setQromaStripIoSettings,
     0 : QromaStripCommand_Command.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaStripCommand', createEmptyInstance: create)
-    ..oo(0, [10, 11, 12])
+    ..oo(0, [10, 11, 12, 13])
     ..e<$0.QromaStrip_WS2812FX_StripIndex>(1, _omitFieldNames ? '' : 'stripIndex', $pb.PbFieldType.OE, protoName: 'stripIndex', defaultOrMaker: $0.QromaStrip_WS2812FX_StripIndex.QSSI_NOT_SET, valueOf: $0.QromaStrip_WS2812FX_StripIndex.valueOf, enumValues: $0.QromaStrip_WS2812FX_StripIndex.values)
     ..a<$core.int>(10, _omitFieldNames ? '' : 'setQromaStripBrightness', $pb.PbFieldType.OU3, protoName: 'setQromaStripBrightness')
-    ..aOM<$0.QromaStrip_WS2812FX_Animation>(11, _omitFieldNames ? '' : 'setQromaStripAnimation', protoName: 'setQromaStripAnimation', subBuilder: $0.QromaStrip_WS2812FX_Animation.create)
-    ..aOM<$0.QromaStrip_WS2812FX_IoSettings>(12, _omitFieldNames ? '' : 'setQromaStripIoSettings', protoName: 'setQromaStripIoSettings', subBuilder: $0.QromaStrip_WS2812FX_IoSettings.create)
+    ..aOS(11, _omitFieldNames ? '' : 'setQromaStripName', protoName: 'setQromaStripName')
+    ..aOM<$0.QromaStrip_WS2812FX_Animation>(12, _omitFieldNames ? '' : 'setQromaStripAnimation', protoName: 'setQromaStripAnimation', subBuilder: $0.QromaStrip_WS2812FX_Animation.create)
+    ..aOM<$0.QromaStrip_WS2812FX_IoSettings>(13, _omitFieldNames ? '' : 'setQromaStripIoSettings', protoName: 'setQromaStripIoSettings', subBuilder: $0.QromaStrip_WS2812FX_IoSettings.create)
     ..hasRequiredFields = false
   ;
 
@@ -160,26 +167,35 @@ class QromaStripCommand extends $pb.GeneratedMessage {
   void clearSetQromaStripBrightness() => clearField(10);
 
   @$pb.TagNumber(11)
-  $0.QromaStrip_WS2812FX_Animation get setQromaStripAnimation => $_getN(2);
+  $core.String get setQromaStripName => $_getSZ(2);
   @$pb.TagNumber(11)
-  set setQromaStripAnimation($0.QromaStrip_WS2812FX_Animation v) { setField(11, v); }
+  set setQromaStripName($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(11)
-  $core.bool hasSetQromaStripAnimation() => $_has(2);
+  $core.bool hasSetQromaStripName() => $_has(2);
   @$pb.TagNumber(11)
-  void clearSetQromaStripAnimation() => clearField(11);
-  @$pb.TagNumber(11)
-  $0.QromaStrip_WS2812FX_Animation ensureSetQromaStripAnimation() => $_ensure(2);
+  void clearSetQromaStripName() => clearField(11);
 
   @$pb.TagNumber(12)
-  $0.QromaStrip_WS2812FX_IoSettings get setQromaStripIoSettings => $_getN(3);
+  $0.QromaStrip_WS2812FX_Animation get setQromaStripAnimation => $_getN(3);
   @$pb.TagNumber(12)
-  set setQromaStripIoSettings($0.QromaStrip_WS2812FX_IoSettings v) { setField(12, v); }
+  set setQromaStripAnimation($0.QromaStrip_WS2812FX_Animation v) { setField(12, v); }
   @$pb.TagNumber(12)
-  $core.bool hasSetQromaStripIoSettings() => $_has(3);
+  $core.bool hasSetQromaStripAnimation() => $_has(3);
   @$pb.TagNumber(12)
-  void clearSetQromaStripIoSettings() => clearField(12);
+  void clearSetQromaStripAnimation() => clearField(12);
   @$pb.TagNumber(12)
-  $0.QromaStrip_WS2812FX_IoSettings ensureSetQromaStripIoSettings() => $_ensure(3);
+  $0.QromaStrip_WS2812FX_Animation ensureSetQromaStripAnimation() => $_ensure(3);
+
+  @$pb.TagNumber(13)
+  $0.QromaStrip_WS2812FX_IoSettings get setQromaStripIoSettings => $_getN(4);
+  @$pb.TagNumber(13)
+  set setQromaStripIoSettings($0.QromaStrip_WS2812FX_IoSettings v) { setField(13, v); }
+  @$pb.TagNumber(13)
+  $core.bool hasSetQromaStripIoSettings() => $_has(4);
+  @$pb.TagNumber(13)
+  void clearSetQromaStripIoSettings() => clearField(13);
+  @$pb.TagNumber(13)
+  $0.QromaStrip_WS2812FX_IoSettings ensureSetQromaStripIoSettings() => $_ensure(4);
 }
 
 class SetQromaDeviceName extends $pb.GeneratedMessage {
@@ -381,9 +397,90 @@ class QromaLightsDeviceError extends $pb.GeneratedMessage {
   void clearMessage() => clearField(1);
 }
 
+class QromaLightsDeviceConfigUpdated extends $pb.GeneratedMessage {
+  factory QromaLightsDeviceConfigUpdated({
+    $core.int? updateTime,
+    $0.QromaLightsDeviceConfig? updateConfig,
+    $core.String? updateDescription,
+  }) {
+    final $result = create();
+    if (updateTime != null) {
+      $result.updateTime = updateTime;
+    }
+    if (updateConfig != null) {
+      $result.updateConfig = updateConfig;
+    }
+    if (updateDescription != null) {
+      $result.updateDescription = updateDescription;
+    }
+    return $result;
+  }
+  QromaLightsDeviceConfigUpdated._() : super();
+  factory QromaLightsDeviceConfigUpdated.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory QromaLightsDeviceConfigUpdated.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaLightsDeviceConfigUpdated', createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'updateTime', $pb.PbFieldType.OU3, protoName: 'updateTime')
+    ..aOM<$0.QromaLightsDeviceConfig>(2, _omitFieldNames ? '' : 'updateConfig', protoName: 'updateConfig', subBuilder: $0.QromaLightsDeviceConfig.create)
+    ..aOS(3, _omitFieldNames ? '' : 'updateDescription', protoName: 'updateDescription')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  QromaLightsDeviceConfigUpdated clone() => QromaLightsDeviceConfigUpdated()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  QromaLightsDeviceConfigUpdated copyWith(void Function(QromaLightsDeviceConfigUpdated) updates) => super.copyWith((message) => updates(message as QromaLightsDeviceConfigUpdated)) as QromaLightsDeviceConfigUpdated;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static QromaLightsDeviceConfigUpdated create() => QromaLightsDeviceConfigUpdated._();
+  QromaLightsDeviceConfigUpdated createEmptyInstance() => create();
+  static $pb.PbList<QromaLightsDeviceConfigUpdated> createRepeated() => $pb.PbList<QromaLightsDeviceConfigUpdated>();
+  @$core.pragma('dart2js:noInline')
+  static QromaLightsDeviceConfigUpdated getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<QromaLightsDeviceConfigUpdated>(create);
+  static QromaLightsDeviceConfigUpdated? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get updateTime => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set updateTime($core.int v) { $_setUnsignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasUpdateTime() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUpdateTime() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $0.QromaLightsDeviceConfig get updateConfig => $_getN(1);
+  @$pb.TagNumber(2)
+  set updateConfig($0.QromaLightsDeviceConfig v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasUpdateConfig() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearUpdateConfig() => clearField(2);
+  @$pb.TagNumber(2)
+  $0.QromaLightsDeviceConfig ensureUpdateConfig() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.String get updateDescription => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set updateDescription($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUpdateDescription() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUpdateDescription() => clearField(3);
+}
+
 enum QromaLightsResponse_Response {
   qromaLightsConfigResponse, 
   error, 
+  configUpdatedResponse, 
   notSet
 }
 
@@ -391,6 +488,7 @@ class QromaLightsResponse extends $pb.GeneratedMessage {
   factory QromaLightsResponse({
     $0.QromaLightsDeviceConfig? qromaLightsConfigResponse,
     QromaLightsDeviceError? error,
+    QromaLightsDeviceConfigUpdated? configUpdatedResponse,
   }) {
     final $result = create();
     if (qromaLightsConfigResponse != null) {
@@ -398,6 +496,9 @@ class QromaLightsResponse extends $pb.GeneratedMessage {
     }
     if (error != null) {
       $result.error = error;
+    }
+    if (configUpdatedResponse != null) {
+      $result.configUpdatedResponse = configUpdatedResponse;
     }
     return $result;
   }
@@ -408,12 +509,14 @@ class QromaLightsResponse extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, QromaLightsResponse_Response> _QromaLightsResponse_ResponseByTag = {
     1 : QromaLightsResponse_Response.qromaLightsConfigResponse,
     2 : QromaLightsResponse_Response.error,
+    3 : QromaLightsResponse_Response.configUpdatedResponse,
     0 : QromaLightsResponse_Response.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'QromaLightsResponse', createEmptyInstance: create)
-    ..oo(0, [1, 2])
+    ..oo(0, [1, 2, 3])
     ..aOM<$0.QromaLightsDeviceConfig>(1, _omitFieldNames ? '' : 'qromaLightsConfigResponse', protoName: 'qromaLightsConfigResponse', subBuilder: $0.QromaLightsDeviceConfig.create)
     ..aOM<QromaLightsDeviceError>(2, _omitFieldNames ? '' : 'error', subBuilder: QromaLightsDeviceError.create)
+    ..aOM<QromaLightsDeviceConfigUpdated>(3, _omitFieldNames ? '' : 'configUpdatedResponse', protoName: 'configUpdatedResponse', subBuilder: QromaLightsDeviceConfigUpdated.create)
     ..hasRequiredFields = false
   ;
 
@@ -462,6 +565,17 @@ class QromaLightsResponse extends $pb.GeneratedMessage {
   void clearError() => clearField(2);
   @$pb.TagNumber(2)
   QromaLightsDeviceError ensureError() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  QromaLightsDeviceConfigUpdated get configUpdatedResponse => $_getN(2);
+  @$pb.TagNumber(3)
+  set configUpdatedResponse(QromaLightsDeviceConfigUpdated v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasConfigUpdatedResponse() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearConfigUpdatedResponse() => clearField(3);
+  @$pb.TagNumber(3)
+  QromaLightsDeviceConfigUpdated ensureConfigUpdatedResponse() => $_ensure(2);
 }
 
 
