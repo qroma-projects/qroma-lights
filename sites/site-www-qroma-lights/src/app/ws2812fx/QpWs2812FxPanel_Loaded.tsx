@@ -24,7 +24,6 @@ type QpWs2812FxPanel_LoadedProps = {
   tabIndex: number
   onSetTabIndex: (newTabIndex: number) => void
 
-  refreshConfig: (delayInMs: number) => void
   isConfigChanged: boolean
   notifyConfigChanged: () => void
   saveConfig: () => void
@@ -246,7 +245,6 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
   const setNewQromaStripName = async (name: string) => {
     props.notifyConfigChanged();
     props.qromaLightsApi.setStripName(props.stripIndex, name);
-    props.refreshConfig(250);
   }
 
   

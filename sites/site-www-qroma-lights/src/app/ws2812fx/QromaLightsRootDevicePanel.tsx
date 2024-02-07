@@ -11,7 +11,6 @@ import { Stack } from '@mui/material';
 export interface IQromaLightsRootDevicePanelProps {
   qromaLightsApi: IQromaLightsApi
   qldConfig: QromaLightsDeviceConfig
-  refreshConfig: (delayInMs: number) => void
   setActiveQromaStripPathIndex: (activeQromaStripPathIndex: QromaStrip_WS2812FX_StripIndex) => void
   
   isConfigChanged: boolean
@@ -35,7 +34,6 @@ export const QromaLightsRootDevicePanel = (props: IQromaLightsRootDevicePanelPro
   const setNewDeviceName = async (newValue: string) => {
     props.notifyConfigChanged();
     props.qromaLightsApi.setDeviceName(newValue);
-    props.refreshConfig(250);
   }
 
 

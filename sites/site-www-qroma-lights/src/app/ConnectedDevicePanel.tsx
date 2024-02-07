@@ -30,7 +30,14 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
   };
 
   useEffect(() => {
+    const unsubscribeFn = props.qromaLightsApi
+      .subscribeToConfig((latestConfig) => {
+        setQldConfig(latestConfig);
+      });
+
     refreshConfig(0);
+
+    return unsubscribeFn;
   }, []);
 
   if (!qldConfig) {
@@ -52,7 +59,6 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
         <QromaLightsRootDevicePanel 
           qromaLightsApi={props.qromaLightsApi}
           qldConfig={qldConfig}
-          refreshConfig={refreshConfig}
           setActiveQromaStripPathIndex={setActiveQromaStripPathIndex}
           isConfigChanged={configChanged}
           notifyConfigChanged={() => { setConfigChanged(true); }}
@@ -63,7 +69,6 @@ export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
           qromaLightsApi={props.qromaLightsApi}
           qldConfig={qldConfig}
           assignedStripIndex={activeQromaStripPathIndex}
-          refreshConfig={refreshConfig}
           setActiveQromaStripPathIndex={setActiveQromaStripPathIndex}
           isConfigChanged={configChanged}
           notifyConfigChanged={() => { setConfigChanged(true); }}

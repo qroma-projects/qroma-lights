@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IQromaConnectionState, PortRequestResult, QromaCommResponse, sleep, useQromaAppWebSerial } from "../../react-qroma-lib";
 import { MyProjectCommand, MyProjectResponse } from "../../qroma-proto/my-project-messages";
-import { NoArgCommands_QromaLightsDeviceCommand } from "../../qroma-proto/qroma-lights-commands";
+import { NoArgCommands_QromaLightsDeviceCommand, QromaLightsDeviceConfigUpdated } from "../../qroma-proto/qroma-lights-commands";
 import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_Animation, QromaStrip_WS2812FX_IoSettings, QromaStrip_WS2812FX_StripIndex } from "../../qroma-proto/qroma-lights-types";
 
 
@@ -10,6 +10,8 @@ export interface IQromaLightsApi {
 
   connectionState: IQromaConnectionState
   getQromaLightsDeviceConfig: () => Promise<QromaLightsDeviceConfig | undefined>
+
+  subscribeToConfig: (configUpdateFn: (latestConfig: QromaLightsDeviceConfig) => void) => () => void
 
   setDeviceName: (deviceName: string) => void
 
@@ -36,7 +38,7 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
   let _latestResponse: QromaCommResponse | undefined = undefined;
   let _latestAppResponse: MyProjectResponse | undefined = undefined;
 
-  let _qromaLightsDeviceConfig: QromaLightsDeviceConfig | undefined = undefined;
+  const _deviceConfigSubscribers: { (latestConfig: QromaLightsDeviceConfig): void}[] = []
 
   const setLatestResponse = (message: QromaCommResponse) => {
     _latestResponse = message;
@@ -54,6 +56,27 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
     setLatestAppResponse(appMessage);
     console.log("LATEST APP RESPONSE")
     console.log(appMessage)
+
+    if (appMessage.response.oneofKind === 'qromaLightsResponse' &&
+        appMessage.response.qromaLightsResponse.response.oneofKind === 'qromaLightsConfigResponse')
+    {
+      const latestConfig = appMessage.response.qromaLightsResponse.response.qromaLightsConfigResponse as QromaLightsDeviceConfig;
+      _deviceConfigSubscribers.forEach(s => {
+        s(latestConfig);
+      });
+      return;
+    }
+
+    if (appMessage.response.oneofKind === 'qromaLightsResponse' &&
+        appMessage.response.qromaLightsResponse.response.oneofKind === 'configUpdatedResponse')
+    {
+      const configUpdatedResponse = appMessage.response.qromaLightsResponse.response.configUpdatedResponse as QromaLightsDeviceConfigUpdated;
+      const latestConfig = configUpdatedResponse.updateConfig;
+      _deviceConfigSubscribers.forEach(s => {
+        s(latestConfig);
+      })
+      return;
+    }
   }
 
   const clearLatestAppResponse = () => {
@@ -79,9 +102,17 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
 
   const startMonitoring = async () => {
     qromaAppWebSerial.startMonitoring();
-    const config = await getQromaLightsDeviceConfig();
-    console.log("START MONITORING - CONFIG");
-    console.log(config)
+  }
+
+  const subscribeToConfig = (configUpdateFn: (latestConfig: QromaLightsDeviceConfig) => void) => {
+    _deviceConfigSubscribers.push(configUpdateFn);
+    return () => {
+      _deviceConfigSubscribers.forEach( (subscriber, index) => {
+        if (subscriber === configUpdateFn) {
+          _deviceConfigSubscribers.splice(index, 1);
+        }
+      })
+    }
   }
 
 
@@ -280,6 +311,7 @@ export const useQromaLightsApi = (): IQromaLightsApi => {
     init: startMonitoring,
     connectionState: qromaAppWebSerial.getConnectionState(),
     getQromaLightsDeviceConfig,
+    subscribeToConfig,
     
     setDeviceName,
 
