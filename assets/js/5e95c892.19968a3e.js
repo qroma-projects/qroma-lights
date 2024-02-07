@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite_www_qroma_project=self.webpackChunksite_www_qroma_project||[]).push([[4304],{3564:(e,r,s)=>{s.r(r),s.d(r,{default:()=>n});s(1504);var c=s(4064),t=s(5756),a=s(5864),u=s(5464),w=s(8832),o=s(7624);function n(e){return(0,o.jsx)(t.cr,{className:(0,c.c)(a.W.wrapper.docsPages),children:(0,o.jsx)(w.c,{children:(0,u.k)(e.route.routes)})})}}}]);
