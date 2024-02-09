@@ -36,6 +36,10 @@ export const QromaLightsShareAnimationComponent = () => {
   console.log(PATTERN_LABELS)
   console.log(PATTERN_VALUES)
 
+  const color1Hex = convertQromaStripColorToHexColor(animation.color1);
+  const color2Hex = convertQromaStripColorToHexColor(animation.color2);
+  const color3Hex = convertQromaStripColorToHexColor(animation.color3);
+
 
   return (
     <>
@@ -53,9 +57,29 @@ export const QromaLightsShareAnimationComponent = () => {
           <div>
             <div>Name: {shareableAnimation.name}</div>
             <div>Pattern: {PATTERN_LABELS[animation.pattern]}</div>
-            <div>Color 1: {convertQromaStripColorToHexColor(animation.color1)}</div>
-            <div>Color 2: {convertQromaStripColorToHexColor(animation.color2)}</div>
-            <div>Color 3: {convertQromaStripColorToHexColor(animation.color3)}</div>
+
+            <div>
+              <span style={{marginLeft: 5, marginRight: 10}}>
+                <svg height={20} width={20}><circle cx="10" cy="10" r="10" fill={color1Hex} /> </svg>
+              </span>
+              Color 1:
+              {color1Hex}
+            </div>
+            <div>
+              <span style={{marginLeft: 5, marginRight: 10}}>
+                <svg height={20} width={20}><circle cx="10" cy="10" r="10" fill={color2Hex} /> </svg>
+              </span>
+              Color 2: 
+              {color2Hex}
+            </div>
+            <div>
+              <span style={{marginLeft: 5, marginRight: 10}}>
+                <svg height={20} width={20}><circle cx="10" cy="10" r="10" fill={color3Hex} /> </svg>
+              </span>
+              Color 3: 
+              {color3Hex}
+            </div>
+
             <div>Pixel Speed: {animation.speed}</div>
             <div>Fade Speed: {FADE_SPEED_LABELS[animation.fadeSpeed]}</div>
             <div>Pixel Size: {PIXEL_SIZE_LABELS[animation.size]}</div>
