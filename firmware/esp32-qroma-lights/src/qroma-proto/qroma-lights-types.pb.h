@@ -181,6 +181,12 @@ typedef struct _QromaLightsDeviceConfig {
     QromaStripConfig qromaStrip2Config;
 } QromaLightsDeviceConfig;
 
+typedef struct _ShareableAnimation {
+    char name[30];
+    bool has_animation;
+    QromaStrip_WS2812FX_Animation animation;
+} ShareableAnimation;
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -222,17 +228,20 @@ extern "C" {
 
 
 
+
 /* Initializer values for message structs */
 #define QromaStripColor_init_default             {0, 0, 0}
 #define QromaStrip_WS2812FX_Animation_init_default {_QromaStrip_WS2812FX_Pattern_MIN, 0, false, QromaStripColor_init_default, false, QromaStripColor_init_default, false, QromaStripColor_init_default, 0, _QromaStrip_WS2812FX_FadeSpeed_MIN, _QromaStrip_WS2812FX_PixelsSize_MIN, 0}
 #define QromaStrip_WS2812FX_IoSettings_init_default {0, 0, _QromaStrip_WS2812FX_NeoPixelRgbOrder_MIN, _QromaStrip_WS2812FX_NeoPixelTxRate_MIN}
 #define QromaStripConfig_init_default            {"", 0, false, QromaStrip_WS2812FX_IoSettings_init_default, false, QromaStrip_WS2812FX_Animation_init_default}
 #define QromaLightsDeviceConfig_init_default     {"", false, QromaStripConfig_init_default, false, QromaStripConfig_init_default}
+#define ShareableAnimation_init_default          {"", false, QromaStrip_WS2812FX_Animation_init_default}
 #define QromaStripColor_init_zero                {0, 0, 0}
 #define QromaStrip_WS2812FX_Animation_init_zero  {_QromaStrip_WS2812FX_Pattern_MIN, 0, false, QromaStripColor_init_zero, false, QromaStripColor_init_zero, false, QromaStripColor_init_zero, 0, _QromaStrip_WS2812FX_FadeSpeed_MIN, _QromaStrip_WS2812FX_PixelsSize_MIN, 0}
 #define QromaStrip_WS2812FX_IoSettings_init_zero {0, 0, _QromaStrip_WS2812FX_NeoPixelRgbOrder_MIN, _QromaStrip_WS2812FX_NeoPixelTxRate_MIN}
 #define QromaStripConfig_init_zero               {"", 0, false, QromaStrip_WS2812FX_IoSettings_init_zero, false, QromaStrip_WS2812FX_Animation_init_zero}
 #define QromaLightsDeviceConfig_init_zero        {"", false, QromaStripConfig_init_zero, false, QromaStripConfig_init_zero}
+#define ShareableAnimation_init_zero             {"", false, QromaStrip_WS2812FX_Animation_init_zero}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define QromaStripColor_red_tag                  1
@@ -258,6 +267,8 @@ extern "C" {
 #define QromaLightsDeviceConfig_deviceName_tag   1
 #define QromaLightsDeviceConfig_qromaStrip1Config_tag 2
 #define QromaLightsDeviceConfig_qromaStrip2Config_tag 3
+#define ShareableAnimation_name_tag              1
+#define ShareableAnimation_animation_tag         2
 
 /* Struct field encoding specification for nanopb */
 #define QromaStripColor_FIELDLIST(X, a) \
@@ -310,11 +321,19 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  qromaStrip2Config,   3)
 #define QromaLightsDeviceConfig_qromaStrip1Config_MSGTYPE QromaStripConfig
 #define QromaLightsDeviceConfig_qromaStrip2Config_MSGTYPE QromaStripConfig
 
+#define ShareableAnimation_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, STRING,   name,              1) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  animation,         2)
+#define ShareableAnimation_CALLBACK NULL
+#define ShareableAnimation_DEFAULT NULL
+#define ShareableAnimation_animation_MSGTYPE QromaStrip_WS2812FX_Animation
+
 extern const pb_msgdesc_t QromaStripColor_msg;
 extern const pb_msgdesc_t QromaStrip_WS2812FX_Animation_msg;
 extern const pb_msgdesc_t QromaStrip_WS2812FX_IoSettings_msg;
 extern const pb_msgdesc_t QromaStripConfig_msg;
 extern const pb_msgdesc_t QromaLightsDeviceConfig_msg;
+extern const pb_msgdesc_t ShareableAnimation_msg;
 
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
 #define QromaStripColor_fields &QromaStripColor_msg
@@ -322,6 +341,7 @@ extern const pb_msgdesc_t QromaLightsDeviceConfig_msg;
 #define QromaStrip_WS2812FX_IoSettings_fields &QromaStrip_WS2812FX_IoSettings_msg
 #define QromaStripConfig_fields &QromaStripConfig_msg
 #define QromaLightsDeviceConfig_fields &QromaLightsDeviceConfig_msg
+#define ShareableAnimation_fields &ShareableAnimation_msg
 
 /* Maximum encoded size of messages (where known) */
 #define QROMA_LIGHTS_TYPES_PB_H_MAX_SIZE         QromaLightsDeviceConfig_size
@@ -330,6 +350,7 @@ extern const pb_msgdesc_t QromaLightsDeviceConfig_msg;
 #define QromaStripConfig_size                    133
 #define QromaStrip_WS2812FX_Animation_size       76
 #define QromaStrip_WS2812FX_IoSettings_size      16
+#define ShareableAnimation_size                  109
 
 #ifdef __cplusplus
 } /* extern "C" */

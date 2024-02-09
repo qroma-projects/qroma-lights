@@ -21,6 +21,9 @@ PB_BIND(QromaStripConfig, QromaStripConfig, AUTO)
 PB_BIND(QromaLightsDeviceConfig, QromaLightsDeviceConfig, 2)
 
 
+PB_BIND(ShareableAnimation, ShareableAnimation, AUTO)
+
+
 
 
 

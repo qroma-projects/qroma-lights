@@ -1,3 +1,4 @@
+import { QromaStripColor } from "../qroma-proto/qroma-lights-types";
 
 export const convertHexColorToRgbBytes = (hexColor: string): Uint8Array => {
   let hex = hexColor;
@@ -38,6 +39,11 @@ export const convertRgbBytesToHexColor = (r: number, g: number, b: number): stri
   let hex = "#" + rHex + gHex + bHex;
 
   return hex;
+}
+
+
+export const convertQromaStripColorToHexColor = (color: QromaStripColor): string => {
+  return convertRgbBytesToHexColor(color.red, color.green, color.blue);
 }
 
 

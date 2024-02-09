@@ -322,3 +322,17 @@ final $typed_data.Uint8List qromaLightsDeviceConfigDescriptor = $convert.base64D
     'dHJpcDFDb25maWcSPwoRcXJvbWFTdHJpcDJDb25maWcYAyABKAsyES5Rcm9tYVN0cmlwQ29uZm'
     'lnUhFxcm9tYVN0cmlwMkNvbmZpZw==');
 
+@$core.Deprecated('Use shareableAnimationDescriptor instead')
+const ShareableAnimation$json = {
+  '1': 'ShareableAnimation',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'animation', '3': 2, '4': 1, '5': 11, '6': '.QromaStrip_WS2812FX_Animation', '10': 'animation'},
+  ],
+};
+
+/// Descriptor for `ShareableAnimation`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List shareableAnimationDescriptor = $convert.base64Decode(
+    'ChJTaGFyZWFibGVBbmltYXRpb24SEgoEbmFtZRgBIAEoCVIEbmFtZRI8CglhbmltYXRpb24YAi'
+    'ABKAsyHi5Rcm9tYVN0cmlwX1dTMjgxMkZYX0FuaW1hdGlvblIJYW5pbWF0aW9u');
+

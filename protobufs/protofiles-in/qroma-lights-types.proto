@@ -172,3 +172,9 @@ message QromaLightsDeviceConfig {
   QromaStripConfig qromaStrip1Config = 2;
   QromaStripConfig qromaStrip2Config = 3;
 }
+
+
+message ShareableAnimation {
+  string name = 1;
+  QromaStrip_WS2812FX_Animation animation = 2;
+}

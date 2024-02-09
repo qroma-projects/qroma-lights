@@ -6,12 +6,12 @@ import { sleep } from '../react-qroma-lib';
 import { QromaLightsDeviceConfig, QromaStrip_WS2812FX_StripIndex } from '../qroma-proto/qroma-lights-types';
 
 
-export interface IConnectedDevicePanelProps {
+export interface IConnectedQromaLightsPanelProps {
   qromaLightsApi: IQromaLightsApi
 }
 
 
-export const ConnectedDevicePanel = (props: IConnectedDevicePanelProps) => {
+export const ConnectedQromaLightsPanel = (props: IConnectedQromaLightsPanelProps) => {
 
   const [qldConfig, setQldConfig] = useState(undefined as QromaLightsDeviceConfig | undefined);
   const [activeQromaStripPathIndex, setActiveQromaStripPathIndex] = useState(QromaStrip_WS2812FX_StripIndex.QSSI_NOT_SET);

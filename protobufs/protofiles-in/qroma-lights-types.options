@@ -1,3 +1,4 @@
 
 QromaStripConfig.name  max_size:30  fixed_length:true
 QromaLightsDeviceConfig.deviceName  max_size:40  fixed_length:true
+ShareableAnimation.name  max_size:30  fixed_length:true

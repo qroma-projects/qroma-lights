@@ -1,23 +1,25 @@
 import React from 'react';
 import { ConnectToDevicePanel } from './ConnectToDevicePanel';
-import { ConnectedDevicePanel } from './ConnectedDevicePanel';
-import { useQromaLightsApi } from './api/QromaLightsApi';
+import { IQromaLightsApi, useQromaLightsApi } from './api/QromaLightsApi';
 
 
-export const DeviceConnectionPanel = () => {
+export interface IDeviceConnectionPanelProps {
+  children?: React.ReactNode
+  qromaLightsApi: IQromaLightsApi
+}
 
-  const qromaLightsApi = useQromaLightsApi();
 
-  if (qromaLightsApi.connectionState.isWebSerialConnected) {
-    return (
-      <ConnectedDevicePanel
-        qromaLightsApi={qromaLightsApi}
-        />
-    )
+export const DeviceConnectionPanel = (props: IDeviceConnectionPanelProps): JSX.Element => {
+
+  if (props.qromaLightsApi.connectionState.isWebSerialConnected) {
+    return <>{
+      props.children
+    }</>
+
   } else {
     return (
       <ConnectToDevicePanel
-        qromaLightsApi={qromaLightsApi}
+        qromaLightsApi={props.qromaLightsApi}
         />
     )
   }

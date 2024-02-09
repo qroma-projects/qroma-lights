@@ -128,6 +128,19 @@ export interface QromaLightsDeviceConfig {
     qromaStrip2Config?: QromaStripConfig;
 }
 /**
+ * @generated from protobuf message ShareableAnimation
+ */
+export interface ShareableAnimation {
+    /**
+     * @generated from protobuf field: string name = 1;
+     */
+    name: string;
+    /**
+     * @generated from protobuf field: QromaStrip_WS2812FX_Animation animation = 2;
+     */
+    animation?: QromaStrip_WS2812FX_Animation;
+}
+/**
  * @generated from protobuf enum QromaStrip_WS2812FX_Pattern
  */
 export enum QromaStrip_WS2812FX_Pattern {
@@ -957,3 +970,57 @@ class QromaLightsDeviceConfig$Type extends MessageType<QromaLightsDeviceConfig> 
  * @generated MessageType for protobuf message QromaLightsDeviceConfig
  */
 export const QromaLightsDeviceConfig = new QromaLightsDeviceConfig$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class ShareableAnimation$Type extends MessageType<ShareableAnimation> {
+    constructor() {
+        super("ShareableAnimation", [
+            { no: 1, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "animation", kind: "message", T: () => QromaStrip_WS2812FX_Animation }
+        ]);
+    }
+    create(value?: PartialMessage<ShareableAnimation>): ShareableAnimation {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.name = "";
+        if (value !== undefined)
+            reflectionMergePartial<ShareableAnimation>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ShareableAnimation): ShareableAnimation {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string name */ 1:
+                    message.name = reader.string();
+                    break;
+                case /* QromaStrip_WS2812FX_Animation animation */ 2:
+                    message.animation = QromaStrip_WS2812FX_Animation.internalBinaryRead(reader, reader.uint32(), options, message.animation);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: ShareableAnimation, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string name = 1; */
+        if (message.name !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.name);
+        /* QromaStrip_WS2812FX_Animation animation = 2; */
+        if (message.animation)
+            QromaStrip_WS2812FX_Animation.internalBinaryWrite(message.animation, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message ShareableAnimation
+ */
+export const ShareableAnimation = new ShareableAnimation$Type();

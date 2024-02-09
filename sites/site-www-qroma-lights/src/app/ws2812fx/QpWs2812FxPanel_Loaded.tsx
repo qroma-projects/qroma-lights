@@ -12,9 +12,12 @@ import {
   QromaStrip_WS2812FX_NeoPixelTxRate,
   QromaStrip_WS2812FX_Pattern,
   QromaStrip_WS2812FX_PixelsSize,
-  QromaStrip_WS2812FX_StripIndex
+  QromaStrip_WS2812FX_StripIndex,
+  ShareableAnimation
 } from '../../qroma-proto/qroma-lights-types';
 import { DoValidationResponse, QInputAValueDialog } from '../../react-qroma-mui/input-controls/QInputAValueDialog';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import { convertBinaryToBase64 } from '../../react-qroma-lib/qroma-lib/utils';
 
 
 type QpWs2812FxPanel_LoadedProps = {
@@ -65,12 +68,10 @@ function a11yProps(index: number) {
 
 export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
   
-  // const [ws2812fxConfig, setWs2812fxConfig] = useState(props.config);
   const ws2812fxConfig = props.config;
 
-  // const [isSaveAnimationCommandModalOpen, setIsSaveAnimationCommandModalOpen] = useState(false);
-  // const [isSaveQromaPointConfigurationModalOpen, setIsSaveQromaPointConfigurationModalOpen] = useState(false);
   const [isRenameDialogOpen, setIsRenameDialogOpen] = useState(false);
+  const [isShareAnimationDialogOpen, setIsShareAnimationDialogOpen] = useState(false);
 
   console.log("SHOWING QpWs2812FxPanel_Loaded")
   console.log(props)
@@ -247,6 +248,31 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
     props.qromaLightsApi.setStripName(props.stripIndex, name);
   }
 
+  const shareableAnimationUrlRoot = useBaseUrl("app/apply-animation/#/");
+
+  const startShareAnimation = () => {
+    setIsShareAnimationDialogOpen(true);
+  }
+
+  const onCloseShareDialog = () => {
+    setIsShareAnimationDialogOpen(false);
+  }
+
+  const doShareAnimation = (name: string) => {
+    const shareableAnimationData: ShareableAnimation = {
+      name,
+      animation,
+    };
+    console.log("SHAREABLE ANIMATION")
+    console.log(shareableAnimationData)
+
+    const shareableAnimationBytes = ShareableAnimation.toBinary(shareableAnimationData);
+    const messageBase64 = convertBinaryToBase64(shareableAnimationBytes);
+    const shareableAnimationUrl = shareableAnimationUrlRoot + messageBase64;
+
+    window.open(shareableAnimationUrl, "_blank");
+  }
+
   
   return (
     <>
@@ -269,6 +295,28 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
         onHandleClose={onCloseRenameDialog}
         key={"rename-qroma-strip-" + props.config.name}
         />
+      
+      <QInputAValueDialog 
+        isOpen={isShareAnimationDialogOpen}
+        title={'Name Animation to Share'} 
+        inputLabel={'Name'} 
+        initValue={props.config.name}
+        commitButtonLabel={'Share'} 
+        doValidation={(latestValue: string): DoValidationResponse => {
+          return {
+            isValidValue: latestValue.length > 0,
+            validationMessage: latestValue.length > 0 ? undefined : "Animation must have a name"
+          } as DoValidationResponse;
+        }}
+        onHandleCommit={(name: string): void => {
+          doShareAnimation(name);
+          // setNewQromaStripName(name);
+          onCloseShareDialog();
+        }}
+        onHandleClose={onCloseRenameDialog}
+        key={"rename-qroma-strip-" + props.config.name}
+        />
+
 
       <Tabs value={props.tabIndex} onChange={handleChange} aria-label="basic tabs example">
         <Tab label="Color" {...a11yProps(0)} />
@@ -284,6 +332,7 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
 
           saveConfig={props.saveConfig}
           renameQromaStrip={() => setIsRenameDialogOpen(true) }
+          shareAnimation={startShareAnimation}
           />
       </TabPanel>
       <TabPanel value={props.tabIndex} index={1}>
@@ -309,6 +358,7 @@ export const QpWs2812FxPanel_Loaded = (props: QpWs2812FxPanel_LoadedProps) => {
 
           saveConfig={props.saveConfig}
           renameQromaStrip={() => setIsRenameDialogOpen(true) }
+          shareAnimation={startShareAnimation}
           />
       </TabPanel>
       <TabPanel value={props.tabIndex} index={2}>

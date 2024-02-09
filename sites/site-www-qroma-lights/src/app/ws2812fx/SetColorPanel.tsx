@@ -4,6 +4,7 @@ import { QCheckbox } from '../../react-qroma-mui/input-controls/QCheckbox';
 import { QButton } from '../../react-qroma-mui/input-controls/QButton';
 import { Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import ShareIcon from '@mui/icons-material/Share';
 import { QTheme } from '../../react-qroma-mui/input-controls/theme';
 
 
@@ -16,6 +17,7 @@ type SetColorPanelProps = {
   
   saveConfig: () => void
   renameQromaStrip: () => void
+  shareAnimation: () => void
 }
 
 
@@ -66,6 +68,15 @@ export const SetColorPanel = (props: SetColorPanelProps) => {
           onClick={() => { props.saveConfig(); }}
           >
           Save
+        </QButton>
+        <QButton
+          sx={{
+            marginTop: "10px",
+            marginLeft: "10px",
+          }}
+          onClick={() => { props.shareAnimation(); }}
+          >
+          Share <ShareIcon />
         </QButton>
       </Stack>
     </>

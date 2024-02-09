@@ -9,6 +9,8 @@ import { QButton } from '../../react-qroma-mui/input-controls/QButton';
 import { QromaStrip_WS2812FX_FadeSpeed, QromaStrip_WS2812FX_Pattern, QromaStrip_WS2812FX_PixelsSize } from '../../qroma-proto/qroma-lights-types';
 import { QTheme } from '../../react-qroma-mui/input-controls/theme';
 import EditIcon from '@mui/icons-material/Edit';
+import ShareIcon from '@mui/icons-material/Share';
+
 
 
 type SetFlashPanelProps = {
@@ -39,6 +41,7 @@ type SetFlashPanelProps = {
 
   saveConfig: () => void
   renameQromaStrip: () => void
+  shareAnimation: () => void
 }
 
 
@@ -154,6 +157,15 @@ export const SetFlashPanel = (props: SetFlashPanelProps) => {
           onClick={() => { props.saveConfig(); }}
           >
           Save
+        </QButton>
+        <QButton
+          sx={{
+            marginTop: "10px",
+            marginLeft: "10px",
+          }}
+          onClick={() => { props.shareAnimation(); }}
+          >
+          Share <ShareIcon />
         </QButton>
       </Stack>
     </>

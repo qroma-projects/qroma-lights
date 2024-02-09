@@ -533,6 +533,72 @@ class QromaLightsDeviceConfig extends $pb.GeneratedMessage {
   QromaStripConfig ensureQromaStrip2Config() => $_ensure(2);
 }
 
+class ShareableAnimation extends $pb.GeneratedMessage {
+  factory ShareableAnimation({
+    $core.String? name,
+    QromaStrip_WS2812FX_Animation? animation,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (animation != null) {
+      $result.animation = animation;
+    }
+    return $result;
+  }
+  ShareableAnimation._() : super();
+  factory ShareableAnimation.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ShareableAnimation.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ShareableAnimation', createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..aOM<QromaStrip_WS2812FX_Animation>(2, _omitFieldNames ? '' : 'animation', subBuilder: QromaStrip_WS2812FX_Animation.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  ShareableAnimation clone() => ShareableAnimation()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  ShareableAnimation copyWith(void Function(ShareableAnimation) updates) => super.copyWith((message) => updates(message as ShareableAnimation)) as ShareableAnimation;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static ShareableAnimation create() => ShareableAnimation._();
+  ShareableAnimation createEmptyInstance() => create();
+  static $pb.PbList<ShareableAnimation> createRepeated() => $pb.PbList<ShareableAnimation>();
+  @$core.pragma('dart2js:noInline')
+  static ShareableAnimation getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ShareableAnimation>(create);
+  static ShareableAnimation? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  QromaStrip_WS2812FX_Animation get animation => $_getN(1);
+  @$pb.TagNumber(2)
+  set animation(QromaStrip_WS2812FX_Animation v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasAnimation() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAnimation() => clearField(2);
+  @$pb.TagNumber(2)
+  QromaStrip_WS2812FX_Animation ensureAnimation() => $_ensure(1);
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');
